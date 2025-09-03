@@ -18,10 +18,10 @@ func create_default_world_state() -> bool:
 
 	# ── Canonical propositions ───────────────────────────────────────────────
 	# Keep the classic three, add one extra for more texture.
-	var p_king_dead        := WorldServer.create_proposition(\"The King is dead\",  true)   # canon: true
-	var p_world_fair       := WorldServer.create_proposition(\"The world is fair\", false)  # canon: false
-	var p_everyone_can_read:= WorldServer.create_proposition(\"Everyone can read\", false)  # canon: false
-	var p_dragons_real     := WorldServer.create_proposition(\"Dragons are real\",  true)   # canon: true
+	var p_king_dead        := WorldServer.create_canonical_proposition(\"The King is dead\",  true)   # canon: true
+	var p_world_fair       := WorldServer.create_canonical_proposition(\"The world is fair\", false)  # canon: false
+	var p_everyone_can_read:= WorldServer.create_canonical_proposition(\"Everyone can read\", false)  # canon: false
+	var p_dragons_real     := WorldServer.create_canonical_proposition(\"Dragons are real\",  true)   # canon: true
 
 	# Convenience ids (now match the proposition descriptions)
 	var ID := {
@@ -49,24 +49,24 @@ func create_default_world_state() -> bool:
 	# Alice:
 	# - Denies the king is dead (contradicts), says world is fair (contradicts),
 	# - Says not everyone can read (matches), omits dragons.
-	alice.believe(ID.king_dead,         false, true) # contradicts
-	alice.believe(ID.world_fair,        true,  true) # contradicts
-	alice.believe(ID.everyone_can_read, false, true) # matches
+	alice.believe(ID.king_dead,         false) # contradicts
+	alice.believe(ID.world_fair,        true) # contradicts
+	alice.believe(ID.everyone_can_read, false) # matches
 	# (no dragons_real belief → omission)
 
 	# Bob:
 	# - Accepts king is dead (matches), world is unfair (matches),
 	# - Says everyone can read (contradicts), denies dragons (contradicts).
-	bob.believe(ID.king_dead,         true,  true) # matches
-	bob.believe(ID.world_fair,        false, true) # matches
-	bob.believe(ID.everyone_can_read, true,  true) # contradicts
-	bob.believe(ID.dragons_real,      false, true) # contradicts
+	bob.believe(ID.king_dead,         true) # matches
+	bob.believe(ID.world_fair,        false) # matches
+	bob.believe(ID.everyone_can_read, true) # contradicts
+	bob.believe(ID.dragons_real,      false) # contradicts
 
 	# Charlie:
 	# - Accepts king is dead (matches), says world is fair (contradicts),
 	# - Omits literacy and dragons.
-	charlie.believe(ID.king_dead,    true,  true) # matches
-	charlie.believe(ID.world_fair,   true,  true) # contradicts
+	charlie.believe(ID.king_dead,    true) # matches
+	charlie.believe(ID.world_fair,   true) # contradicts
 	# (no everyone_can_read/dragons_real beliefs → omissions)
 
 	# ── Ideal worlds (distinct per theme & per character) ────────────────────

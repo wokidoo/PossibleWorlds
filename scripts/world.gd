@@ -4,149 +4,143 @@ class_name World
 
 ## Non-canonical world: holds only propositions it cares about.
 ## Keys: prop_id -> Proposition (always CLONES, never canonical instances)
-@export var propositions: Dictionary[int, Proposition] = {}
+@export var _propositions: Dictionary[int, Proposition] = {}
 @export var name: String = ""
 
-# -----------------------------------------------------------------------------
-# CRUD (never call PropositionServer here)
-# -----------------------------------------------------------------------------
+#region proposition
 
-## Add/replace a proposition. Always store a CLONE of the PROVIDED instance.
-## If override=false and id exists, keep existing instance & value.
-func add_or_update_prop(p: Proposition, override: bool = true) -> void:
-	if not WorldServer.is_registered_id(p._prop_id):
-		push_error("World.add_or_update_prop: proposition must be registered in WorldeServer with _prop_id")
-		return
-	var id := p._prop_id
+## Return the Proposition with the id provided.
+## Returns null if World does not contain a Proposition with a matching id
+func get_proposition(id:int) -> Proposition:
+	return _propositions.get(id,null)
 
-	if propositions.has(id):
-		if not override:
-			return
-		# Update in place to preserve identity
-		propositions[id].value = p.value
-		return
+## Return the dictionary containing all Propositions within this world.
+## Mapped using _prop_id -> Proposition
+func get_propositions() -> Dictionary[int,Proposition]:
+	return _propositions
 
-	var clone :Proposition = p.make_clone(p.value)
-	if clone == null:
-		push_error("World.add_or_update_prop: failed to clone id=%s" % id)
-		return
-	propositions[id] = clone
+## Return an array of all Propostion ids within this world
+func get_proposition_ids() -> Array[int]:
+	return _propositions.keys()
 
-## Set value for an id that THIS world already tracks. If missing -> no-op.
-func set_value_by_prop_id(id: int, value: bool) -> void:
-	var prop :Proposition = propositions.get(id, null)
-	if prop == null:
-		return
-	prop.value = value
 
-## Get value if present; else default (null by default).
-func get_value_by_prop_id(id: int, default: Variant = null) -> Variant:
-	var p : Proposition = propositions.get(id, null)
-	return (p.value if p != null else default)
+func get_proposition_value(p:Proposition):
+	var prop := get_proposition(p._prop_id)
+	if prop != null:
+		return prop.value
 
-## Remove slot (does not affect server).
-func remove_prop(id: int) -> void:
-	propositions.erase(id)
+func get_proposition_value_with_id(id:int):
+	var prop := get_proposition(id)
+	if prop != null:
+		return prop.value
 
-## Present prop ids.
-func prop_ids() -> PackedInt32Array:
-	var out := PackedInt32Array()
-	out.resize(propositions.size())
-	var i := 0
-	for id in propositions.keys():
-		out[i] = id
-		i += 1
-	out.sort()
-	return out
 
-# -----------------------------------------------------------------------------
-# Tension / distance
-# -----------------------------------------------------------------------------
+## Evaluates whether this World has a Proposition with an id matching the id of the Proposition provided.
+func has_proposition(p:Proposition) -> bool:
+	var found_prop:Proposition = _propositions.get(p._prop_id,null)
+	if found_prop != null:
+		return true
+	else:
+		return false
 
-func tension_against(other: World, lambda_missing: int = 0) -> int:
-	if other == null:
-		return 0
-	var t := 0
-	var ids := prop_ids(); ids.sort()
-	for id in ids:
-		var mine : Proposition = propositions[id]
-		var theirs :Proposition = other.propositions.get(id, null)
-		t += (lambda_missing if theirs == null else _distance_scalar(mine.value, theirs.value))
-	return t
+## Evaluates whether this World has a Propostion with the id provided
+func has_proposition_id(id:int) -> bool:
+	return _propositions.has(id)
 
-func tension_symmetric(other: World, lambda_missing_self: int = 0, lambda_missing_other: int = 0) -> int:
-	if other == null:
-		return 0
-	var t := 0
-	var visited := {}
-	var ids_self := prop_ids(); ids_self.sort()
-	for id in ids_self:
-		visited[id] = true
-		var mine : Proposition = propositions[id]
-		var theirs :Proposition = other.propositions.get(id, null)
-		t += (lambda_missing_other if theirs == null else _distance_scalar(mine.value, theirs.value))
-	var ids_other := other.prop_ids(); ids_other.sort()
-	for id in ids_other:
-		if visited.has(id): continue
-		t += lambda_missing_self
-	return t
+## Set (add or modify) a proposition to this World.
+## If world already has proposition (or a clone) and 'overwrite' is true,
+## set the propostion to 'p'. If world has a clone but 'overwrite' is false, no-op
+func set_proposition(p:Proposition,overwrite:bool = true) ->bool:
+	if not _propositions.has(p._prop_id) or overwrite:
+		_propositions.set(p._prop_id,p.make_clone())
+		return true
+	else:
+		return false
 
-# -----------------------------------------------------------------------------
-# World-to-world transforms
-# -----------------------------------------------------------------------------
+## Set the value of a given proposition value contained in the world
+func set_proposition_value(p:Proposition, v:bool) ->bool:
+	if has_proposition(p):
+		get_proposition(p._prop_id).value = v
+		return true
+	else:
+		var prop := WorldServer.get_canonical_proposition(p._prop_id)
+		prop.value = v
+		set_proposition(prop)
+		return true
 
-## Copy values from another world.
+## Set the value of a given propostion value contained in the world using the propostion id
+func set_proposition_value_with_id(id:int,value:bool) ->bool:
+	if has_proposition_id(id):
+		get_proposition(id).value = value
+		return true
+	else:
+		var prop := WorldServer.get_canonical_proposition(id)
+		prop.value = value
+		set_proposition(prop)
+		return true
+
+## Remove proposition with matching id from world
+func remove_proposition(p:Proposition):
+	if has_proposition(p):
+		return _propositions.erase(p._prop_id)
+
+## Remove proposition from world with the id provided
+func remove_proposition_with_id(id: int) -> bool:
+	return _propositions.erase(id)
+
+#endregion
+
+#region tension
+
+## Calculate the magnitude proposition tension between this World and the World provided.
+## Returns 0 if all Propositions match. 
+func tension_with_world(w:World, lambda_missing:int = 0) ->int:
+	var tension:int = 0
+	for id in get_proposition_ids():
+		if w.has_proposition_id(id):
+			var p_self:Proposition = get_proposition(id)
+			var p_other:Proposition = w.get_proposition(id)
+			tension += p_self.diff(p_other)
+		else:
+			tension += lambda_missing
+	return tension
+
+## Returns the tension dictionary between this World and the World provided.
+## Each key is a proposition id shared by both worlds.
+## Values of '1' represent a mismatch in Proposition values.
+## Values of '0' represent matching Proposition values 
+func tension_vector_between_worlds(w:World) -> Dictionary[int,int]:
+	var tension_vector:Dictionary[int,int] = {}
+	for id in get_proposition_ids():
+		if w.has_proposition_id(id):
+			var p_self:Proposition = get_proposition(id)
+			var p_other:Proposition = w.get_proposition(id)
+			tension_vector.set(id,p_self.diff(p_other))
+	return tension_vector
+
+#endregion
+
+#region world transforms
+
+## Match Propsition values with Propostions from World 'w'.
 ## If clone_missing_props: attach a CLONE made from the SOURCE instance (p_other).
-func match_props_from_world(
-	other: World,
-	ids: PackedInt32Array = PackedInt32Array(),
-	clone_missing_props: bool = true
-) -> void:
-	if other == null:
-		return
-	var to_apply := ids
-	if to_apply.is_empty():
-		to_apply = other.prop_ids()
-	to_apply.sort()
-
-	for id in to_apply:
-		if not WorldServer.is_registered_id(id):
-			continue
-
-		var p_other: Proposition = other.propositions.get(id, null)
-		if p_other == null:
-			continue
-
-		if propositions.has(id):
-			set_value_by_prop_id(id, p_other.value)
+func match_propositions_with_world(w: World, clone_missing_props: bool = true) -> void:
+	for id in w.get_proposition_ids():
+		if has_proposition_id(id):
+			set_proposition_value_with_id(id,w.get_proposition_value_with_id(id))
 		elif clone_missing_props:
-			var clone: Proposition = p_other.make_clone(p_other.value)
-			if clone != null:
-				propositions[id] = clone
+			_propositions.set(id,w.get_proposition(id).make_clone())
+		
 
-## Differences: { id: { "self": bool|Null, "other": bool } }
-func diff(other: World) -> Dictionary:
-	var out := {}
-	if other == null: return out
-	var visited := {}
-	for id in propositions.keys():
-		visited[id] = true
-		var a :Proposition = propositions[id]
-		var b :Proposition = other.propositions.get(id, null)
-		if b != null and a.value != b.value:
-			out[id] = {"self": a.value, "other": b.value}
-	for id in other.propositions.keys():
-		if visited.has(id): continue
-		out[id] = {"self": null, "other": other.propositions[id].value}
-	return out
+#endregion
 
-# -----------------------------------------------------------------------------
-# Internals
-# -----------------------------------------------------------------------------
+#region util
 
-static func _distance_scalar(a: Variant, b: Variant) -> int:
-	if typeof(a) == TYPE_BOOL and typeof(b) == TYPE_BOOL:
-		return int(a != b)
-	if typeof(a) in [TYPE_INT, TYPE_FLOAT] and typeof(b) in [TYPE_INT, TYPE_FLOAT]:
-		return abs(int(a) - int(b))
-	return int(a != b)
+func make_clone() ->World:
+	var clone := World.new()
+	clone.name = name
+	for id in _propositions:
+		var prop := get_proposition(id)
+		clone.set_proposition(prop,true)
+
+	return clone

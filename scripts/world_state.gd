@@ -9,7 +9,7 @@ class_name WorldState
 @export var world_name: String = "Actual"
 
 # Canonical content
-@export var propositions: Array[Proposition] = []      # canonical Proposition instances
+@export var canonical_world: World                     # canonical world (with themes)
 @export var themes: Array[StringName] = []             # canonical themes
 @export var characters: Array[Character] = []          # characters in the world
 

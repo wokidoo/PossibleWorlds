@@ -22,3 +22,8 @@ func make_clone(override_value: Variant = null) -> Proposition:
 	clone.description = description
 	clone.value = override_value if override_value is bool else value
 	return clone
+
+## Returns wether the proposition provide matches this propositions value as an integer.
+## return 0 if values match, 1 otherwise.
+func diff(p:Proposition) -> int:
+	return int(value != p.value)
