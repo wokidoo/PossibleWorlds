@@ -52,7 +52,8 @@ func has_proposition_id(id:int) -> bool:
 ## set the propostion to 'p'. If world has a clone but 'overwrite' is false, no-op
 func set_proposition(p:Proposition,overwrite:bool = true) ->bool:
 	if not _propositions.has(p._prop_id) or overwrite:
-		_propositions.set(p._prop_id,p.make_clone())
+		_store_prop(p)
+		emit_changed()
 		return true
 	else:
 		return false
@@ -61,32 +62,49 @@ func set_proposition(p:Proposition,overwrite:bool = true) ->bool:
 func set_proposition_value(p:Proposition, v:bool) ->bool:
 	if has_proposition(p):
 		get_proposition(p._prop_id).value = v
+		emit_changed()
 		return true
 	else:
 		var prop := WorldServer.get_canonical_proposition(p._prop_id)
 		prop.value = v
-		set_proposition(prop)
+		_store_prop(p)
+		emit_changed()
 		return true
 
 ## Set the value of a given propostion value contained in the world using the propostion id
 func set_proposition_value_with_id(id:int,value:bool) ->bool:
 	if has_proposition_id(id):
 		get_proposition(id).value = value
+		emit_changed()
 		return true
 	else:
 		var prop := WorldServer.get_canonical_proposition(id)
 		prop.value = value
-		set_proposition(prop)
+		_store_prop(prop)
+		emit_changed()
 		return true
 
 ## Remove proposition with matching id from world
 func remove_proposition(p:Proposition):
 	if has_proposition(p):
-		return _propositions.erase(p._prop_id)
+		var prop := get_proposition(p._prop_id)
+		if _propositions.erase(p._prop_id):
+			_unwire_prop(prop)
+			emit_changed()
+			return true
+		else:
+			return false
+
 
 ## Remove proposition from world with the id provided
 func remove_proposition_with_id(id: int) -> bool:
-	return _propositions.erase(id)
+	var prop := get_proposition(id)
+	if _propositions.erase(id):
+		_unwire_prop(prop)
+		emit_changed()
+		return true
+	else:
+		return false
 
 #endregion
 
@@ -129,8 +147,7 @@ func match_propositions_with_world(w: World, clone_missing_props: bool = true) -
 		if has_proposition_id(id):
 			set_proposition_value_with_id(id,w.get_proposition_value_with_id(id))
 		elif clone_missing_props:
-			_propositions.set(id,w.get_proposition(id).make_clone())
-		
+			_store_prop(w.get_proposition(id))		
 
 #endregion
 
@@ -144,3 +161,48 @@ func make_clone() ->World:
 		clone.set_proposition(prop,true)
 
 	return clone
+
+func _wire_prop(prop:Proposition):
+	var cb := Callable(_on_prop_changed)
+	if not prop.changed.is_connected(cb):
+		print("Prop wired")
+		prop.changed.connect(cb)
+
+func _unwire_prop(prop:Proposition):
+	var cb := Callable(_on_prop_changed)
+	if prop != null and prop.changed.is_connected(cb):
+		prop.changed.disconnect(cb)
+
+func _on_prop_changed():
+	print("World '%s' changed!" % name)
+	emit_changed()
+
+func _clear_wires():
+	for id in _propositions.keys():
+		_unwire_prop(_propositions[id])
+
+func _store_prop(source_prop:Proposition) -> Proposition:
+	var clone := source_prop.make_clone()
+	_propositions.set(source_prop._prop_id,clone)
+	_wire_prop(clone)
+	return clone
+
+func _rewire_all_props():
+	var cb := Callable(_on_prop_changed)
+	for id in _propositions.keys():
+		var p: Proposition = _propositions[id]
+		if p == null:
+			continue
+		if p.changed.is_connected(cb):
+			p.changed.disconnect(cb)
+		p.changed.connect(cb)
+
+func connect_all_changed_to_callable(cb:Callable):
+	for id in _propositions.keys():
+		var prop:Proposition = _propositions[id]
+		prop.connect_changed_to_callable(cb)
+
+func disconnect_all_changed_from_callable(cb:Callable):
+	for id in _propositions.keys():
+		var prop:Proposition = _propositions[id]
+		prop.disconnect_changed_from_callable(cb)

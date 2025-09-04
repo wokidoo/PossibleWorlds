@@ -2,7 +2,10 @@
 extends Resource
 class_name Character
 
-@export var name: String = ""
+@export var name: String = "":
+	set(val):
+		name = val
+		emit_changed()
 @export var perceived_world: World = World.new()
 @export var ideal_worlds: Dictionary[StringName, World] = {}
 
@@ -27,6 +30,10 @@ func get_perceived_proposition(p:Proposition):
 
 func get_perceived_proposition_with_id(id:int):
 	return perceived_world.get_proposition(id)
+
+
+func get_perceived_propositions() -> Dictionary[int,Proposition]:
+	return perceived_world.get_propositions()
 
 
 func get_perceived_proposition_value(p:Proposition):

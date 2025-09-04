@@ -12,17 +12,23 @@ const LAMBDA_MISSING := 0  # tune if you want missing props to count in tensions
 @onready var left_tab_container:TabContainer = TabContainer.new()
 
 var proposition_list:ItemList
-var character_list:Control
-var themes_list:Control
+var character_list:ItemList
+var themes_list:ItemList
 
 #region buttons
+
+var new_button:Button
 var save_button:Button
 var load_button:Button
 
+#region init
+
 func _ready() -> void:
 	add_child(top_bar_container)
-	save_button = UiButton.create_top_bar_button("Save",func():pass)
-	load_button = UiButton.create_top_bar_button("load",func():pass)
+	new_button = UiButton.create_top_bar_button("New", _on_new_button_pressed)
+	save_button = UiButton.create_top_bar_button("Save",WorldServer.save_state)
+	load_button = UiButton.create_top_bar_button("load",WorldServer.load_state)
+	top_bar_container.add_child(new_button)
 	top_bar_container.add_child(save_button)
 	top_bar_container.add_child(load_button)
 	
@@ -38,17 +44,26 @@ func _ready() -> void:
 	proposition_list = UiContainer.create_item_list("Propositions")
 	proposition_list.item_selected.connect(_on_proposition_item_selected)
 	themes_list = UiContainer.create_item_list("Themes")
+	themes_list.item_selected.connect(_on_theme_item_selected)
 	character_list = UiContainer.create_item_list("Characters")
+	character_list.item_selected.connect(_on_character_item_selected)
 	left_tab_container.add_child(proposition_list)
 	left_tab_container.add_child(themes_list)
 	left_tab_container.add_child(character_list)
 
+	WorldServer.changed.connect(populate_propositions_list)
+	WorldServer.changed.connect(populate_themes_list)
+	WorldServer.changed.connect(populate_characters_list)
+
 	populate_propositions_list()
+	populate_themes_list()
+	populate_characters_list()
+
+#region populate panels
 
 func populate_propositions_list():
 	# Clear current rows
-	for c in proposition_list.get_children():
-		c.queue_free()
+	proposition_list.clear()
 
 	# Collect and sort by id for stable ordering
 	var ids: Array = WorldServer.get_canonical_proposition_ids()
@@ -63,30 +78,39 @@ func populate_propositions_list():
 		proposition_list.add_item(label)
 
 func populate_themes_list():
-	for i in themes_list.get_children():
-		i.free()
+	themes_list.clear()
+	var themes:Array = WorldServer.get_themes()
+	for t in themes:
+		var label :String = t
+		themes_list.add_item(label)
 
 func populate_characters_list():
-	for i in character_list.get_children():
-		i.free()
+	character_list.clear()
+	var characters:Array = WorldServer.get_characters()
+	for c in characters:
+		var label:String = c.name
+		character_list.add_item(label)
 
 func populate_detail_container(control:Control):
 	for i in detail_container.get_children():
 		i.free()
 	detail_container.add_child(control)
 
-func _on_proposition_item_selected(index:int):
-	populate_detail_container(make_canonical_proposition_details(index))
+#region on signals
 
-static func make_canonical_proposition_details(id:int):
-	if id == 0:
-		return null
-	var prop := WorldServer.get_canonical_proposition(id)
-	var container:= VBoxContainer.new()
-	var title_label:= Label.new()
-	title_label.text = "Proposition"
-	var description_label := Label.new()
-	description_label.text = "Description: '%s' [%s]" % [prop.description,prop.value]
-	container.add_child(title_label)
-	container.add_child(description_label)
-	return container
+func _on_proposition_item_selected(index:int):
+	if index > 0:
+		populate_detail_container(UiDetails.PropositionDetailPanel.create(index))
+
+func _on_theme_item_selected(index:int):
+	populate_detail_container(UiDetails.ThemesDetailPanel.create(index))
+
+func _on_character_item_selected(index:int):
+	var c := WorldServer.get_characters()[index]
+	populate_detail_container(UiDetails.CharacterDetailPanel.create(c))
+
+func _on_new_button_pressed():
+	WorldServer._reset_for_tests()
+	populate_characters_list()
+	populate_propositions_list()
+	populate_themes_list()

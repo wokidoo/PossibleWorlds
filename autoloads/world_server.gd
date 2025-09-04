@@ -22,7 +22,15 @@ var _next_char_id: int = 1
 
 
 func _init():
+	_canonical_world.changed.connect(_on_changed)
 	load_state()
+
+func _on_canonical_world_changed():
+	print("WorldServer: Canonical World changed!")
+	changed.emit()
+
+func _on_changed():
+	print("WorldServer changed")
 
 #region propostion
 
@@ -47,7 +55,9 @@ func register_new_proposition(p: Proposition) -> bool:
 		var stored := _canonical_world.get_proposition(p._prop_id)
 		if stored != null:
 			stored._is_canonical = true
-		emit_signal("changed")
+			if not stored.changed.is_connected(changed.emit):
+				p.changed.connect(changed.emit)
+		changed.emit()
 		return true
 
 	# assign new id
@@ -62,9 +72,12 @@ func register_new_proposition(p: Proposition) -> bool:
 
 
 func remove_canonical_proposition(id: int) -> bool:
+	var prop := _canonical_world.get_proposition(id)
 	var ok := _canonical_world.remove_proposition_with_id(id)
 	if ok:
-		emit_signal("changed")
+		if prop.changed.is_connected(changed.emit):
+			prop.changed.disconnect(changed.emit)
+		changed.emit()
 	return ok
 
 
@@ -103,6 +116,10 @@ func get_canonical_world() ->World:
 	return _canonical_world
 
 #region theme
+
+func rename_theme(index:int, new_name:String):
+	_themes.set(index,new_name)
+	changed.emit()
 
 func register_theme(theme: StringName) -> bool:
 	var s := String(theme).strip_edges()
@@ -171,7 +188,7 @@ func add_character(c: Character) -> int:
 		_next_char_id += 1
 	_char_index[id] = c
 	_char_ids[c] = id
-	emit_signal("changed")
+	changed.emit()
 	return id
 
 
@@ -191,7 +208,7 @@ func remove_character_instance(c: Character) -> bool:
 	else:
 		_char_index.erase(id)
 		_char_ids.erase(c)
-	emit_signal("changed")
+	changed.emit()
 	return true
 
 
@@ -203,8 +220,8 @@ func get_character_by_instance_id(id: int) -> Character:
 	return _char_index.get(id, null)
 
 
-func characters() -> Array[Character]:
-	return _characters.duplicate()
+func get_characters() -> Array[Character]:
+	return _characters
 
 
 func character_count() -> int:
@@ -300,6 +317,9 @@ func load_state(path: String = DEFAULT_STATE_PATH) -> bool:
 
 	# --- Metadata ---
 	world_name = (state.world_name if String(state.world_name).strip_edges() != "" else "Actual")
+
+	# --- rewire changed signal ---
+	_canonical_world.connect_all_changed_to_callable(_on_canonical_world_changed)
 
 	emit_signal("db_loaded", path)
 	emit_signal("changed")
