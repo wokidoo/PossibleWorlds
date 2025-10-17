@@ -11,13 +11,8 @@ config_version=5
 [application]
 
 config/name="PossibleWorlds"
-run/main_scene="uid://dl4j44vhbn7e2"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-WorldServer="*res://autoloads/world_server.gd"
 
 [display]
 

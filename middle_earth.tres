@@ -1,0 +1,320 @@
+[gd_resource type="Resource" script_class="WorldState" load_steps=45 format=3 uid="uid://c63vy6k2i45mh"]
+
+[ext_resource type="Script" uid="uid://c8kgqvclh5tmr" path="res://scripts/world.gd" id="1_j1f24"]
+[ext_resource type="Script" uid="uid://b16vthi1gfont" path="res://scripts/character.gd" id="2_6nor5"]
+[ext_resource type="Script" uid="uid://c8s16f3fua3me" path="res://scripts/world_state.gd" id="3_d8d3q"]
+
+[sub_resource type="Resource" id="Resource_2vid0"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_r5ufw"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_wn0qr"]
+script = ExtResource("2_6nor5")
+name = "witch_hazel_of_the_swamp"
+perceivedWorld = SubResource("Resource_r5ufw")
+
+[sub_resource type="Resource" id="Resource_vlym7"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_dm7h6"]
+script = ExtResource("2_6nor5")
+name = "seer_arion_starcaller"
+perceivedWorld = SubResource("Resource_vlym7")
+
+[sub_resource type="Resource" id="Resource_r20kt"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_ta342"]
+script = ExtResource("2_6nor5")
+name = "king_aldrin_the_steadfast"
+perceivedWorld = SubResource("Resource_r20kt")
+
+[sub_resource type="Resource" id="Resource_4x6o1"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_a7qbn"]
+script = ExtResource("2_6nor5")
+name = "archmage_thalren"
+perceivedWorld = SubResource("Resource_4x6o1")
+
+[sub_resource type="Resource" id="Resource_d4kaf"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_byf75"]
+script = ExtResource("2_6nor5")
+name = "mercenary_varek_the_wolf"
+perceivedWorld = SubResource("Resource_d4kaf")
+
+[sub_resource type="Resource" id="Resource_ru4ta"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_4j6ex"]
+script = ExtResource("2_6nor5")
+name = "sorceress_kaela_nightbloom"
+perceivedWorld = SubResource("Resource_ru4ta")
+
+[sub_resource type="Resource" id="Resource_o4evl"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_bugbp"]
+script = ExtResource("2_6nor5")
+name = "princess_lyssara_dawnsong"
+perceivedWorld = SubResource("Resource_o4evl")
+
+[sub_resource type="Resource" id="Resource_4bko2"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_l0cy0"]
+script = ExtResource("2_6nor5")
+name = "general_toran_bloodhelm"
+perceivedWorld = SubResource("Resource_4bko2")
+
+[sub_resource type="Resource" id="Resource_tcu82"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_t88e0"]
+script = ExtResource("2_6nor5")
+name = "captain_borik_stonefist"
+perceivedWorld = SubResource("Resource_tcu82")
+
+[sub_resource type="Resource" id="Resource_6ttip"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_3ht67"]
+script = ExtResource("2_6nor5")
+name = "lord_gareth_blackthorn"
+perceivedWorld = SubResource("Resource_6ttip")
+
+[sub_resource type="Resource" id="Resource_k5yit"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_bfdav"]
+script = ExtResource("2_6nor5")
+name = "healer_nyra_of_ravenshollow"
+perceivedWorld = SubResource("Resource_k5yit")
+
+[sub_resource type="Resource" id="Resource_8iwio"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_rhhji"]
+script = ExtResource("2_6nor5")
+name = "lady_elyra_of_moonspire"
+perceivedWorld = SubResource("Resource_8iwio")
+
+[sub_resource type="Resource" id="Resource_b78wh"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_k6a58"]
+script = ExtResource("2_6nor5")
+name = "ranger_eodan_greenmark"
+perceivedWorld = SubResource("Resource_b78wh")
+
+[sub_resource type="Resource" id="Resource_bmpmv"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_58u8h"]
+script = ExtResource("2_6nor5")
+name = "inquisitor_maren_ashveil"
+perceivedWorld = SubResource("Resource_bmpmv")
+
+[sub_resource type="Resource" id="Resource_xx0mf"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_u2rcl"]
+script = ExtResource("2_6nor5")
+name = "sir_kael_the_valiant"
+perceivedWorld = SubResource("Resource_xx0mf")
+
+[sub_resource type="Resource" id="Resource_id156"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_x2b6s"]
+script = ExtResource("2_6nor5")
+name = "captain_selene_wavecutter"
+perceivedWorld = SubResource("Resource_id156")
+
+[sub_resource type="Resource" id="Resource_gkua3"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_owxhb"]
+script = ExtResource("2_6nor5")
+name = "queen_isolde_the_wise"
+perceivedWorld = SubResource("Resource_gkua3")
+
+[sub_resource type="Resource" id="Resource_rm3uy"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_0svxw"]
+script = ExtResource("2_6nor5")
+name = "monk_taro_of_the_eastern_peaks"
+perceivedWorld = SubResource("Resource_rm3uy")
+
+[sub_resource type="Resource" id="Resource_hvdmt"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_ddr4m"]
+script = ExtResource("2_6nor5")
+name = "knight_eldric_of_the_rose"
+perceivedWorld = SubResource("Resource_hvdmt")
+
+[sub_resource type="Resource" id="Resource_7c0q4"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_portal_to_the_void_is_open": 1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": 0
+})
+
+[sub_resource type="Resource" id="Resource_xbds4"]
+script = ExtResource("2_6nor5")
+name = "hunter_garric_falclaw"
+perceivedWorld = SubResource("Resource_7c0q4")
+
+[resource]
+script = ExtResource("3_d8d3q")
+canonWorld = SubResource("Resource_2vid0")
+characters = Array[ExtResource("2_6nor5")]([SubResource("Resource_wn0qr"), SubResource("Resource_dm7h6"), SubResource("Resource_ta342"), SubResource("Resource_a7qbn"), SubResource("Resource_byf75"), SubResource("Resource_4j6ex"), SubResource("Resource_bugbp"), SubResource("Resource_l0cy0"), SubResource("Resource_t88e0"), SubResource("Resource_3ht67"), SubResource("Resource_bfdav"), SubResource("Resource_rhhji"), SubResource("Resource_k6a58"), SubResource("Resource_58u8h"), SubResource("Resource_u2rcl"), SubResource("Resource_x2b6s"), SubResource("Resource_owxhb"), SubResource("Resource_0svxw"), SubResource("Resource_ddr4m"), SubResource("Resource_xbds4")])

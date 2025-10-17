@@ -1,0 +1,186 @@
+[gd_scene load_steps=2 format=3 uid="uid://jnnwhyqkgqr1"]
+
+[sub_resource type="GDScript" id="GDScript_hjfav"]
+resource_name = "create_world_state_gui"
+script/source = "@tool
+extends Control
+
+@onready var file_name_line_edit: LineEdit = %FileNameLineEdit
+@onready var confirm_button:Button = %ConfirmButton
+@onready var proposition_spin_box:SpinBox = %PropositionSpinBox
+@onready var character_spin_box: SpinBox=%CharacterSpinBox
+
+signal confirmed(filename:String,state: WorldState)
+
+var fantasy_propositions := [
+	\"the_king_is_alive\",
+	\"the_castle_is_under_siege\",
+	\"the_dragons_are_awake\",
+	\"the_wizard_council_has_convened\",
+	\"the_forest_is_cursed\",
+	\"the_queen_has_vanished\",
+	\"the_moon_is_blood_red\",
+	\"the_tavern_is_open\",
+	\"the_knights_are_loyal\",
+	\"the_princess_is_captured\",
+	\"the_bridge_is_destroyed\",
+	\"the_army_is_marching_north\",
+	\"the_sword_of_legends_is_forged\",
+	\"the_mines_are_abandoned\",
+	\"the_throne_is_empty\",
+	\"the_orcs_have_crossed_the_border\",
+	\"the_mages_are_in_hiding\",
+	\"the_prophecy_is_fulfilled\",
+	\"the_dark_lord_has_returned\",
+	\"the_citadel_gates_are_closed\",
+	\"the_council_is_divided\",
+	\"the_peasants_are_revolting\",
+	\"the_royal_banner_flies_high\",
+	\"the_old_gods_are_silent\",
+	\"the_plague_spreads_in_the_south\",
+	\"the_knight_has_broken_his_oath\",
+	\"the_portal_to_the_void_is_open\",
+	\"the_priests_are_praying_for_rain\",
+	\"the_crown_jewel_is_missing\",
+    \"the_elves_have_withdrawn_from_the_realm\"
+]
+
+var fantasy_characters := [
+	\"sir_kael_the_valiant\",
+	\"lady_elyra_of_moonspire\",
+	\"archmage_thalren\",
+	\"captain_borik_stonefist\",
+	\"priestess_miriel_sunborn\",
+	\"king_aldrin_the_steadfast\",
+	\"queen_isolde_the_wise\",
+	\"prince_rowan_of_the_north\",
+	\"princess_lyssara_dawnsong\",
+	\"lord_gareth_blackthorn\",
+	\"thane_duric_ironbane\",
+	\"bard_finnian_quicktongue\",
+	\"rogue_sylwen_shadowstep\",
+	\"seer_arion_starcaller\",
+	\"mercenary_varek_the_wolf\",
+	\"sorceress_kaela_nightbloom\",
+	\"duchess_rhiannon_silverleaf\",
+	\"inquisitor_maren_ashveil\",
+	\"general_toran_bloodhelm\",
+	\"apprentice_lira_emberglow\",
+	\"witch_hazel_of_the_swamp\",
+	\"ranger_eodan_greenmark\",
+	\"warlock_draven_blackspire\",
+	\"monk_taro_of_the_eastern_peaks\",
+	\"captain_selene_wavecutter\",
+	\"hunter_garric_falclaw\",
+	\"knight_eldric_of_the_rose\",
+	\"healer_nyra_of_ravenshollow\",
+	\"hermit_oren_the_wise\",
+    \"necromancer_vyric_the_pale\"
+]
+
+func _ready() -> void:
+	confirm_button.pressed.connect(_on_confirm_button_pressed)
+	
+func _on_confirm_button_pressed():
+	if FileAccess.file_exists(\"res://%s.tres\" % file_name_line_edit.text):
+		print_debug(\"Filename already taken\")
+		return
+		
+	var world_state :WorldState = WorldState.new()
+	world_state.canonWorld = World.new()
+	
+	var availablePropositions := fantasy_propositions
+	for i in range(proposition_spin_box.value):
+		var proposition:String = availablePropositions.pick_random()
+		availablePropositions.erase(proposition)
+		world_state.canonWorld.setTruth(proposition,randi_range(0,1))
+	
+	var availableCharacterNames := fantasy_characters
+	for j in range(character_spin_box.value):
+		var character:Character = Character.new()
+		var c_name :String = availableCharacterNames.pick_random()
+		character.name = c_name
+		availableCharacterNames.erase(c_name)
+		character.perceivedWorld = World.new()
+		character.perceivedWorld.matchWorld(world_state.canonWorld)
+		
+		world_state.characters.append(character as Character)
+		
+	confirmed.emit(file_name_line_edit.text,world_state)
+	
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_hjfav")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "World Name: "
+
+[node name="FileNameLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "middle_earth"
+placeholder_text = "middle_earth"
+expand_to_text_length = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Propositions: "
+
+[node name="PropositionSpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+rounded = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Characters: "
+
+[node name="CharacterSpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+rounded = true
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Confirm"
