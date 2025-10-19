@@ -11,18 +11,17 @@ config_version=5
 [application]
 
 config/name="PossibleWorlds"
+run/main_scene="uid://2btlytq8itcv"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
+window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/per_pixel_transparency/allowed=true
 
 [dotnet]
 
 project/assembly_name="PossibleWorlds"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")

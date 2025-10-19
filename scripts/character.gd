@@ -1,10 +1,39 @@
-@tool
 class_name Character
 extends Resource
 
-@export var name: String
-@export var perceivedWorld: World
-@export var idealWorld: World
+@export var name: String:
+	set(value):
+		name = value
+		resource_name = name
+		emit_changed()
+		
+@export var perceivedWorld: World: 
+	set(value):
+		if perceivedWorld != null && perceivedWorld.changed.is_connected(emit_changed):
+			perceivedWorld.changed.disconnect(emit_changed)
+		perceivedWorld = value
+		perceivedWorld.changed.connect(emit_changed)
+		emit_changed()
+		
+@export var idealWorld: World: 
+	set(value):
+		if idealWorld != null && idealWorld.changed.is_connected(emit_changed):
+			idealWorld.changed.disconnect(emit_changed)
+		idealWorld = value
+		idealWorld.changed.connect(emit_changed)
+		emit_changed()
+
+func _init() -> void:
+	if perceivedWorld == null:
+		perceivedWorld = World.new()
+	if idealWorld == null:
+		idealWorld = World.new()
+
+func _reconnect_signals():
+	if not perceivedWorld.changed.is_connected(emit_changed):
+		perceivedWorld.changed.connect(emit_changed)
+	if not idealWorld.changed.is_connected(emit_changed):
+		idealWorld.changed.connect(emit_changed)
 
 func idealPerceivedDiff(matchMode:World.MatchMode = World.MatchMode.IGNORE_UNKOWNS) -> Array[StringName]:
 	return perceivedWorld.diff(idealWorld,matchMode)
@@ -16,9 +45,13 @@ func perceivedDiff(other:Character,matchMode:World.MatchMode = World.MatchMode.I
 	return perceivedWorld.diff(other.perceivedWorld,matchMode)
 
 func setIdeal(id:String,truth:World.TriBool) ->bool:
+	if not perceivedWorld.hasProposition(id):
+		perceivedWorld.setTruth(id,World.TriBool.UNKNOWN)
 	return idealWorld.setTruth(id,truth)
 
 func setPerceived(id:String,truth:World.TriBool) ->bool:
+	if not idealWorld.hasProposition(id):
+		idealWorld.setTruth(id,World.TriBool.UNKNOWN)
 	return perceivedWorld.setTruth(id,truth)
 
 func getIdeal(id:String) ->World.TriBool:

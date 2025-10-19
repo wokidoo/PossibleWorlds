@@ -1,0 +1,156 @@
+[gd_scene load_steps=4 format=3 uid="uid://2btlytq8itcv"]
+
+[ext_resource type="Script" uid="uid://bj00qg4yjy8gv" path="res://util/world_editor.gd" id="1_k5jdq"]
+[ext_resource type="Script" uid="uid://bjes4a4vdflln" path="res://util/file_menu_button.gd" id="2_e3m7w"]
+
+[sub_resource type="GDScript" id="GDScript_k5jdq"]
+resource_name = "canon_proposition_container"
+script/source = "extends VBoxContainer
+
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	return typeof(data) == TYPE_DICTIONARY and data.has(\"proposition\") and data.has(\"world\")
+
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	var we: WorldEditor = get_tree().root.get_node(\"WorldEditor\")
+	we.ws.canonWorld.setTruth(data[\"proposition\"],data[\"world\"].getTruth(data[\"proposition\"]))
+"
+
+[node name="WorldEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_k5jdq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FileMenuButton" type="MenuButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "File"
+script = ExtResource("2_e3m7w")
+metadata/_custom_type_script = "uid://bjes4a4vdflln"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 575
+drag_area_highlight_in_editor = true
+
+[node name="LeftPanel" type="Panel" parent="VBoxContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldNameLineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "<No WorldState Loaded>
+"
+
+[node name="LeftTabContainer" type="TabContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+tab_alignment = 2
+current_tab = 1
+
+[node name="Canon Propositions" type="ScrollContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/LeftTabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_tab_index = 0
+
+[node name="CanonPropositionContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/LeftTabContainer/Canon Propositions"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = SubResource("GDScript_k5jdq")
+
+[node name="Characters" type="ScrollContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/LeftTabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="CharacterPropositionContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/LeftTabContainer/Characters"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CreatePropositionHBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreatePropositionHBoxContainer"]
+layout_mode = 2
+text = "New Proposition:"
+
+[node name="NewPropositionLineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreatePropositionHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConfirmPropositionButton" type="Button" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreatePropositionHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add"
+
+[node name="CreateCharacterHBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreateCharacterHBoxContainer"]
+layout_mode = 2
+text = "New Character:"
+
+[node name="NewCharacterLineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreateCharacterHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConfirmCharacterButton" type="Button" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreateCharacterHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add"
+
+[node name="RightPanel" type="Panel" parent="VBoxContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="DetailsPanelContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

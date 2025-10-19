@@ -1,4 +1,3 @@
-@tool
 class_name World
 extends Resource
 
@@ -8,13 +7,20 @@ enum MatchMode {IGNORE_UNKOWNS, MATCH_UNKOWNS, DIFF_UNKOWNS}
 @export var propositions: Dictionary[StringName,TriBool];
 
 func setTruth(id:String, truth:TriBool) -> bool:
-	return propositions.set(id,truth)
+	id = id.to_snake_case()
+	var result := propositions.set(id,truth)
+	if result:
+		emit_changed()
+	return result
 
 func getTruth(id:String) -> TriBool:
 	return propositions.get(id,TriBool.UNKNOWN)
 
 func eraseTruth(id:String) -> bool:
-	return propositions.erase(id)
+	var result := propositions.erase(id)
+	if result:
+		emit_changed()
+	return result
 
 func hasProposition(id:String) -> bool:
 	return propositions.has(id)
@@ -22,6 +28,7 @@ func hasProposition(id:String) -> bool:
 func matchWorld(other:World) -> void:
 	propositions.clear()
 	propositions.assign(other.propositions)
+	emit_changed()
 
 func diff(other:World, matchMode:MatchMode = MatchMode.IGNORE_UNKOWNS) -> Array[StringName]:
 	var _diff :Array[StringName]

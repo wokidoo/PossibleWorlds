@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="WorldState" load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_usdw6"]
+[ext_resource type="Script" path="res://scripts/character.gd" id="2_y5hvx"]
+[ext_resource type="Script" path="res://scripts/world_state.gd" id="3_tgvb6"]
+
+[sub_resource type="Resource" id="Resource_50haj"]
+script = ExtResource("1_usdw6")
+propositions = Dictionary[StringName, int]({
+&"a_plague_is_spreading": 1,
+&"the_king_is_dead": 0,
+&"the_latest_harvest_was_good": 2
+})
+
+[sub_resource type="Resource" id="Resource_usdw6"]
+script = ExtResource("1_usdw6")
+propositions = Dictionary[StringName, int]({
+&"a_plague_is_spreading": 0,
+&"the_king_is_dead": 1
+})
+
+[sub_resource type="Resource" id="Resource_y5hvx"]
+script = ExtResource("1_usdw6")
+propositions = Dictionary[StringName, int]({
+&"a_plague_is_spreading": 1,
+&"the_king_is_dead": 1
+})
+
+[sub_resource type="Resource" id="Resource_tgvb6"]
+resource_name = "Pixel DeMontRoyal"
+script = ExtResource("2_y5hvx")
+name = "Pixel DeMontRoyal"
+perceivedWorld = SubResource("Resource_y5hvx")
+idealWorld = SubResource("Resource_usdw6")
+
+[sub_resource type="Resource" id="Resource_7g7pl"]
+script = ExtResource("1_usdw6")
+propositions = Dictionary[StringName, int]({
+&"the_king_is_dead": 0
+})
+
+[sub_resource type="Resource" id="Resource_g4cfv"]
+script = ExtResource("1_usdw6")
+propositions = Dictionary[StringName, int]({
+&"the_king_is_dead": 1
+})
+
+[sub_resource type="Resource" id="Resource_evlau"]
+resource_name = "Yowen Miller"
+script = ExtResource("2_y5hvx")
+name = "Yowen Miller"
+perceivedWorld = SubResource("Resource_g4cfv")
+idealWorld = SubResource("Resource_7g7pl")
+
+[resource]
+resource_name = "Emeraldroot Valley"
+script = ExtResource("3_tgvb6")
+name = "Emeraldroot Valley"
+canonWorld = SubResource("Resource_50haj")
+characters = Array[ExtResource("2_y5hvx")]([SubResource("Resource_tgvb6"), SubResource("Resource_evlau")])

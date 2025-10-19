@@ -9,10 +9,10 @@ extends Control
 @onready var confirm_button:Button = %ConfirmButton
 @onready var proposition_spin_box:SpinBox = %PropositionSpinBox
 @onready var character_spin_box: SpinBox=%CharacterSpinBox
+@onready var all_knowing_checkbox: CheckBox = %AllKnowingCheckBox
+@onready var perfect_reacll_checkbox: CheckBox = %PerfectRecallCheckBox
 
-signal confirmed(filename:String,state: WorldState)
-
-var fantasy_propositions := [
+const fantasy_propositions := [
 	\"the_king_is_alive\",
 	\"the_castle_is_under_siege\",
 	\"the_dragons_are_awake\",
@@ -45,68 +45,167 @@ var fantasy_propositions := [
     \"the_elves_have_withdrawn_from_the_realm\"
 ]
 
-var fantasy_characters := [
-	\"sir_kael_the_valiant\",
-	\"lady_elyra_of_moonspire\",
-	\"archmage_thalren\",
-	\"captain_borik_stonefist\",
-	\"priestess_miriel_sunborn\",
-	\"king_aldrin_the_steadfast\",
-	\"queen_isolde_the_wise\",
-	\"prince_rowan_of_the_north\",
-	\"princess_lyssara_dawnsong\",
-	\"lord_gareth_blackthorn\",
-	\"thane_duric_ironbane\",
-	\"bard_finnian_quicktongue\",
-	\"rogue_sylwen_shadowstep\",
-	\"seer_arion_starcaller\",
-	\"mercenary_varek_the_wolf\",
-	\"sorceress_kaela_nightbloom\",
-	\"duchess_rhiannon_silverleaf\",
-	\"inquisitor_maren_ashveil\",
-	\"general_toran_bloodhelm\",
-	\"apprentice_lira_emberglow\",
-	\"witch_hazel_of_the_swamp\",
-	\"ranger_eodan_greenmark\",
-	\"warlock_draven_blackspire\",
-	\"monk_taro_of_the_eastern_peaks\",
-	\"captain_selene_wavecutter\",
-	\"hunter_garric_falclaw\",
-	\"knight_eldric_of_the_rose\",
-	\"healer_nyra_of_ravenshollow\",
-	\"hermit_oren_the_wise\",
-    \"necromancer_vyric_the_pale\"
+var fantasy_first_names := [
+	\"Kael\",
+	\"Elyra\",
+	\"Thalren\",
+	\"Borik\",
+	\"Miriel\",
+	\"Aldrin\",
+	\"Isolde\",
+	\"Rowan\",
+	\"Lyssara\",
+	\"Gareth\",
+	\"Duric\",
+	\"Finnian\",
+	\"Sylwen\",
+	\"Arion\",
+	\"Varek\",
+	\"Kaela\",
+	\"Rhiannon\",
+	\"Maren\",
+	\"Toran\",
+	\"Lira\",
+	\"Hazel\",
+	\"Eodan\",
+	\"Draven\",
+	\"Taro\",
+	\"Selene\",
+	\"Garric\",
+	\"Eldric\",
+	\"Nyra\",
+	\"Oren\",
+	\"Vyric\",
+	\"Seraphine\",
+	\"Alaric\",
+	\"Coren\",
+	\"Maelis\",
+	\"Thorin\",
+	\"Velora\",
+	\"Elric\",
+	\"Arannis\",
+	\"Saphira\",
+	\"Brynden\",
+	\"Calla\",
+	\"Lorian\",
+	\"Fenric\",
+	\"Auren\",
+	\"Vaelis\",
+	\"Thessara\",
+	\"Corvus\",
+	\"Neris\",
+	\"Malric\",
+	\"Ysolde\"
+]
+
+var fantasy_last_names := [
+	\"Stonefist\",
+	\"Sunborn\",
+	\"Moonspire\",
+	\"Dawnsong\",
+	\"Blackthorn\",
+	\"Ironbane\",
+	\"Quicktongue\",
+	\"Shadowstep\",
+	\"Starcaller\",
+	\"Nightbloom\",
+	\"Silverleaf\",
+	\"Ashveil\",
+	\"Bloodhelm\",
+	\"Emberglow\",
+	\"Swampwalker\",
+	\"Greenmark\",
+	\"Blackspire\",
+	\"Wavecutter\",
+	\"Falclaw\",
+	\"Of_The_Rose\",
+	\"Ravenshollow\",
+	\"Of_The_North\",
+	\"Frostbane\",
+	\"Stormreaver\",
+	\"Duskweaver\",
+	\"Lightbringer\",
+	\"Stoneguard\",
+	\"Fireborn\",
+	\"Windwalker\",
+	\"Nightwind\",
+	\"Goldbrook\",
+	\"Starcrest\",
+	\"Wintermere\",
+	\"Hollowvale\",
+	\"Brightshore\",
+	\"Darkwhisper\",
+	\"Oakenshield\",
+	\"Ironroot\",
+	\"Whitespear\",
+	\"Stormwatch\",
+	\"Shadowfen\",
+	\"Blackvale\",
+	\"Emberfall\",
+	\"Frostmark\",
+	\"Windthorn\",
+	\"Firecrest\",
+	\"Shadowglen\",
+	\"Lightveil\",
+	\"Stonehaven\",
+	\"Moonfall\"
 ]
 
 func _ready() -> void:
 	confirm_button.pressed.connect(_on_confirm_button_pressed)
 	
 func _on_confirm_button_pressed():
-	if FileAccess.file_exists(\"res://%s.tres\" % file_name_line_edit.text):
-		print_debug(\"Filename already taken\")
-		return
-		
+	var path = \"res://%s.tres\" % file_name_line_edit.text.to_snake_case()
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
 	var world_state :WorldState = WorldState.new()
-	world_state.canonWorld = World.new()
+	world_state.take_over_path(path)
+	world_state.name = file_name_line_edit.text
 	
-	var availablePropositions := fantasy_propositions
-	for i in range(proposition_spin_box.value):
+	if world_state.canonWorld == null:
+		world_state.canonWorld = World.new()
+	
+	var availablePropositions := fantasy_propositions.duplicate()
+	for i in range(0,proposition_spin_box.value):
 		var proposition:String = availablePropositions.pick_random()
 		availablePropositions.erase(proposition)
 		world_state.canonWorld.setTruth(proposition,randi_range(0,1))
 	
-	var availableCharacterNames := fantasy_characters
-	for j in range(character_spin_box.value):
-		var character:Character = Character.new()
-		var c_name :String = availableCharacterNames.pick_random()
-		character.name = c_name
-		availableCharacterNames.erase(c_name)
-		character.perceivedWorld = World.new()
-		character.perceivedWorld.matchWorld(world_state.canonWorld)
+	for i in range(0,character_spin_box.value as int):
+		var c:= Character.new()
+
+		world_state.characters.append(c)
+		var c_name :String = fantasy_first_names.pick_random()
+		c_name += \" \"
+		c_name += fantasy_last_names.pick_random()
+		c.name = c_name
 		
-		world_state.characters.append(character as Character)
+		var percProps:Array[StringName]
+		# --- Set all perceived props or only some ---
+		if(all_knowing_checkbox.button_pressed):
+			c.perceivedWorld.matchWorld(world_state.canonWorld)
+			percProps = world_state.canonWorld.propositions.keys()
+		else:
+			var percPropCount:int = randi_range(1,proposition_spin_box.value as int)
+			for p in range(percPropCount):
+				percProps.append(world_state.canonWorld.propositions.keys().pick_random())
+		# --- Set value for perceived props ---
+		if(perfect_reacll_checkbox.button_pressed):
+			for k in percProps:
+				c.perceivedWorld.setTruth(k,world_state.canonWorld.getTruth(k))
+		else:
+			for k in percProps:
+				c.perceivedWorld.setTruth(k,randi_range(0,2))
 		
-	confirmed.emit(file_name_line_edit.text,world_state)
+		# --- Set ideal world props ---
+		for l in percProps:
+			c.idealWorld.setTruth(l,randi_range(0,2))
+		
+	var error = ResourceSaver.save(world_state,path,ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
+	if error != OK:
+		printerr(error)
+	else:
+		print(\"World state created\")
 	
 "
 
@@ -136,6 +235,7 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
@@ -151,6 +251,7 @@ expand_to_text_length = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -166,6 +267,7 @@ rounded = true
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
@@ -178,6 +280,35 @@ layout_mode = 2
 min_value = 1.0
 value = 1.0
 rounded = true
+allow_greater = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "All Characters perceive all starting canonical propositions"
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "All Knowing:"
+
+[node name="AllKnowingCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "All Characters perceived propositions match their canonical values"
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Perfect Recall: "
+
+[node name="PerfectRecallCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
