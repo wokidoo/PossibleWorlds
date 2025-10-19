@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://dejf2o5ypraa3"]
+
+[ext_resource type="Script" uid="uid://bw2k4ebwnuify" path="res://demo/npc.gd" id="1_nb7f4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nb7f4"]
+resource_local_to_scene = true
+size = Vector2(14, 20)
+
+[sub_resource type="GDScript" id="GDScript_nb7f4"]
+resource_name = "npc_area_2d"
+script/source = "extends Area2D
+@export var character:Character
+
+var info_box:Control
+
+func _ready() -> void:
+	info_box = Control.new()
+	info_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	info_box.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	var label:= Label.new()
+	label.text = \"Test\"
+	info_box.add_child(label)
+	add_child(info_box)
+	info_box.visible = false
+
+func _mouse_enter() -> void:
+	info_box.visible = true
+	
+func _mouse_exit() -> void:
+	info_box.visible = false
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdgx1"]
+resource_local_to_scene = true
+size = Vector2(17, 24)
+
+[node name="Npc" type="CharacterBody2D"]
+process_mode = 1
+input_pickable = true
+motion_mode = 1
+script = ExtResource("1_nb7f4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+process_mode = 3
+shape = SubResource("RectangleShape2D_nb7f4")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+collision_layer = 2
+collision_mask = 2
+script = SubResource("GDScript_nb7f4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+process_mode = 3
+shape = SubResource("RectangleShape2D_xdgx1")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-3.5762787e-07, 3.333334)
+scale = Vector2(7, 6.6666665)
+color = Color(0.2949241, 0.80806357, 0.85060084, 1)
+polygon = PackedVector2Array(0, 1, -1, 0, -1, -1, 0, -2, 1, -1, 1, 0)

@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://dndl4u3cnfvbp"]
+
+[ext_resource type="Resource" uid="uid://deduudguyqi37" path="res://middle_earth.tres" id="1_pqm7f"]
+
+[sub_resource type="GDScript" id="GDScript_pqm7f"]
+resource_name = "discussion_floor"
+script/source = "extends Node2D
+
+@export var ws:WorldState
+@export var max_npc_count: int = 20
+
+
+func _ready() -> void:
+	var available_npc: = ws.characters.duplicate()
+	for n in range(min(ws.characters.size(),max_npc_count)):
+		var npc := NPC.create_npc()
+		var character:Character = available_npc.pick_random()
+		available_npc.erase(character)
+		npc.character = character
+		npc.position = Vector2(randf_range(-250,250),randf_range(-250,250))
+		add_child(npc)
+		
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"ui_menu\"):
+		print(\"Pausing\")
+		get_tree().paused = !get_tree().paused
+"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a7lfq"]
+normal = Vector2(1, 0)
+distance = -250.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pqm7f"]
+normal = Vector2(0, 1)
+distance = -250.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dh7u7"]
+distance = -250.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_raj6d"]
+normal = Vector2(-1, 0)
+distance = -250.0
+
+[node name="DiscussionFloor" type="Node2D"]
+process_mode = 3
+script = SubResource("GDScript_pqm7f")
+ws = ExtResource("1_pqm7f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WorldBoundaries" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="WorldBoundaries"]
+color = Color(0.15487596, 0.154876, 0.15487596, 1)
+invert_enabled = true
+invert_border = 16384.0
+polygon = PackedVector2Array(-250, -250, -250, 250, 250, 250, 250, -250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_a7lfq")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_pqm7f")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_dh7u7")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBoundaries"]
+shape = SubResource("WorldBoundaryShape2D_raj6d")
+one_way_collision = true

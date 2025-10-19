@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="WorldState" load_steps=305 format=3]
+[gd_resource type="Resource" script_class="WorldState" load_steps=305 format=3 uid="uid://deduudguyqi37"]
 
-[ext_resource type="Script" path="res://scripts/world.gd" id="1_j1f24"]
-[ext_resource type="Script" path="res://scripts/character.gd" id="2_6nor5"]
-[ext_resource type="Script" path="res://scripts/world_state.gd" id="3_d8d3q"]
+[ext_resource type="Script" uid="uid://c8kgqvclh5tmr" path="res://scripts/world.gd" id="1_j1f24"]
+[ext_resource type="Script" uid="uid://b16vthi1gfont" path="res://scripts/character.gd" id="2_6nor5"]
+[ext_resource type="Script" uid="uid://c8s16f3fua3me" path="res://scripts/world_state.gd" id="3_d8d3q"]
 
 [sub_resource type="Resource" id="Resource_j1f24"]
 script = ExtResource("1_j1f24")
