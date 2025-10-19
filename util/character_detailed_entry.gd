@@ -38,12 +38,12 @@ func _ready() -> void:
 	tension_tree.item_activated.connect(_on_tree_item_activated)
 	add_proposition_button.pressed.connect(func():
 		if not character.perceivedWorld.hasProposition(add_proposition_line_edit.text):
-			character.setPerceived(add_proposition_line_edit.text,World.TriBool.UNKNOWN)
+			character.setPerceived(add_proposition_line_edit.text,PW.TriBool.UNKNOWN)
 			add_proposition_line_edit.clear()
 	)
 	add_proposition_line_edit.text_submitted.connect(func(text):
 		if not character.perceivedWorld.hasProposition(text):
-			character.setPerceived(text,World.TriBool.UNKNOWN)
+			character.setPerceived(text,PW.TriBool.UNKNOWN)
 			add_proposition_line_edit.clear()
 			
 	)
@@ -66,8 +66,8 @@ func set_character(c:Character):
 func _setup_tri_popup() -> void:
 	_tri_popup = PopupMenu.new()
 	add_child(_tri_popup)
-	for i in PossibleWorlds.TriBoolString.size():
-		_tri_popup.add_item(PossibleWorlds.TriBoolString[i], i)
+	for i in PW.TriBoolString.size():
+		_tri_popup.add_item(PW.TriBoolString[i], i)
 	_tri_popup.id_pressed.connect(_on_tri_popup_id_pressed)
 
 # Show popup when the user clicks the custom cell’s arrow
@@ -93,8 +93,8 @@ func _show_tri_popup_for(item: TreeItem, col: int) -> void:
 	# Pre-select current value
 	var current_text := item.get_text(col)
 	var initial_index := 0
-	for i in PossibleWorlds.TriBoolString.size():
-		if PossibleWorlds.TriBoolString[i] == current_text:
+	for i in PW.TriBoolString.size():
+		if PW.TriBoolString[i] == current_text:
 			initial_index = i
 			break
 	_tri_popup.toggle_item_checked(initial_index)
@@ -108,8 +108,8 @@ func _show_tri_popup_for(item: TreeItem, col: int) -> void:
 func _on_tri_popup_id_pressed(id: int) -> void:
 	if _popup_item == null:
 		return
-	var label :String= PossibleWorlds.TriBoolString[id]
-	var value :World.TriBool = id as World.TriBool
+	var label :String= PW.TriBoolString[id]
+	var value :PW.TriBool = id as PW.TriBool
 	_popup_item.set_text(_popup_column, label)
 
 	var prop_name := _popup_item.get_text(0)
@@ -122,7 +122,7 @@ func _on_tri_popup_id_pressed(id: int) -> void:
 
 func _tension_text(perceived:int, ideal:int) -> String:
 	var result :String
-	if perceived == PossibleWorlds.TriBool.UNKOWN or ideal == PossibleWorlds.TriBool.UNKOWN:
+	if perceived == PW.TriBool.UNKNOWN or ideal == PW.TriBool.UNKNOWN:
 		return "Unknown"
 	elif perceived == ideal:
 		return "Agree"
@@ -159,13 +159,13 @@ func _update_gui():
 		child.set_cell_mode(1, TreeItem.CELL_MODE_CUSTOM)
 		child.set_editable(1, true)
 		child.set_custom_as_button(1, true) # draws a dropdown-like arrow
-		child.set_text(1, PossibleWorlds.TriBoolString[character.getPerceived(p)])
+		child.set_text(1, PW.TriBoolString[character.getPerceived(p)])
 
 		# ----- Column 2 as "OptionButton" style -----
 		child.set_cell_mode(2, TreeItem.CELL_MODE_CUSTOM)
 		child.set_editable(2, true)
 		child.set_custom_as_button(2, true)
-		child.set_text(2, PossibleWorlds.TriBoolString[character.getIdeal(p)])
+		child.set_text(2, PW.TriBoolString[character.getIdeal(p)])
 
 		# Column 3: just text (your tension metric)
 		var perceived := character.getPerceived(p)

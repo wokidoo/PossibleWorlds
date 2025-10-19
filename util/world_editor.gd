@@ -41,11 +41,11 @@ func _ready() -> void:
 				pass
 	)
 	new_proposition_line_edit.text_submitted.connect(func(text):
-		ws.canonWorld.setTruth(text,World.TriBool.UNKNOWN)
+		ws.canonWorld.setTruth(text,PW.TriBool.UNKNOWN)
 		new_proposition_line_edit.clear()
 	)
 	confirm_proposition_button.pressed.connect(func():
-		ws.canonWorld.setTruth(new_proposition_line_edit.text,World.TriBool.UNKNOWN)
+		ws.canonWorld.setTruth(new_proposition_line_edit.text,PW.TriBool.UNKNOWN)
 		new_proposition_line_edit.clear()
 	)
 	

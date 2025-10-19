@@ -44,18 +44,18 @@ func idealDiff(other:Character,matchMode:World.MatchMode = World.MatchMode.IGNOR
 func perceivedDiff(other:Character,matchMode:World.MatchMode = World.MatchMode.IGNORE_UNKOWNS) -> Array[StringName]:
 	return perceivedWorld.diff(other.perceivedWorld,matchMode)
 
-func setIdeal(id:String,truth:World.TriBool) ->bool:
+func setIdeal(id:String,truth:PW.TriBool) ->bool:
 	if not perceivedWorld.hasProposition(id):
-		perceivedWorld.setTruth(id,World.TriBool.UNKNOWN)
+		perceivedWorld.setTruth(id,PW.TriBool.UNKNOWN)
 	return idealWorld.setTruth(id,truth)
 
-func setPerceived(id:String,truth:World.TriBool) ->bool:
+func setPerceived(id:String,truth:PW.TriBool) ->bool:
 	if not idealWorld.hasProposition(id):
-		idealWorld.setTruth(id,World.TriBool.UNKNOWN)
+		idealWorld.setTruth(id,PW.TriBool.UNKNOWN)
 	return perceivedWorld.setTruth(id,truth)
 
-func getIdeal(id:String) ->World.TriBool:
+func getIdeal(id:String) ->PW.TriBool:
 	return idealWorld.getTruth(id)
 
-func getPerceived(id:String) -> World.TriBool:
+func getPerceived(id:String) -> PW.TriBool:
 	return perceivedWorld.getTruth(id)

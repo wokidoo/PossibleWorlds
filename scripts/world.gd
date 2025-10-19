@@ -1,20 +1,19 @@
 class_name World
 extends Resource
 
-enum TriBool {FALSE=0,TRUE=1 ,UNKNOWN=2}
 enum MatchMode {IGNORE_UNKOWNS, MATCH_UNKOWNS, DIFF_UNKOWNS}
 
-@export var propositions: Dictionary[StringName,TriBool];
+@export var propositions: Dictionary[StringName,PW.TriBool];
 
-func setTruth(id:String, truth:TriBool) -> bool:
+func setTruth(id:String, truth:PW.TriBool) -> bool:
 	id = id.to_snake_case()
 	var result := propositions.set(id,truth)
 	if result:
 		emit_changed()
 	return result
 
-func getTruth(id:String) -> TriBool:
-	return propositions.get(id,TriBool.UNKNOWN)
+func getTruth(id:String) -> PW.TriBool:
+	return propositions.get(id,PW.TriBool.UNKNOWN)
 
 func eraseTruth(id:String) -> bool:
 	var result := propositions.erase(id)
@@ -38,26 +37,26 @@ func diff(other:World, matchMode:MatchMode = MatchMode.IGNORE_UNKOWNS) -> Array[
 	match matchMode:
 		MatchMode.IGNORE_UNKOWNS:
 			for key in intersectingKeys:
-				var thisTruth:TriBool = getTruth(key)
-				var otherTruth:TriBool = other.getTruth(key)
+				var thisTruth:PW.TriBool = getTruth(key)
+				var otherTruth:PW.TriBool = other.getTruth(key)
 				if thisTruth != otherTruth:
-					if thisTruth == TriBool.UNKNOWN or otherTruth == TriBool.UNKNOWN:
+					if thisTruth == PW.TriBool.UNKNOWN or otherTruth == PW.TriBool.UNKNOWN:
 						continue
 					else:
 						_diff.append(key)
 		MatchMode.MATCH_UNKOWNS:
 			for key in intersectingKeys:
-				var thisTruth:TriBool = getTruth(key)
-				var otherTruth:TriBool = other.getTruth(key)
+				var thisTruth:PW.TriBool = getTruth(key)
+				var otherTruth:PW.TriBool = other.getTruth(key)
 				if thisTruth != otherTruth:
-					if thisTruth == TriBool.UNKNOWN or otherTruth == TriBool.UNKNOWN:
+					if thisTruth == PW.TriBool.UNKNOWN or otherTruth == PW.TriBool.UNKNOWN:
 						continue
 					else:
 						_diff.append(key)
 		MatchMode.DIFF_UNKOWNS:
 			for key in intersectingKeys:
-				var thisTruth:TriBool = getTruth(key)
-				var otherTruth:TriBool = other.getTruth(key)
+				var thisTruth:PW.TriBool = getTruth(key)
+				var otherTruth:PW.TriBool = other.getTruth(key)
 				if thisTruth != otherTruth:
 					_diff.append(key)
 	return _diff
@@ -70,25 +69,25 @@ func agree(other:World,matchMode:MatchMode = MatchMode.IGNORE_UNKOWNS):
 	match matchMode:
 		MatchMode.IGNORE_UNKOWNS:
 			for key in intersectingKeys:
-				var thisTruth:TriBool = getTruth(key)
-				var otherTruth:TriBool = other.getTruth(key)
+				var thisTruth:PW.TriBool = getTruth(key)
+				var otherTruth:PW.TriBool = other.getTruth(key)
 				if thisTruth == otherTruth:
-					if thisTruth == TriBool.UNKNOWN or otherTruth == TriBool.UNKNOWN:
+					if thisTruth == PW.TriBool.UNKNOWN or otherTruth == PW.TriBool.UNKNOWN:
 						continue
 					else:
 						_agree.append(key)
 		MatchMode.MATCH_UNKOWNS:
 			for key in intersectingKeys:
-				var thisTruth:TriBool = getTruth(key)
-				var otherTruth:TriBool = other.getTruth(key)
+				var thisTruth:PW.TriBool = getTruth(key)
+				var otherTruth:PW.TriBool = other.getTruth(key)
 				if thisTruth == otherTruth:
 					_agree.append(key)
-				elif thisTruth == TriBool.UNKNOWN or otherTruth == TriBool.UNKNOWN:
+				elif thisTruth == PW.TriBool.UNKNOWN or otherTruth == PW.TriBool.UNKNOWN:
 					_agree.append(key)
 		MatchMode.DIFF_UNKOWNS:
 			for key in intersectingKeys:
-				var thisTruth:TriBool = getTruth(key)
-				var otherTruth:TriBool = other.getTruth(key)
+				var thisTruth:PW.TriBool = getTruth(key)
+				var otherTruth:PW.TriBool = other.getTruth(key)
 				if thisTruth == otherTruth:
 					_agree.append(key)
 	return _agree
