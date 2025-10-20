@@ -24,8 +24,8 @@ func _init() -> void:
 	
 	option_button = OptionButton.new()
 	option_button.add_item("FALSE",0)
-	option_button.add_item("TRUE",1)
 	option_button.add_item("UNKOWN",1)
+	option_button.add_item("TRUE",2)
 	add_child(option_button)
 	
 	option_button.item_selected.connect(func(v):
@@ -57,7 +57,7 @@ func _on_popup_menu(id):
 func set_proposition(id:StringName):
 	if world != null && world.hasProposition(id):
 		prop_label.text = id
-		option_button.select(world.getTruth(id) as int)
+		option_button.select(world.getTruth(id)+1)
 
 func _get_drag_data(at_position: Vector2) -> Variant:
 	var data:Dictionary

@@ -35,14 +35,14 @@ func _reconnect_signals():
 	if not idealWorld.changed.is_connected(emit_changed):
 		idealWorld.changed.connect(emit_changed)
 
-func idealPerceivedDiff(matchMode:World.MatchMode = World.MatchMode.IGNORE_UNKOWNS) -> Array[StringName]:
-	return perceivedWorld.diff(idealWorld,matchMode)
+func idealPerceivedDiff() -> Array[StringName]:
+	return perceivedWorld.diff(idealWorld)
 
-func idealDiff(other:Character,matchMode:World.MatchMode = World.MatchMode.IGNORE_UNKOWNS) -> Array[StringName]:
-	return idealWorld.diff(other.idealWorld,matchMode)
+func idealDiff(other:Character) -> Array[StringName]:
+	return idealWorld.diff(other.idealWorld)
 
-func perceivedDiff(other:Character,matchMode:World.MatchMode = World.MatchMode.IGNORE_UNKOWNS) -> Array[StringName]:
-	return perceivedWorld.diff(other.perceivedWorld,matchMode)
+func perceivedDiff(other:Character) -> Array[StringName]:
+	return perceivedWorld.diff(other.perceivedWorld)
 
 func setIdeal(id:String,truth:PW.TriBool) ->bool:
 	if not perceivedWorld.hasProposition(id):

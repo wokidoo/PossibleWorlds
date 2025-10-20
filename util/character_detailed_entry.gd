@@ -66,8 +66,9 @@ func set_character(c:Character):
 func _setup_tri_popup() -> void:
 	_tri_popup = PopupMenu.new()
 	add_child(_tri_popup)
-	for i in PW.TriBoolString.size():
-		_tri_popup.add_item(PW.TriBoolString[i], i)
+	_tri_popup.add_item(PW.TriBoolString[PW.TriBool.FALSE],0)
+	_tri_popup.add_item(PW.TriBoolString[PW.TriBool.UNKNOWN],1)
+	_tri_popup.add_item(PW.TriBoolString[PW.TriBool.TRUE],2)
 	_tri_popup.id_pressed.connect(_on_tri_popup_id_pressed)
 
 # Show popup when the user clicks the custom cell’s arrow
@@ -92,11 +93,7 @@ func _show_tri_popup_for(item: TreeItem, col: int) -> void:
 	_popup_column = col
 	# Pre-select current value
 	var current_text := item.get_text(col)
-	var initial_index := 0
-	for i in PW.TriBoolString.size():
-		if PW.TriBoolString[i] == current_text:
-			initial_index = i
-			break
+	var initial_index :PW.TriBool= 0
 	_tri_popup.toggle_item_checked(initial_index)
 
 	# Position the popup to the edited cell
@@ -105,11 +102,11 @@ func _show_tri_popup_for(item: TreeItem, col: int) -> void:
 	_tri_popup.reset_size()
 	_tri_popup.popup_on_parent(Rect2(get_viewport().get_mouse_position(),Vector2.ZERO))
 	
-func _on_tri_popup_id_pressed(id: int) -> void:
+func _on_tri_popup_id_pressed(id: PW.TriBool) -> void:
 	if _popup_item == null:
 		return
-	var label :String= PW.TriBoolString[id]
-	var value :PW.TriBool = id as PW.TriBool
+	var label :String= PW.TriBoolString[id-1]
+	var value :PW.TriBool = id -1
 	_popup_item.set_text(_popup_column, label)
 
 	var prop_name := _popup_item.get_text(0)

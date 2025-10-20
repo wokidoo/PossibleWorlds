@@ -1,7 +1,6 @@
 class_name World
 extends Resource
 
-enum MatchMode {IGNORE_UNKOWNS, MATCH_UNKOWNS, DIFF_UNKOWNS}
 
 @export var propositions: Dictionary[StringName,PW.TriBool];
 
@@ -29,65 +28,32 @@ func matchWorld(other:World) -> void:
 	propositions.assign(other.propositions)
 	emit_changed()
 
-func diff(other:World, matchMode:MatchMode = MatchMode.IGNORE_UNKOWNS) -> Array[StringName]:
+func diff(other:World) -> Array[StringName]:
 	var _diff :Array[StringName]
 	var intersectingKeys := propositions.keys().filter(func(k):
 		return other.propositions.has(k)
 	)
-	match matchMode:
-		MatchMode.IGNORE_UNKOWNS:
-			for key in intersectingKeys:
-				var thisTruth:PW.TriBool = getTruth(key)
-				var otherTruth:PW.TriBool = other.getTruth(key)
-				if thisTruth != otherTruth:
-					if thisTruth == PW.TriBool.UNKNOWN or otherTruth == PW.TriBool.UNKNOWN:
-						continue
-					else:
-						_diff.append(key)
-		MatchMode.MATCH_UNKOWNS:
-			for key in intersectingKeys:
-				var thisTruth:PW.TriBool = getTruth(key)
-				var otherTruth:PW.TriBool = other.getTruth(key)
-				if thisTruth != otherTruth:
-					if thisTruth == PW.TriBool.UNKNOWN or otherTruth == PW.TriBool.UNKNOWN:
-						continue
-					else:
-						_diff.append(key)
-		MatchMode.DIFF_UNKOWNS:
-			for key in intersectingKeys:
-				var thisTruth:PW.TriBool = getTruth(key)
-				var otherTruth:PW.TriBool = other.getTruth(key)
-				if thisTruth != otherTruth:
-					_diff.append(key)
+	for key in intersectingKeys:
+		var thisTruth:PW.TriBool = getTruth(key)
+		var otherTruth:PW.TriBool = other.getTruth(key)
+		if thisTruth != otherTruth:
+			if thisTruth == PW.TriBool.UNKNOWN or otherTruth == PW.TriBool.UNKNOWN:
+				continue
+			else:
+				_diff.append(key)
 	return _diff
 
-func agree(other:World,matchMode:MatchMode = MatchMode.IGNORE_UNKOWNS):
+func agree(other:World):
 	var _agree :Array[StringName]
 	var intersectingKeys := propositions.keys().filter(func(k):
 		return other.propositions.has(k)
 	)
-	match matchMode:
-		MatchMode.IGNORE_UNKOWNS:
-			for key in intersectingKeys:
-				var thisTruth:PW.TriBool = getTruth(key)
-				var otherTruth:PW.TriBool = other.getTruth(key)
-				if thisTruth == otherTruth:
-					if thisTruth == PW.TriBool.UNKNOWN or otherTruth == PW.TriBool.UNKNOWN:
-						continue
-					else:
-						_agree.append(key)
-		MatchMode.MATCH_UNKOWNS:
-			for key in intersectingKeys:
-				var thisTruth:PW.TriBool = getTruth(key)
-				var otherTruth:PW.TriBool = other.getTruth(key)
-				if thisTruth == otherTruth:
-					_agree.append(key)
-				elif thisTruth == PW.TriBool.UNKNOWN or otherTruth == PW.TriBool.UNKNOWN:
-					_agree.append(key)
-		MatchMode.DIFF_UNKOWNS:
-			for key in intersectingKeys:
-				var thisTruth:PW.TriBool = getTruth(key)
-				var otherTruth:PW.TriBool = other.getTruth(key)
-				if thisTruth == otherTruth:
-					_agree.append(key)
+	for key in intersectingKeys:
+		var thisTruth:PW.TriBool = getTruth(key)
+		var otherTruth:PW.TriBool = other.getTruth(key)
+		if thisTruth == otherTruth:
+			if thisTruth == PW.TriBool.UNKNOWN or otherTruth == PW.TriBool.UNKNOWN:
+				continue
+			else:
+				_agree.append(key)
 	return _agree

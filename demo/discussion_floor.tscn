@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dndl4u3cnfvbp"]
+[gd_scene load_steps=8 format=3 uid="uid://dndl4u3cnfvbp"]
 
 [ext_resource type="Resource" uid="uid://deduudguyqi37" path="res://middle_earth.tres" id="1_pqm7f"]
 
@@ -26,6 +26,12 @@ func _input(event: InputEvent) -> void:
 		get_tree().paused = !get_tree().paused
 "
 
+[sub_resource type="GDScript" id="GDScript_a7lfq"]
+resource_name = "details_panel"
+script/source = "extends VBoxContainer
+@export var character:Character
+"
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a7lfq"]
 normal = Vector2(1, 0)
 distance = -250.0
@@ -47,6 +53,40 @@ script = SubResource("GDScript_pqm7f")
 ws = ExtResource("1_pqm7f")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="DetailsPanel" type="VBoxContainer" parent="Camera2D/CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = SubResource("GDScript_a7lfq")
+
+[node name="NameLabel" type="Label" parent="Camera2D/CanvasLayer/DetailsPanel"]
+layout_mode = 2
+text = "Name"
+
+[node name="HSeparator" type="HSeparator" parent="Camera2D/CanvasLayer/DetailsPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer/DetailsPanel"]
+layout_mode = 2
+text = "Perceived World"
+
+[node name="HSeparator2" type="HSeparator" parent="Camera2D/CanvasLayer/DetailsPanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/CanvasLayer/DetailsPanel"]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="Camera2D/CanvasLayer/DetailsPanel"]
+layout_mode = 2
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
 collision_mask = 0
