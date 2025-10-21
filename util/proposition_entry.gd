@@ -29,7 +29,7 @@ func _init() -> void:
 	add_child(option_button)
 	
 	option_button.item_selected.connect(func(v):
-		world.setTruth(prop_label.text,v)
+		world.setTruth(prop_label.text,v-1)
 	)
 	
 	popup_menu = PopupMenu.new()

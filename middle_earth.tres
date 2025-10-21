@@ -1,1325 +1,1877 @@
-[gd_resource type="Resource" script_class="WorldState" load_steps=155 format=3]
+[gd_resource type="Resource" script_class="WorldState" load_steps=155 format=3 uid="uid://b2b3dvjdmvavw"]
 
-[ext_resource type="Script" path="res://scripts/world.gd" id="1_j1f24"]
-[ext_resource type="Script" path="res://scripts/character.gd" id="2_6nor5"]
-[ext_resource type="Script" path="res://scripts/world_state.gd" id="3_d8d3q"]
+[ext_resource type="Script" uid="uid://c8kgqvclh5tmr" path="res://scripts/world.gd" id="1_j1f24"]
+[ext_resource type="Script" uid="uid://b16vthi1gfont" path="res://scripts/character.gd" id="2_6nor5"]
+[ext_resource type="Script" uid="uid://c8s16f3fua3me" path="res://scripts/world_state.gd" id="3_d8d3q"]
 
-[sub_resource type="Resource" id="Resource_2vid0"]
+[sub_resource type="Resource" id="Resource_j1f24"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 0,
-&"the_king_is_alive": 2,
-&"the_knight_has_broken_his_oath": 1,
-&"the_knights_are_loyal": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_plague_spreads_in_the_south": 2,
-&"the_princess_is_captured": 1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_royal_banner_flies_high": -1,
-&"the_tavern_is_open": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": -1
 })
+
+[sub_resource type="Resource" id="Resource_6nor5"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
+})
+
+[sub_resource type="Resource" id="Resource_d8d3q"]
+script = ExtResource("1_j1f24")
+propositions = Dictionary[StringName, int]({
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
+})
+
+[sub_resource type="Resource" id="Resource_2vid0"]
+resource_name = "Gareth Nightbloom"
+script = ExtResource("2_6nor5")
+name = "Gareth Nightbloom"
+perceivedWorld = SubResource("Resource_d8d3q")
+idealWorld = SubResource("Resource_6nor5")
 
 [sub_resource type="Resource" id="Resource_r5ufw"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_king_is_alive": 1,
-&"the_knights_are_loyal": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_prophecy_is_fulfilled": 0,
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 1,
 &"the_royal_banner_flies_high": 1,
-&"the_tavern_is_open": 1
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_wn0qr"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_king_is_alive": 0,
-&"the_knights_are_loyal": -1,
-&"the_mages_are_in_hiding": 1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_royal_banner_flies_high": 1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_vlym7"]
-resource_name = "Kaela Duskweaver"
+resource_name = "Alaric Moonspire"
 script = ExtResource("2_6nor5")
-name = "Kaela Duskweaver"
+name = "Alaric Moonspire"
 perceivedWorld = SubResource("Resource_wn0qr")
 idealWorld = SubResource("Resource_r5ufw")
 
 [sub_resource type="Resource" id="Resource_dm7h6"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_king_is_alive": 1,
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
 &"the_plague_spreads_in_the_south": 0,
-&"the_prophecy_is_fulfilled": 0
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_r20kt"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_king_is_alive": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_prophecy_is_fulfilled": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_ta342"]
-resource_name = "Auren Emberfall"
+resource_name = "Nyra Quicktongue"
 script = ExtResource("2_6nor5")
-name = "Auren Emberfall"
+name = "Nyra Quicktongue"
 perceivedWorld = SubResource("Resource_r20kt")
 idealWorld = SubResource("Resource_dm7h6")
 
 [sub_resource type="Resource" id="Resource_4x6o1"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knight_has_broken_his_oath": 0,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": 1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_a7qbn"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knight_has_broken_his_oath": -1,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_d4kaf"]
-resource_name = "Sylwen Lightveil"
+resource_name = "Varek Ravenshollow"
 script = ExtResource("2_6nor5")
-name = "Sylwen Lightveil"
+name = "Varek Ravenshollow"
 perceivedWorld = SubResource("Resource_a7qbn")
 idealWorld = SubResource("Resource_4x6o1")
 
 [sub_resource type="Resource" id="Resource_byf75"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_knight_has_broken_his_oath": 1,
-&"the_knights_are_loyal": 1,
-&"the_mages_are_in_hiding": 1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_prophecy_is_fulfilled": 1,
-&"the_royal_banner_flies_high": 1,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_ru4ta"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_knight_has_broken_his_oath": 0,
-&"the_knights_are_loyal": 1,
-&"the_mages_are_in_hiding": -1,
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": -1,
 &"the_plague_spreads_in_the_south": 1,
-&"the_prophecy_is_fulfilled": 0,
-&"the_royal_banner_flies_high": 0,
-&"the_tavern_is_open": 0
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_4j6ex"]
-resource_name = "Seraphine Nightwind"
+resource_name = "Nyra Blackthorn"
 script = ExtResource("2_6nor5")
-name = "Seraphine Nightwind"
+name = "Nyra Blackthorn"
 perceivedWorld = SubResource("Resource_ru4ta")
 idealWorld = SubResource("Resource_byf75")
 
 [sub_resource type="Resource" id="Resource_o4evl"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_princess_is_captured": -1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_bugbp"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_mages_are_in_hiding": 0,
-&"the_princess_is_captured": 1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_4bko2"]
-resource_name = "Brynden Stonehaven"
+resource_name = "Elric Wintermere"
 script = ExtResource("2_6nor5")
-name = "Brynden Stonehaven"
+name = "Elric Wintermere"
 perceivedWorld = SubResource("Resource_bugbp")
 idealWorld = SubResource("Resource_o4evl")
 
 [sub_resource type="Resource" id="Resource_l0cy0"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_knights_are_loyal": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_prophecy_is_fulfilled": 1,
-&"the_royal_banner_flies_high": 0,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_tcu82"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_knights_are_loyal": -1,
-&"the_mages_are_in_hiding": 0,
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 1,
 &"the_plague_spreads_in_the_south": -1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_royal_banner_flies_high": 0,
-&"the_tavern_is_open": -1
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_t88e0"]
-resource_name = "Maelis Greenmark"
+resource_name = "Arion Emberglow"
 script = ExtResource("2_6nor5")
-name = "Maelis Greenmark"
+name = "Arion Emberglow"
 perceivedWorld = SubResource("Resource_tcu82")
 idealWorld = SubResource("Resource_l0cy0")
 
 [sub_resource type="Resource" id="Resource_6ttip"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knight_has_broken_his_oath": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_3ht67"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knight_has_broken_his_oath": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_k5yit"]
-resource_name = "Duric Moonspire"
+resource_name = "Maelis Hollowvale"
 script = ExtResource("2_6nor5")
-name = "Duric Moonspire"
+name = "Maelis Hollowvale"
 perceivedWorld = SubResource("Resource_3ht67")
 idealWorld = SubResource("Resource_6ttip")
 
 [sub_resource type="Resource" id="Resource_bfdav"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_mages_are_in_hiding": 1,
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 1,
 &"the_plague_spreads_in_the_south": 0,
-&"the_princess_is_captured": 1,
-&"the_prophecy_is_fulfilled": 0,
+&"the_priests_are_praying_for_rain": 0,
 &"the_royal_banner_flies_high": 0,
-&"the_tavern_is_open": 0
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_8iwio"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_mages_are_in_hiding": 1,
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
 &"the_plague_spreads_in_the_south": -1,
-&"the_princess_is_captured": 1,
-&"the_prophecy_is_fulfilled": 1,
+&"the_priests_are_praying_for_rain": 1,
 &"the_royal_banner_flies_high": -1,
-&"the_tavern_is_open": 0
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_rhhji"]
-resource_name = "Maren Fireborn"
+resource_name = "Malric Stonehaven"
 script = ExtResource("2_6nor5")
-name = "Maren Fireborn"
+name = "Malric Stonehaven"
 perceivedWorld = SubResource("Resource_8iwio")
 idealWorld = SubResource("Resource_bfdav")
 
 [sub_resource type="Resource" id="Resource_b78wh"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_knights_are_loyal": 1,
-&"the_mages_are_in_hiding": 1,
-&"the_princess_is_captured": 1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_royal_banner_flies_high": -1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_k6a58"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 0,
-&"the_knights_are_loyal": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_royal_banner_flies_high": 0
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_bmpmv"]
-resource_name = "Eodan Moonfall"
+resource_name = "Thorin Goldbrook"
 script = ExtResource("2_6nor5")
-name = "Eodan Moonfall"
+name = "Thorin Goldbrook"
 perceivedWorld = SubResource("Resource_k6a58")
 idealWorld = SubResource("Resource_b78wh")
 
 [sub_resource type="Resource" id="Resource_58u8h"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_knight_has_broken_his_oath": 1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_royal_banner_flies_high": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_xx0mf"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_knight_has_broken_his_oath": -1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_royal_banner_flies_high": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_u2rcl"]
-resource_name = "Oren Stormreaver"
+resource_name = "Fenric Shadowstep"
 script = ExtResource("2_6nor5")
-name = "Oren Stormreaver"
+name = "Fenric Shadowstep"
 perceivedWorld = SubResource("Resource_xx0mf")
 idealWorld = SubResource("Resource_58u8h")
 
 [sub_resource type="Resource" id="Resource_id156"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 0,
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
 &"the_plague_spreads_in_the_south": -1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": 1
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_x2b6s"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": -1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_gkua3"]
-resource_name = "Corvus Silverleaf"
+resource_name = "Kaela Greenmark"
 script = ExtResource("2_6nor5")
-name = "Corvus Silverleaf"
+name = "Kaela Greenmark"
 perceivedWorld = SubResource("Resource_x2b6s")
 idealWorld = SubResource("Resource_id156")
 
 [sub_resource type="Resource" id="Resource_owxhb"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": 1,
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
 &"the_plague_spreads_in_the_south": -1,
-&"the_princess_is_captured": 0,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": -1
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_rm3uy"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_mages_are_in_hiding": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_0svxw"]
-resource_name = "Kael Starcrest"
+resource_name = "Ysolde Ironroot"
 script = ExtResource("2_6nor5")
-name = "Kael Starcrest"
+name = "Ysolde Ironroot"
 perceivedWorld = SubResource("Resource_rm3uy")
 idealWorld = SubResource("Resource_owxhb")
 
 [sub_resource type="Resource" id="Resource_hvdmt"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 0,
-&"the_knight_has_broken_his_oath": 1,
-&"the_tavern_is_open": 0
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_ddr4m"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 0,
-&"the_knight_has_broken_his_oath": -1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_7c0q4"]
-resource_name = "Corvus Darkwhisper"
+resource_name = "Hazel Falclaw"
 script = ExtResource("2_6nor5")
-name = "Corvus Darkwhisper"
+name = "Hazel Falclaw"
 perceivedWorld = SubResource("Resource_ddr4m")
 idealWorld = SubResource("Resource_hvdmt")
 
 [sub_resource type="Resource" id="Resource_xbds4"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_plague_spreads_in_the_south": -1,
-&"the_prophecy_is_fulfilled": 0,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_etwpy"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_x16st"]
-resource_name = "Aldrin Of_The_Rose"
+resource_name = "Thessara Nightbloom"
 script = ExtResource("2_6nor5")
-name = "Aldrin Of_The_Rose"
+name = "Thessara Nightbloom"
 perceivedWorld = SubResource("Resource_etwpy")
 idealWorld = SubResource("Resource_xbds4")
 
 [sub_resource type="Resource" id="Resource_f7538"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_princess_is_captured": -1,
-&"the_royal_banner_flies_high": 0
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_10xpa"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_princess_is_captured": -1,
-&"the_royal_banner_flies_high": 0
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_d2b3j"]
-resource_name = "Sylwen Greenmark"
+resource_name = "Alaric Dawnsong"
 script = ExtResource("2_6nor5")
-name = "Sylwen Greenmark"
+name = "Alaric Dawnsong"
 perceivedWorld = SubResource("Resource_10xpa")
 idealWorld = SubResource("Resource_f7538")
 
 [sub_resource type="Resource" id="Resource_1xwe3"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_princess_is_captured": 1,
-&"the_royal_banner_flies_high": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_3y1mb"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_princess_is_captured": 0,
-&"the_royal_banner_flies_high": -1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_v7d14"]
-resource_name = "Taro Stormreaver"
+resource_name = "Sylwen Ironbane"
 script = ExtResource("2_6nor5")
-name = "Taro Stormreaver"
+name = "Sylwen Ironbane"
 perceivedWorld = SubResource("Resource_3y1mb")
 idealWorld = SubResource("Resource_1xwe3")
 
 [sub_resource type="Resource" id="Resource_71pyx"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_knight_has_broken_his_oath": -1,
-&"the_knights_are_loyal": 1,
-&"the_princess_is_captured": 1,
-&"the_prophecy_is_fulfilled": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_kiwod"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 0,
-&"the_knight_has_broken_his_oath": 1,
-&"the_knights_are_loyal": -1,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_frdqc"]
-resource_name = "Velora Quicktongue"
+resource_name = "Elyra Ironroot"
 script = ExtResource("2_6nor5")
-name = "Velora Quicktongue"
+name = "Elyra Ironroot"
 perceivedWorld = SubResource("Resource_kiwod")
 idealWorld = SubResource("Resource_71pyx")
 
 [sub_resource type="Resource" id="Resource_uqowv"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_knights_are_loyal": -1,
-&"the_mages_are_in_hiding": 1,
-&"the_princess_is_captured": -1,
-&"the_royal_banner_flies_high": -1,
-&"the_tavern_is_open": 0
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_gomyh"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_knights_are_loyal": 0,
-&"the_mages_are_in_hiding": 1,
-&"the_princess_is_captured": 1,
-&"the_royal_banner_flies_high": 1,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_de5cp"]
-resource_name = "Saphira Hollowvale"
+resource_name = "Fenric Bloodhelm"
 script = ExtResource("2_6nor5")
-name = "Saphira Hollowvale"
+name = "Fenric Bloodhelm"
 perceivedWorld = SubResource("Resource_gomyh")
 idealWorld = SubResource("Resource_uqowv")
 
 [sub_resource type="Resource" id="Resource_mtjqa"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_prophecy_is_fulfilled": 1,
-&"the_royal_banner_flies_high": -1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_1aucr"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_prophecy_is_fulfilled": -1,
-&"the_royal_banner_flies_high": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_vvfnq"]
-resource_name = "Maelis Blackthorn"
+resource_name = "Alaric Quicktongue"
 script = ExtResource("2_6nor5")
-name = "Maelis Blackthorn"
+name = "Alaric Quicktongue"
 perceivedWorld = SubResource("Resource_1aucr")
 idealWorld = SubResource("Resource_mtjqa")
 
 [sub_resource type="Resource" id="Resource_5srwc"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_princess_is_captured": -1,
-&"the_tavern_is_open": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_6k3ls"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_princess_is_captured": 0,
-&"the_tavern_is_open": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_ioe0c"]
-resource_name = "Rowan Moonfall"
+resource_name = "Arannis Frostmark"
 script = ExtResource("2_6nor5")
-name = "Rowan Moonfall"
+name = "Arannis Frostmark"
 perceivedWorld = SubResource("Resource_6k3ls")
 idealWorld = SubResource("Resource_5srwc")
 
 [sub_resource type="Resource" id="Resource_swcea"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_mages_are_in_hiding": -1,
-&"the_princess_is_captured": 1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_ugbdm"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_mages_are_in_hiding": 0,
-&"the_princess_is_captured": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_6awd5"]
-resource_name = "Coren Stoneguard"
+resource_name = "Borik Stormreaver"
 script = ExtResource("2_6nor5")
-name = "Coren Stoneguard"
+name = "Borik Stormreaver"
 perceivedWorld = SubResource("Resource_ugbdm")
 idealWorld = SubResource("Resource_swcea")
 
 [sub_resource type="Resource" id="Resource_dd1ld"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 0,
-&"the_tavern_is_open": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_hs70e"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_ax2w8"]
-resource_name = "Coren Of_The_Rose"
+resource_name = "Hazel Oakenshield"
 script = ExtResource("2_6nor5")
-name = "Coren Of_The_Rose"
+name = "Hazel Oakenshield"
 perceivedWorld = SubResource("Resource_hs70e")
 idealWorld = SubResource("Resource_dd1ld")
 
 [sub_resource type="Resource" id="Resource_k2wsm"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 0,
-&"the_knight_has_broken_his_oath": -1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_prophecy_is_fulfilled": -1,
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
 &"the_royal_banner_flies_high": -1,
-&"the_tavern_is_open": -1
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_8j2p1"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_knight_has_broken_his_oath": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_prophecy_is_fulfilled": -1,
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
 &"the_royal_banner_flies_high": 1,
-&"the_tavern_is_open": 1
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_6g8ur"]
-resource_name = "Isolde Bloodhelm"
+resource_name = "Thalren Moonfall"
 script = ExtResource("2_6nor5")
-name = "Isolde Bloodhelm"
+name = "Thalren Moonfall"
 perceivedWorld = SubResource("Resource_8j2p1")
 idealWorld = SubResource("Resource_k2wsm")
 
 [sub_resource type="Resource" id="Resource_di55f"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_king_is_alive": 1,
-&"the_princess_is_captured": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_sq4jm"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_king_is_alive": 0,
-&"the_princess_is_captured": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_0jrnj"]
-resource_name = "Toran Frostmark"
+resource_name = "Rowan Frostbane"
 script = ExtResource("2_6nor5")
-name = "Toran Frostmark"
+name = "Rowan Frostbane"
 perceivedWorld = SubResource("Resource_sq4jm")
 idealWorld = SubResource("Resource_di55f")
 
 [sub_resource type="Resource" id="Resource_a7rp4"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_knights_are_loyal": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_puhhr"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_knights_are_loyal": 1,
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_ngxpl"]
-resource_name = "Selene Nightbloom"
+resource_name = "Ysolde Lightveil"
 script = ExtResource("2_6nor5")
-name = "Selene Nightbloom"
+name = "Ysolde Lightveil"
 perceivedWorld = SubResource("Resource_puhhr")
 idealWorld = SubResource("Resource_a7rp4")
 
 [sub_resource type="Resource" id="Resource_wkejj"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_knight_has_broken_his_oath": 1,
-&"the_knights_are_loyal": 1,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": 0,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_jmlun"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_knight_has_broken_his_oath": 1,
-&"the_knights_are_loyal": -1,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_qyat2"]
-resource_name = "Thalren Duskweaver"
+resource_name = "Lorian Emberglow"
 script = ExtResource("2_6nor5")
-name = "Thalren Duskweaver"
+name = "Lorian Emberglow"
 perceivedWorld = SubResource("Resource_jmlun")
 idealWorld = SubResource("Resource_wkejj")
 
 [sub_resource type="Resource" id="Resource_6wktd"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_king_is_alive": 1,
-&"the_mages_are_in_hiding": 0,
-&"the_plague_spreads_in_the_south": -1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_a6g7r"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": -1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_hxwnj"]
-resource_name = "Varek Stormwatch"
+resource_name = "Kaela Firecrest"
 script = ExtResource("2_6nor5")
-name = "Varek Stormwatch"
+name = "Kaela Firecrest"
 perceivedWorld = SubResource("Resource_a6g7r")
 idealWorld = SubResource("Resource_6wktd")
 
 [sub_resource type="Resource" id="Resource_4ws03"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 0,
-&"the_mages_are_in_hiding": 1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_royal_banner_flies_high": -1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_vu4xu"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 0,
-&"the_mages_are_in_hiding": 1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_royal_banner_flies_high": 0
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_w33id"]
-resource_name = "Elyra Brightshore"
+resource_name = "Lira Frostbane"
 script = ExtResource("2_6nor5")
-name = "Elyra Brightshore"
+name = "Lira Frostbane"
 perceivedWorld = SubResource("Resource_vu4xu")
 idealWorld = SubResource("Resource_4ws03")
 
 [sub_resource type="Resource" id="Resource_fkr87"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": -1,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_royal_banner_flies_high": -1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_bkd28"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": -1,
-&"the_princess_is_captured": 1,
-&"the_prophecy_is_fulfilled": 0,
-&"the_royal_banner_flies_high": -1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_ssq3r"]
-resource_name = "Elric Of_The_Rose"
+resource_name = "Lorian Greenmark"
 script = ExtResource("2_6nor5")
-name = "Elric Of_The_Rose"
+name = "Lorian Greenmark"
 perceivedWorld = SubResource("Resource_bkd28")
 idealWorld = SubResource("Resource_fkr87")
 
 [sub_resource type="Resource" id="Resource_87gmb"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_king_is_alive": 0,
-&"the_knight_has_broken_his_oath": 0,
-&"the_mages_are_in_hiding": 1,
-&"the_princess_is_captured": 1,
-&"the_prophecy_is_fulfilled": 0,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_medku"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_king_is_alive": -1,
-&"the_knight_has_broken_his_oath": 1,
-&"the_mages_are_in_hiding": 1,
-&"the_princess_is_captured": 0,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_mr43u"]
-resource_name = "Lira Stormwatch"
+resource_name = "Malric Swampwalker"
 script = ExtResource("2_6nor5")
-name = "Lira Stormwatch"
+name = "Malric Swampwalker"
 perceivedWorld = SubResource("Resource_medku")
 idealWorld = SubResource("Resource_87gmb")
 
 [sub_resource type="Resource" id="Resource_g35xy"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_prophecy_is_fulfilled": 0
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_4wni8"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_prophecy_is_fulfilled": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_qpoc5"]
-resource_name = "Maren Greenmark"
+resource_name = "Toran Ravenshollow"
 script = ExtResource("2_6nor5")
-name = "Maren Greenmark"
+name = "Toran Ravenshollow"
 perceivedWorld = SubResource("Resource_4wni8")
 idealWorld = SubResource("Resource_g35xy")
 
 [sub_resource type="Resource" id="Resource_rd25m"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_king_is_alive": 1,
-&"the_knight_has_broken_his_oath": 1,
-&"the_knights_are_loyal": -1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_princess_is_captured": 0
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_4yh7m"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_king_is_alive": 0,
-&"the_knight_has_broken_his_oath": 0,
-&"the_knights_are_loyal": 0,
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
 &"the_plague_spreads_in_the_south": 0,
-&"the_princess_is_captured": -1
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_72jpc"]
-resource_name = "Isolde Emberglow"
+resource_name = "Arion Lightbringer"
 script = ExtResource("2_6nor5")
-name = "Isolde Emberglow"
+name = "Arion Lightbringer"
 perceivedWorld = SubResource("Resource_4yh7m")
 idealWorld = SubResource("Resource_rd25m")
 
 [sub_resource type="Resource" id="Resource_1uskn"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 0,
-&"the_knight_has_broken_his_oath": 1,
-&"the_princess_is_captured": 1,
-&"the_prophecy_is_fulfilled": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_6my4i"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_knight_has_broken_his_oath": 1,
-&"the_princess_is_captured": 0,
-&"the_prophecy_is_fulfilled": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_20cxo"]
-resource_name = "Elric Brightshore"
+resource_name = "Garric Goldbrook"
 script = ExtResource("2_6nor5")
-name = "Elric Brightshore"
+name = "Garric Goldbrook"
 perceivedWorld = SubResource("Resource_6my4i")
 idealWorld = SubResource("Resource_1uskn")
 
 [sub_resource type="Resource" id="Resource_r3lg0"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_princess_is_captured": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_f7q6i"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_princess_is_captured": 0
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_5ojjb"]
-resource_name = "Corvus Lightbringer"
+resource_name = "Sylwen Swampwalker"
 script = ExtResource("2_6nor5")
-name = "Corvus Lightbringer"
+name = "Sylwen Swampwalker"
 perceivedWorld = SubResource("Resource_f7q6i")
 idealWorld = SubResource("Resource_r3lg0")
 
 [sub_resource type="Resource" id="Resource_1fuxk"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knight_has_broken_his_oath": 1,
-&"the_mages_are_in_hiding": -1,
-&"the_royal_banner_flies_high": 0
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_nil70"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knight_has_broken_his_oath": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_royal_banner_flies_high": 0
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_et7lg"]
-resource_name = "Lorian Quicktongue"
+resource_name = "Selene Ironroot"
 script = ExtResource("2_6nor5")
-name = "Lorian Quicktongue"
+name = "Selene Ironroot"
 perceivedWorld = SubResource("Resource_nil70")
 idealWorld = SubResource("Resource_1fuxk")
 
 [sub_resource type="Resource" id="Resource_iaour"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 1,
-&"the_prophecy_is_fulfilled": 0,
-&"the_royal_banner_flies_high": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_qydi2"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 1,
-&"the_prophecy_is_fulfilled": 0,
-&"the_royal_banner_flies_high": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_hphbt"]
-resource_name = "Arannis Moonfall"
+resource_name = "Rowan Starcrest"
 script = ExtResource("2_6nor5")
-name = "Arannis Moonfall"
+name = "Rowan Starcrest"
 perceivedWorld = SubResource("Resource_qydi2")
 idealWorld = SubResource("Resource_iaour")
 
 [sub_resource type="Resource" id="Resource_04nc3"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_knights_are_loyal": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_princess_is_captured": 1,
-&"the_tavern_is_open": 0
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_vfyb6"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 0,
-&"the_knights_are_loyal": 0,
-&"the_mages_are_in_hiding": 1,
-&"the_plague_spreads_in_the_south": -1,
-&"the_princess_is_captured": 0,
-&"the_tavern_is_open": 0
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_mojf8"]
-resource_name = "Fenric Duskweaver"
+resource_name = "Velora Moonfall"
 script = ExtResource("2_6nor5")
-name = "Fenric Duskweaver"
+name = "Velora Moonfall"
 perceivedWorld = SubResource("Resource_vfyb6")
 idealWorld = SubResource("Resource_04nc3")
 
 [sub_resource type="Resource" id="Resource_b7kq0"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knights_are_loyal": -1,
-&"the_princess_is_captured": 0
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_lceao"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knights_are_loyal": 1,
-&"the_princess_is_captured": 1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_8oacb"]
-resource_name = "Arion Goldbrook"
+resource_name = "Saphira Duskweaver"
 script = ExtResource("2_6nor5")
-name = "Arion Goldbrook"
+name = "Saphira Duskweaver"
 perceivedWorld = SubResource("Resource_lceao")
 idealWorld = SubResource("Resource_b7kq0")
 
 [sub_resource type="Resource" id="Resource_px5mc"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_merp6"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_n0o7m"]
-resource_name = "Miriel Of_The_Rose"
+resource_name = "Thalren Moonfall"
 script = ExtResource("2_6nor5")
-name = "Miriel Of_The_Rose"
+name = "Thalren Moonfall"
 perceivedWorld = SubResource("Resource_merp6")
 idealWorld = SubResource("Resource_px5mc")
 
 [sub_resource type="Resource" id="Resource_6ons0"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_king_is_alive": 1,
-&"the_knights_are_loyal": 1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_prophecy_is_fulfilled": -1,
-&"the_royal_banner_flies_high": 1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_lfx16"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_king_is_alive": 1,
-&"the_knights_are_loyal": 0,
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": 1,
 &"the_plague_spreads_in_the_south": 1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_royal_banner_flies_high": 0
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_avi3q"]
-resource_name = "Draven Bloodhelm"
+resource_name = "Alaric Stoneguard"
 script = ExtResource("2_6nor5")
-name = "Draven Bloodhelm"
+name = "Alaric Stoneguard"
 perceivedWorld = SubResource("Resource_lfx16")
 idealWorld = SubResource("Resource_6ons0")
 
 [sub_resource type="Resource" id="Resource_ooj26"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_king_is_alive": 1,
-&"the_knight_has_broken_his_oath": -1,
-&"the_knights_are_loyal": 0,
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
 &"the_plague_spreads_in_the_south": 0,
-&"the_royal_banner_flies_high": -1
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_3jeyp"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 0,
-&"the_king_is_alive": 0,
-&"the_knight_has_broken_his_oath": -1,
-&"the_knights_are_loyal": 1,
-&"the_plague_spreads_in_the_south": -1,
-&"the_royal_banner_flies_high": 0
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_tk0vu"]
-resource_name = "Sylwen Sunborn"
+resource_name = "Lorian Swampwalker"
 script = ExtResource("2_6nor5")
-name = "Sylwen Sunborn"
+name = "Lorian Swampwalker"
 perceivedWorld = SubResource("Resource_3jeyp")
 idealWorld = SubResource("Resource_ooj26")
 
 [sub_resource type="Resource" id="Resource_lauey"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_knight_has_broken_his_oath": -1,
-&"the_knights_are_loyal": 1,
-&"the_mages_are_in_hiding": -1,
-&"the_princess_is_captured": 1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_royal_banner_flies_high": -1,
-&"the_tavern_is_open": 0
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_siaom"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_knight_has_broken_his_oath": -1,
-&"the_knights_are_loyal": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_royal_banner_flies_high": -1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_rykef"]
-resource_name = "Taro Of_The_North"
+resource_name = "Ysolde Emberfall"
 script = ExtResource("2_6nor5")
-name = "Taro Of_The_North"
+name = "Ysolde Emberfall"
 perceivedWorld = SubResource("Resource_siaom")
 idealWorld = SubResource("Resource_lauey")
 
 [sub_resource type="Resource" id="Resource_uhent"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knight_has_broken_his_oath": 0,
-&"the_knights_are_loyal": -1,
-&"the_mages_are_in_hiding": 1,
-&"the_princess_is_captured": -1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_is7uw"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knight_has_broken_his_oath": -1,
-&"the_knights_are_loyal": 1,
-&"the_mages_are_in_hiding": 0,
-&"the_princess_is_captured": 0,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_e5ea7"]
-resource_name = "Elyra Duskweaver"
+resource_name = "Elyra Starcrest"
 script = ExtResource("2_6nor5")
-name = "Elyra Duskweaver"
+name = "Elyra Starcrest"
 perceivedWorld = SubResource("Resource_is7uw")
 idealWorld = SubResource("Resource_uhent")
 
 [sub_resource type="Resource" id="Resource_lpi8f"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knights_are_loyal": -1,
-&"the_princess_is_captured": -1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_pms5w"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knights_are_loyal": 0,
-&"the_princess_is_captured": -1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 0,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_sne75"]
-resource_name = "Borik Swampwalker"
+resource_name = "Maren Goldbrook"
 script = ExtResource("2_6nor5")
-name = "Borik Swampwalker"
+name = "Maren Goldbrook"
 perceivedWorld = SubResource("Resource_pms5w")
 idealWorld = SubResource("Resource_lpi8f")
 
 [sub_resource type="Resource" id="Resource_xjoa4"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 0,
-&"the_knights_are_loyal": 1,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": 0,
-&"the_royal_banner_flies_high": 1,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_8k0b8"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_knights_are_loyal": 1,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_royal_banner_flies_high": 1,
-&"the_tavern_is_open": 0
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_p3xr8"]
-resource_name = "Rowan Ironbane"
+resource_name = "Elyra Of_The_North"
 script = ExtResource("2_6nor5")
-name = "Rowan Ironbane"
+name = "Elyra Of_The_North"
 perceivedWorld = SubResource("Resource_8k0b8")
 idealWorld = SubResource("Resource_xjoa4")
 
 [sub_resource type="Resource" id="Resource_mygd6"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_knight_has_broken_his_oath": -1,
-&"the_tavern_is_open": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_pv4ou"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 0,
-&"the_knight_has_broken_his_oath": 1,
-&"the_tavern_is_open": -1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_82n1q"]
-resource_name = "Miriel Of_The_Rose"
+resource_name = "Oren Sunborn"
 script = ExtResource("2_6nor5")
-name = "Miriel Of_The_Rose"
+name = "Oren Sunborn"
 perceivedWorld = SubResource("Resource_pv4ou")
 idealWorld = SubResource("Resource_mygd6")
 
 [sub_resource type="Resource" id="Resource_ywdu8"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knights_are_loyal": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_plague_spreads_in_the_south": 0,
-&"the_princess_is_captured": -1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_royal_banner_flies_high": 1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 1,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_7jn0k"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_knights_are_loyal": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_plague_spreads_in_the_south": -1,
-&"the_princess_is_captured": 1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_royal_banner_flies_high": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_iij6x"]
-resource_name = "Velora Greenmark"
+resource_name = "Seraphine Stormreaver"
 script = ExtResource("2_6nor5")
-name = "Velora Greenmark"
+name = "Seraphine Stormreaver"
 perceivedWorld = SubResource("Resource_7jn0k")
 idealWorld = SubResource("Resource_ywdu8")
 
 [sub_resource type="Resource" id="Resource_6lk3w"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_knight_has_broken_his_oath": 1,
-&"the_knights_are_loyal": 0,
-&"the_prophecy_is_fulfilled": -1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 0,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": -1
 })
 
 [sub_resource type="Resource" id="Resource_36rhh"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_knight_has_broken_his_oath": 0,
-&"the_knights_are_loyal": -1,
-&"the_prophecy_is_fulfilled": -1
+&"the_army_is_marching_north": 1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 0,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_w2pok"]
-resource_name = "Kaela Whitespear"
+resource_name = "Nyra Moonspire"
 script = ExtResource("2_6nor5")
-name = "Kaela Whitespear"
+name = "Nyra Moonspire"
 perceivedWorld = SubResource("Resource_36rhh")
 idealWorld = SubResource("Resource_6lk3w")
 
 [sub_resource type="Resource" id="Resource_8lrwe"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_king_is_alive": 0,
-&"the_knights_are_loyal": -1,
-&"the_princess_is_captured": -1,
-&"the_royal_banner_flies_high": 1
+&"the_army_is_marching_north": -1,
+&"the_bridge_is_destroyed": 1,
+&"the_crown_jewel_is_missing": 1,
+&"the_old_gods_are_silent": -1,
+&"the_peasants_are_revolting": 0,
+&"the_plague_spreads_in_the_south": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 1,
+&"the_wizard_council_has_convened": 0
 })
 
 [sub_resource type="Resource" id="Resource_kamrp"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": 1,
-&"the_king_is_alive": -1,
-&"the_knights_are_loyal": 1,
-&"the_princess_is_captured": 0,
-&"the_royal_banner_flies_high": -1
+&"the_army_is_marching_north": 0,
+&"the_bridge_is_destroyed": -1,
+&"the_crown_jewel_is_missing": -1,
+&"the_old_gods_are_silent": 0,
+&"the_peasants_are_revolting": -1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_throne_is_empty": -1,
+&"the_wizard_council_has_convened": 1
 })
 
 [sub_resource type="Resource" id="Resource_3ww7o"]
-resource_name = "Maelis Greenmark"
+resource_name = "Calla Moonspire"
 script = ExtResource("2_6nor5")
-name = "Maelis Greenmark"
+name = "Calla Moonspire"
 perceivedWorld = SubResource("Resource_kamrp")
 idealWorld = SubResource("Resource_8lrwe")
-
-[sub_resource type="Resource" id="Resource_vat3d"]
-script = ExtResource("1_j1f24")
-propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_king_is_alive": 0,
-&"the_knights_are_loyal": 1,
-&"the_mages_are_in_hiding": 1,
-&"the_royal_banner_flies_high": 1,
-&"the_tavern_is_open": 1
-})
-
-[sub_resource type="Resource" id="Resource_gwvh0"]
-script = ExtResource("1_j1f24")
-propositions = Dictionary[StringName, int]({
-&"the_dark_lord_has_returned": -1,
-&"the_king_is_alive": 0,
-&"the_knights_are_loyal": 1,
-&"the_mages_are_in_hiding": -1,
-&"the_royal_banner_flies_high": 1,
-&"the_tavern_is_open": 0
-})
-
-[sub_resource type="Resource" id="Resource_hqgfh"]
-resource_name = "Kaela Goldbrook"
-script = ExtResource("2_6nor5")
-name = "Kaela Goldbrook"
-perceivedWorld = SubResource("Resource_gwvh0")
-idealWorld = SubResource("Resource_vat3d")
 
 [resource]
 resource_name = "middle_earth"
 script = ExtResource("3_d8d3q")
 name = "middle_earth"
-canonWorld = SubResource("Resource_2vid0")
-characters = Array[ExtResource("2_6nor5")]([SubResource("Resource_vlym7"), SubResource("Resource_ta342"), SubResource("Resource_d4kaf"), SubResource("Resource_4j6ex"), SubResource("Resource_4bko2"), SubResource("Resource_t88e0"), SubResource("Resource_k5yit"), SubResource("Resource_rhhji"), SubResource("Resource_bmpmv"), SubResource("Resource_u2rcl"), SubResource("Resource_gkua3"), SubResource("Resource_0svxw"), SubResource("Resource_7c0q4"), SubResource("Resource_x16st"), SubResource("Resource_d2b3j"), SubResource("Resource_v7d14"), SubResource("Resource_frdqc"), SubResource("Resource_de5cp"), SubResource("Resource_vvfnq"), SubResource("Resource_ioe0c"), SubResource("Resource_6awd5"), SubResource("Resource_ax2w8"), SubResource("Resource_6g8ur"), SubResource("Resource_0jrnj"), SubResource("Resource_ngxpl"), SubResource("Resource_qyat2"), SubResource("Resource_hxwnj"), SubResource("Resource_w33id"), SubResource("Resource_ssq3r"), SubResource("Resource_mr43u"), SubResource("Resource_qpoc5"), SubResource("Resource_72jpc"), SubResource("Resource_20cxo"), SubResource("Resource_5ojjb"), SubResource("Resource_et7lg"), SubResource("Resource_hphbt"), SubResource("Resource_mojf8"), SubResource("Resource_8oacb"), SubResource("Resource_n0o7m"), SubResource("Resource_avi3q"), SubResource("Resource_tk0vu"), SubResource("Resource_rykef"), SubResource("Resource_e5ea7"), SubResource("Resource_sne75"), SubResource("Resource_p3xr8"), SubResource("Resource_82n1q"), SubResource("Resource_iij6x"), SubResource("Resource_w2pok"), SubResource("Resource_3ww7o"), SubResource("Resource_hqgfh")])
+canonWorld = SubResource("Resource_j1f24")
+characters = Array[ExtResource("2_6nor5")]([SubResource("Resource_2vid0"), SubResource("Resource_vlym7"), SubResource("Resource_ta342"), SubResource("Resource_d4kaf"), SubResource("Resource_4j6ex"), SubResource("Resource_4bko2"), SubResource("Resource_t88e0"), SubResource("Resource_k5yit"), SubResource("Resource_rhhji"), SubResource("Resource_bmpmv"), SubResource("Resource_u2rcl"), SubResource("Resource_gkua3"), SubResource("Resource_0svxw"), SubResource("Resource_7c0q4"), SubResource("Resource_x16st"), SubResource("Resource_d2b3j"), SubResource("Resource_v7d14"), SubResource("Resource_frdqc"), SubResource("Resource_de5cp"), SubResource("Resource_vvfnq"), SubResource("Resource_ioe0c"), SubResource("Resource_6awd5"), SubResource("Resource_ax2w8"), SubResource("Resource_6g8ur"), SubResource("Resource_0jrnj"), SubResource("Resource_ngxpl"), SubResource("Resource_qyat2"), SubResource("Resource_hxwnj"), SubResource("Resource_w33id"), SubResource("Resource_ssq3r"), SubResource("Resource_mr43u"), SubResource("Resource_qpoc5"), SubResource("Resource_72jpc"), SubResource("Resource_20cxo"), SubResource("Resource_5ojjb"), SubResource("Resource_et7lg"), SubResource("Resource_hphbt"), SubResource("Resource_mojf8"), SubResource("Resource_8oacb"), SubResource("Resource_n0o7m"), SubResource("Resource_avi3q"), SubResource("Resource_tk0vu"), SubResource("Resource_rykef"), SubResource("Resource_e5ea7"), SubResource("Resource_sne75"), SubResource("Resource_p3xr8"), SubResource("Resource_82n1q"), SubResource("Resource_iij6x"), SubResource("Resource_w2pok"), SubResource("Resource_3ww7o")])

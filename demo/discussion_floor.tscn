@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dndl4u3cnfvbp"]
 
-[ext_resource type="Resource" uid="uid://deduudguyqi37" path="res://middle_earth.tres" id="1_pqm7f"]
+[ext_resource type="Resource" uid="uid://b2b3dvjdmvavw" path="res://middle_earth.tres" id="1_pqm7f"]
 
 [sub_resource type="GDScript" id="GDScript_pqm7f"]
 resource_name = "discussion_floor"
@@ -8,6 +8,7 @@ script/source = "extends Node2D
 
 @export var ws:WorldState
 @export var max_npc_count: int = 20
+@onready var details_panel: VBoxContainer = %DetailsPanel
 
 
 func _ready() -> void:
@@ -19,6 +20,8 @@ func _ready() -> void:
 		npc.character = character
 		npc.position = Vector2(randf_range(-250,250),randf_range(-250,250))
 		add_child(npc)
+		npc.hovered_over.connect(details_panel._show_character_details)
+		npc.not_hovered_over.connect(details_panel._hide_character_details)
 		
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(\"ui_menu\"):
@@ -29,7 +32,92 @@ func _input(event: InputEvent) -> void:
 [sub_resource type="GDScript" id="GDScript_a7lfq"]
 resource_name = "details_panel"
 script/source = "extends VBoxContainer
-@export var character:Character
+@export var character:Character:
+	set(value):
+		character = value
+
+var info_box:VBoxContainer
+var name_label:Label
+var panel_container: PanelContainer
+var p_container: VBoxContainer
+var i_container: VBoxContainer
+
+func _ready() -> void:
+	panel_container = PanelContainer.new()
+	info_box = VBoxContainer.new()
+	info_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	info_box.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	name_label = Label.new()
+	var p_w_label:= Label.new()
+	var i_w_label:= Label.new()
+	p_w_label.text = \"Perceived World\"
+	i_w_label.text = \"Ideal World\"
+	
+	p_container = VBoxContainer.new()
+	i_container = VBoxContainer.new()
+	info_box.add_child(name_label)
+	info_box.add_child(HSeparator.new())
+	info_box.add_child(p_w_label)
+	info_box.add_child(HSeparator.new())
+	info_box.add_child(p_container)
+	info_box.add_child(HSeparator.new())
+	info_box.add_child(i_w_label)
+	info_box.add_child(HSeparator.new())
+	info_box.add_child(i_container)
+	info_box.add_child(HSeparator.new())
+	panel_container.add_child(info_box)
+	add_child(panel_container)
+
+func _show_character_details(c:Character):
+	print(c)
+	character = c
+	if character == null:
+			return
+	name_label.text = character.name
+	for n in p_container.get_children():
+		n.queue_free()
+	for i in i_container.get_children():
+		i.queue_free()
+	for p in character.perceivedWorld.propositions.keys():
+		var truth:PW.TriBool = character.getPerceived(p)
+		var h_box:= HBoxContainer.new()
+		var p_label := Label.new()
+		var t_label := Label.new()
+		if truth == PW.TriBool.FALSE:
+			t_label.add_theme_color_override(\"font_color\",Color.RED)
+		elif  truth == PW.TriBool.TRUE:
+			t_label.add_theme_color_override(\"font_color\",Color.SEA_GREEN)
+		else:
+			t_label.add_theme_color_override(\"font_color\",Color.GOLDENROD)
+		p_label.text = p
+		t_label.text = PW.TriBoolString[truth]
+		h_box.add_child(p_label)
+		h_box.add_child(VSeparator.new())
+		h_box.add_child(t_label)
+		p_container.add_child(h_box)
+	
+	for i in character.idealWorld.propositions.keys():
+		var truth:PW.TriBool = character.getIdeal(i)
+		var h_box:= HBoxContainer.new()
+		var p_label := Label.new()
+		var t_label := Label.new()
+		if truth == PW.TriBool.FALSE:
+			t_label.add_theme_color_override(\"font_color\",Color.RED)
+		elif  truth == PW.TriBool.TRUE:
+			t_label.add_theme_color_override(\"font_color\",Color.SEA_GREEN)
+		else:
+			t_label.add_theme_color_override(\"font_color\",Color.GOLDENROD)
+		p_label.text = i
+		t_label.text = PW.TriBoolString[truth]
+		h_box.add_child(p_label)
+		h_box.add_child(VSeparator.new())
+		h_box.add_child(t_label)
+		i_container.add_child(h_box)	
+	visible = true
+
+func _hide_character_details(c:Character):
+	character = null
+	visible = false
 "
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a7lfq"]
@@ -59,34 +147,13 @@ ws = ExtResource("1_pqm7f")
 [node name="DetailsPanel" type="VBoxContainer" parent="Camera2D/CanvasLayer"]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 script = SubResource("GDScript_a7lfq")
-
-[node name="NameLabel" type="Label" parent="Camera2D/CanvasLayer/DetailsPanel"]
-layout_mode = 2
-text = "Name"
-
-[node name="HSeparator" type="HSeparator" parent="Camera2D/CanvasLayer/DetailsPanel"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Camera2D/CanvasLayer/DetailsPanel"]
-layout_mode = 2
-text = "Perceived World"
-
-[node name="HSeparator2" type="HSeparator" parent="Camera2D/CanvasLayer/DetailsPanel"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/CanvasLayer/DetailsPanel"]
-layout_mode = 2
-
-[node name="HSeparator3" type="HSeparator" parent="Camera2D/CanvasLayer/DetailsPanel"]
-layout_mode = 2
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]
 collision_mask = 0

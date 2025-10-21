@@ -5,6 +5,7 @@ extends Resource
 @export var propositions: Dictionary[StringName,PW.TriBool];
 
 func setTruth(id:String, truth:PW.TriBool) -> bool:
+	assert(truth is PW.TriBool)
 	id = id.to_snake_case()
 	var result := propositions.set(id,truth)
 	if result:

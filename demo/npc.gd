@@ -8,6 +8,9 @@ var info_box: Control
 
 @export var character: Character
 
+signal hovered_over(c:Character)
+signal not_hovered_over(c:Character)
+
 var target_pos:Vector2
 var randomize_timer: Timer
 var conversation_partner: NPC = null:
@@ -113,9 +116,9 @@ class Conversation extends Node2D:
 		convo_bubble.position = npc_a.global_position
 		var p_tension:int = npc_a.character.perceivedDiff(npc_b.character).size()
 		var i_tension:int = npc_a.character.idealDiff(npc_b.character).size()
-		convo_bubble.append_text("Ideal Worlds Tension: (%s)" % i_tension)
-		convo_bubble.newline()
 		convo_bubble.append_text("Perceived Worlds Tension: (%s)" % p_tension)
+		convo_bubble.newline()
+		convo_bubble.append_text("Ideal Worlds Tension: (%s)" % i_tension)
 		timer = Timer.new()
 		timer.timeout.connect(end_conversation)
 		add_child(timer)

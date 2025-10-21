@@ -9,61 +9,13 @@ size = Vector2(14, 20)
 [sub_resource type="GDScript" id="GDScript_nb7f4"]
 resource_name = "npc_area_2d"
 script/source = "extends Area2D
-@export var character:Character:
-	set(value):
-		character = value
-		name_label.text = character.name
-		for p in character.perceivedWorld.propositions.keys():
-			var truth:PW.TriBool = character.getPerceived(p)
-			var h_box:= HBoxContainer.new()
-			var p_label := Label.new()
-			var t_label := Label.new()
-			p_label.text = p
-			t_label.text = PW.TriBoolString[truth]
-			h_box.add_child(p_label)
-			h_box.add_child(VSeparator.new())
-			h_box.add_child(t_label)
-			p_container.add_child(h_box)
-			
-		
-
-var info_box:VBoxContainer
-var name_label:Label
-var panel_container: PanelContainer
-var p_container: VBoxContainer
-var i_container: VBoxContainer
-func _ready() -> void:
-	panel_container = PanelContainer.new()
-	info_box = VBoxContainer.new()
-	info_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	info_box.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	name_label = Label.new()
-	var p_w_label:= Label.new()
-	var i_w_label:= Label.new()
-	p_w_label.text = \"Perceived World\"
-	i_w_label.text = \"Ideal World\"
-	
-	p_container = VBoxContainer.new()
-	i_container = VBoxContainer.new()
-	info_box.add_child(name_label)
-	info_box.add_child(HSeparator.new())
-	info_box.add_child(p_w_label)
-	info_box.add_child(HSeparator.new())
-	info_box.add_child(p_container)
-	info_box.add_child(HSeparator.new())
-	info_box.add_child(i_w_label)
-	info_box.add_child(HSeparator.new())
-	info_box.add_child(i_container)
-	info_box.add_child(HSeparator.new())
-	panel_container.add_child(info_box)
-	add_child(panel_container)
-	panel_container.visible = false
+@export var character:Character
 
 func _mouse_enter() -> void:
-	panel_container.visible = true
+	get_parent().hovered_over.emit(character)
 	
 func _mouse_exit() -> void:
-	panel_container.visible = false
+	get_parent().not_hovered_over.emit(character)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdgx1"]
