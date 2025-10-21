@@ -16,6 +16,10 @@ func _mouse_enter() -> void:
 	
 func _mouse_exit() -> void:
 	get_parent().not_hovered_over.emit(character)
+
+func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		get_parent().clicked_on.emit(character)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdgx1"]

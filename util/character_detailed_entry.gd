@@ -147,7 +147,7 @@ func _update_gui():
 	tension_tree.set_column_title(0,"Proposition")
 	tension_tree.set_column_title(1,"Perceived")
 	tension_tree.set_column_title(2,"Ideal")
-	tension_tree.set_column_title(3,"Tension Perceived vs Ideal (%s)" % character.idealPerceivedDiff().size())
+	tension_tree.set_column_title(3,"Tension Perceived vs Ideal (%.2f)" % character.idealPerceivedTension())
 	for p in character.perceivedWorld.propositions.keys():
 		var child := tension_tree.create_item(root)
 		child.set_text(0, p)

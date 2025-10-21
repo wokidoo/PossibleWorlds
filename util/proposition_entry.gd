@@ -5,6 +5,7 @@ extends HBoxContainer
 
 var prop_label:Label
 var option_button: OptionButton
+var confidence_spinbox: SpinBox
 var popup_menu: PopupMenu
 
 static func create_entry(w:World,prop_id:StringName):
@@ -17,9 +18,9 @@ func _init() -> void:
 	alignment = BoxContainer.ALIGNMENT_CENTER
 	prop_label = Label.new()
 	prop_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	prop_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	prop_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	prop_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	prop_label.autowrap_mode =TextServer.AUTOWRAP_WORD_SMART
+	prop_label.autowrap_mode =TextServer.AUTOWRAP_WORD
 	add_child(prop_label)
 	
 	option_button = OptionButton.new()
@@ -32,6 +33,18 @@ func _init() -> void:
 		world.setTruth(prop_label.text,v-1)
 	)
 	
+	confidence_spinbox = SpinBox.new()
+	confidence_spinbox.step = 0.01
+	confidence_spinbox.max_value = 1
+	confidence_spinbox.min_value = 0.1
+	confidence_spinbox.value_changed.connect(func(v):
+		world.setConfidence(prop_label.text,v)
+	)
+	add_child(VSeparator.new())
+	var conf_l: Label = Label.new()
+	conf_l.text = "Confidence:"
+	add_child(conf_l)
+	add_child(confidence_spinbox)
 	popup_menu = PopupMenu.new()
 	add_child(popup_menu)
 	popup_menu.id_pressed.connect(_on_popup_menu)
@@ -58,6 +71,7 @@ func set_proposition(id:StringName):
 	if world != null && world.hasProposition(id):
 		prop_label.text = id
 		option_button.select(world.getTruth(id)+1)
+		confidence_spinbox.value = world.getConfidence(id)
 
 func _get_drag_data(at_position: Vector2) -> Variant:
 	var data:Dictionary

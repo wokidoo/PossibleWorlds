@@ -38,24 +38,45 @@ func _reconnect_signals():
 func idealPerceivedDiff() -> Array[StringName]:
 	return perceivedWorld.diff(idealWorld)
 
+func idealPerceivedTension() -> float:
+	return perceivedWorld.tension(idealWorld)
+
 func idealDiff(other:Character) -> Array[StringName]:
 	return idealWorld.diff(other.idealWorld)
+
+func idealTension(other:Character) -> float:
+	return idealWorld.tension(other.idealWorld)
 
 func perceivedDiff(other:Character) -> Array[StringName]:
 	return perceivedWorld.diff(other.perceivedWorld)
 
-func setIdeal(id:String,truth:PW.TriBool) ->bool:
+func perceivedTension(other:Character) -> float:
+	return perceivedWorld.tension(other.perceivedWorld)
+
+func setIdeal(id:String,truth:PW.TriBool,confidence:float = 1.0) ->bool:
 	if not perceivedWorld.hasProposition(id):
 		perceivedWorld.setTruth(id,PW.TriBool.UNKNOWN)
-	return idealWorld.setTruth(id,truth)
+	return idealWorld.setTruth(id,truth,confidence)
 
-func setPerceived(id:String,truth:PW.TriBool) ->bool:
+func setIdealConfidence(id:String,confidence:float) -> bool:
+	return idealWorld.setConfidence(id,confidence)
+
+func setPerceived(id:String,truth:PW.TriBool,confidence:float = 1.0) ->bool:
 	if not idealWorld.hasProposition(id):
 		idealWorld.setTruth(id,PW.TriBool.UNKNOWN)
-	return perceivedWorld.setTruth(id,truth)
+	return perceivedWorld.setTruth(id,truth,confidence)
+
+func setPerceivedConfidence(id:String,confidence:float) -> bool:
+	return perceivedWorld.setConfidence(id,confidence)
 
 func getIdeal(id:String) ->PW.TriBool:
 	return idealWorld.getTruth(id)
 
+func getIdealConfidence(id:String) -> float:
+	return idealWorld.getConfidence(id)
+
 func getPerceived(id:String) -> PW.TriBool:
 	return perceivedWorld.getTruth(id)
+
+func getPerceivedConfidence(id:String) -> float:
+	return perceivedWorld.getConfidence(id)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dndl4u3cnfvbp"]
 
-[ext_resource type="Resource" uid="uid://b2b3dvjdmvavw" path="res://middle_earth.tres" id="1_pqm7f"]
+[ext_resource type="Resource" path="res://middle_earth.tres" id="1_pqm7f"]
 
 [sub_resource type="GDScript" id="GDScript_pqm7f"]
 resource_name = "discussion_floor"
@@ -22,7 +22,7 @@ func _ready() -> void:
 		add_child(npc)
 		npc.hovered_over.connect(details_panel._show_character_details)
 		npc.not_hovered_over.connect(details_panel._hide_character_details)
-		
+		npc.clicked_on.connect(details_panel._on_character_clicked_on)
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(\"ui_menu\"):
 		print(\"Pausing\")
@@ -32,9 +32,9 @@ func _input(event: InputEvent) -> void:
 [sub_resource type="GDScript" id="GDScript_a7lfq"]
 resource_name = "details_panel"
 script/source = "extends VBoxContainer
-@export var character:Character:
-	set(value):
-		character = value
+@export var character:Character
+
+var is_selected:bool = false
 
 var info_box:VBoxContainer
 var name_label:Label
@@ -67,10 +67,8 @@ func _ready() -> void:
 	info_box.add_child(HSeparator.new())
 	panel_container.add_child(info_box)
 	add_child(panel_container)
-
-func _show_character_details(c:Character):
-	print(c)
-	character = c
+	
+func update_gui():
 	if character == null:
 			return
 	name_label.text = character.name
@@ -94,6 +92,10 @@ func _show_character_details(c:Character):
 		h_box.add_child(p_label)
 		h_box.add_child(VSeparator.new())
 		h_box.add_child(t_label)
+		h_box.add_child(VSeparator.new())
+		var conf_l := Label.new()
+		conf_l.text = \"Conf: %.2f\" % character.getPerceivedConfidence(p)
+		h_box.add_child(conf_l)
 		p_container.add_child(h_box)
 	
 	for i in character.idealWorld.propositions.keys():
@@ -112,12 +114,38 @@ func _show_character_details(c:Character):
 		h_box.add_child(p_label)
 		h_box.add_child(VSeparator.new())
 		h_box.add_child(t_label)
-		i_container.add_child(h_box)	
+		h_box.add_child(VSeparator.new())
+		var conf_l := Label.new()
+		conf_l.text = \"Conf: %.2f\" % character.getIdealConfidence(i)
+		h_box.add_child(conf_l)
+		i_container.add_child(h_box)
+
+
+func _show_character_details(c:Character):
+	if is_selected:
+		return
+	character = c
+	update_gui()
 	visible = true
 
 func _hide_character_details(c:Character):
+	if is_selected:
+		return
 	character = null
+	update_gui()
 	visible = false
+
+func _on_character_clicked_on(c:Character):
+	character = c
+	is_selected = true
+	update_gui()
+	self.grab_focus()
+	visible = true
+
+func _input(event: InputEvent) -> void:
+	if is_selected and event is InputEventMouseButton and not event.button_index == MOUSE_BUTTON_WHEEL_UP and not event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+		is_selected = false
+		_hide_character_details(character)
 "
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a7lfq"]
@@ -144,14 +172,19 @@ ws = ExtResource("1_pqm7f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
-[node name="DetailsPanel" type="VBoxContainer" parent="Camera2D/CanvasLayer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Camera2D/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="DetailsPanel" type="VBoxContainer" parent="Camera2D/CanvasLayer/ScrollContainer"]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 9
-anchor_bottom = 1.0
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+layout_mode = 2
 mouse_filter = 2
 script = SubResource("GDScript_a7lfq")
 

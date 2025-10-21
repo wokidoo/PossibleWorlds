@@ -192,14 +192,14 @@ func _on_confirm_button_pressed():
 		# --- Set value for perceived props ---
 		if(perfect_reacll_checkbox.button_pressed):
 			for k in percProps:
-				c.perceivedWorld.setTruth(k,world_state.canonWorld.getTruth(k))
+				c.perceivedWorld.setTruth(k,world_state.canonWorld.getTruth(k),randf_range(0,1))
 		else:
 			for k in percProps:
-				c.perceivedWorld.setTruth(k,PW.TriBool.values().pick_random())
+				c.perceivedWorld.setTruth(k,PW.TriBool.values().pick_random(),randf_range(0,1))
 		
 		# --- Set ideal world props ---
 		for l in percProps:
-			c.idealWorld.setTruth(l,PW.TriBool.values().pick_random())
+			c.idealWorld.setTruth(l,PW.TriBool.values().pick_random(),randf_range(0,1))
 		
 	var error = ResourceSaver.save(world_state,path,ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
 	if error != OK:
