@@ -30,15 +30,15 @@ func _init() -> void:
 	add_child(option_button)
 	
 	option_button.item_selected.connect(func(v):
-		world.setTruth(prop_label.text,v-1)
+		world.set_truth(prop_label.text,v-1)
 	)
 	
 	confidence_spinbox = SpinBox.new()
 	confidence_spinbox.step = 0.01
 	confidence_spinbox.max_value = 1
-	confidence_spinbox.min_value = 0.1
+	confidence_spinbox.min_value = 0
 	confidence_spinbox.value_changed.connect(func(v):
-		world.setConfidence(prop_label.text,v)
+		world.set_confidence(prop_label.text,v)
 	)
 	add_child(VSeparator.new())
 	var conf_l: Label = Label.new()
@@ -61,17 +61,17 @@ func _on_popup_menu(id):
 	match item_name:
 		"Add Proposition":
 			var we :WorldEditor = get_tree().root.get_node("WorldEditor")
-			we.character.setPerceived(prop_label.text,world.getTruth(prop_label.text))
+			we.character.set_perceived(prop_label.text,world.get_truth(prop_label.text))
 		"Delete":
-			world.eraseTruth(prop_label.text)
+			world.erase_truth(prop_label.text)
 		_:
 			pass
 
 func set_proposition(id:StringName):
-	if world != null && world.hasProposition(id):
+	if world != null && world.has_proposition(id):
 		prop_label.text = id
-		option_button.select(world.getTruth(id)+1)
-		confidence_spinbox.value = world.getConfidence(id)
+		option_button.select(world.get_truth(id)+1)
+		confidence_spinbox.value = world.get_confidence(id)
 
 func _get_drag_data(at_position: Vector2) -> Variant:
 	var data:Dictionary

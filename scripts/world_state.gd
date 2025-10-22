@@ -50,3 +50,8 @@ func remove_character(c:Character)->bool:
 	else:
 		return false
 	
+func find_characters(filter:Callable) -> Array[Character]:
+	return characters.filter(filter)
+
+func map_characters(callable:Callable,c:Array[Character] = characters) ->Array:
+	return c.map(callable)

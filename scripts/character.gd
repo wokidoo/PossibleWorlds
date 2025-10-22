@@ -35,48 +35,48 @@ func _reconnect_signals():
 	if not idealWorld.changed.is_connected(emit_changed):
 		idealWorld.changed.connect(emit_changed)
 
-func idealPerceivedDiff() -> Array[StringName]:
+func ideal_perceived_diff() -> Array[StringName]:
 	return perceivedWorld.diff(idealWorld)
 
-func idealPerceivedTension() -> float:
+func ideal_perceived_tension() -> float:
 	return perceivedWorld.tension(idealWorld)
 
-func idealDiff(other:Character) -> Array[StringName]:
+func ideal_diff(other:Character) -> Array[StringName]:
 	return idealWorld.diff(other.idealWorld)
 
-func idealTension(other:Character) -> float:
+func ideal_tension(other:Character) -> float:
 	return idealWorld.tension(other.idealWorld)
 
-func perceivedDiff(other:Character) -> Array[StringName]:
+func perceived_diff(other:Character) -> Array[StringName]:
 	return perceivedWorld.diff(other.perceivedWorld)
 
-func perceivedTension(other:Character) -> float:
+func perceived_tension(other:Character) -> float:
 	return perceivedWorld.tension(other.perceivedWorld)
 
-func setIdeal(id:String,truth:PW.TriBool,confidence:float = 1.0) ->bool:
-	if not perceivedWorld.hasProposition(id):
+func set_ideal(id:String,truth:PW.TriBool,confidence:float = 1.0) ->bool:
+	if not perceivedWorld.has_proposition(id):
 		perceivedWorld.setTruth(id,PW.TriBool.UNKNOWN)
 	return idealWorld.setTruth(id,truth,confidence)
 
-func setIdealConfidence(id:String,confidence:float) -> bool:
-	return idealWorld.setConfidence(id,confidence)
+func set_ideal_confidence(id:String,confidence:float) -> bool:
+	return idealWorld.set_confidence(id,confidence)
 
-func setPerceived(id:String,truth:PW.TriBool,confidence:float = 1.0) ->bool:
-	if not idealWorld.hasProposition(id):
+func set_perceived(id:String,truth:PW.TriBool,confidence:float = 1.0) ->bool:
+	if not idealWorld.has_proposition(id):
 		idealWorld.setTruth(id,PW.TriBool.UNKNOWN)
 	return perceivedWorld.setTruth(id,truth,confidence)
 
-func setPerceivedConfidence(id:String,confidence:float) -> bool:
-	return perceivedWorld.setConfidence(id,confidence)
+func set_perceived_confidence(id:String,confidence:float) -> bool:
+	return perceivedWorld.set_confidence(id,confidence)
 
-func getIdeal(id:String) ->PW.TriBool:
-	return idealWorld.getTruth(id)
+func get_ideal(id:String) ->PW.TriBool:
+	return idealWorld.get_truth(id)
 
-func getIdealConfidence(id:String) -> float:
-	return idealWorld.getConfidence(id)
+func get_ideal_confidence(id:String) -> float:
+	return idealWorld.get_confidence(id)
 
-func getPerceived(id:String) -> PW.TriBool:
-	return perceivedWorld.getTruth(id)
+func get_perceived(id:String) -> PW.TriBool:
+	return perceivedWorld.get_truth(id)
 
-func getPerceivedConfidence(id:String) -> float:
-	return perceivedWorld.getConfidence(id)
+func get_perceived_confidence(id:String) -> float:
+	return perceivedWorld.get_confidence(id)

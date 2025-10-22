@@ -92,9 +92,8 @@ class Conversation extends Node2D:
 		convo_bubble.threaded = true
 		convo_bubble.scroll_active = false
 		convo_bubble.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		convo_bubble.custom_minimum_size = Vector2(300,300)
+		convo_bubble.custom_minimum_size = Vector2(200,50)
 		convo_bubble.push_font_size(12)
-		add_child(convo_bubble)
 
 	
 	func try_start_conversation():
@@ -115,9 +114,22 @@ class Conversation extends Node2D:
 	
 	func _have_conversation():
 		convo_bubble.position = npc_a.global_position
-		convo_bubble.append_text("Perceived Worlds Tension: (%.2f)" % npc_a.character.perceivedTension(npc_b.character))
+		var panel :=PanelContainer.new()
+		tree_exited.connect(func():
+			panel.queue_free()
+		)
+		convo_bubble.mouse_entered.connect(func():
+			convo_bubble.visible = false
+		)
+		convo_bubble.mouse_exited.connect(func():
+			convo_bubble.visible = true
+		)
+		convo_bubble.append_text("Perceived ideal_diffnsion: (%.2f)" % npc_a.character.perceived_tension(npc_b.character))
 		convo_bubble.newline()
-		convo_bubble.append_text("Ideal Worlds Tension: (%.2f)" % npc_a.character.idealTension(npc_b.character))
+		convo_bubble.append_text("Ideal Worlds Tension: (%.2f)" % npc_a.character.ideal_tension(npc_b.character))
+		panel.add_child(convo_bubble)
+		panel.global_position = npc_a.global_position
+		add_child(panel)
 		timer = Timer.new()
 		timer.timeout.connect(end_conversation)
 		add_child(timer)
@@ -133,6 +145,9 @@ class Conversation extends Node2D:
 		npc_b.conversation_partner = null
 		print_rich("[b]%s[/b] and [b]%s[/b] ended their conversation..." % [npc_a.character.name,npc_b.character.name])
 		queue_free()
+		
+	func _exit_tree() -> void:
+		convo_bubble.queue_free()
 		
 	func _notification(what: int) -> void:
 		if what == NOTIFICATION_PAUSED:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dndl4u3cnfvbp"]
 
-[ext_resource type="Resource" path="res://middle_earth.tres" id="1_pqm7f"]
+[ext_resource type="Resource" uid="uid://mbyus6vgn52i" path="res://middle_earth.tres" id="1_pqm7f"]
 
 [sub_resource type="GDScript" id="GDScript_pqm7f"]
 resource_name = "discussion_floor"
@@ -23,6 +23,7 @@ func _ready() -> void:
 		npc.hovered_over.connect(details_panel._show_character_details)
 		npc.not_hovered_over.connect(details_panel._hide_character_details)
 		npc.clicked_on.connect(details_panel._on_character_clicked_on)
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(\"ui_menu\"):
 		print(\"Pausing\")
@@ -71,13 +72,13 @@ func _ready() -> void:
 func update_gui():
 	if character == null:
 			return
-	name_label.text = character.name
+	name_label.text = \"%s | I vs P : (%.2f)\" % [character.name,character.ideal_perceived_tension()]
 	for n in p_container.get_children():
 		n.queue_free()
 	for i in i_container.get_children():
 		i.queue_free()
 	for p in character.perceivedWorld.propositions.keys():
-		var truth:PW.TriBool = character.getPerceived(p)
+		var truth:PW.TriBool = character.get_perceived(p)
 		var h_box:= HBoxContainer.new()
 		var p_label := Label.new()
 		var t_label := Label.new()
@@ -94,12 +95,12 @@ func update_gui():
 		h_box.add_child(t_label)
 		h_box.add_child(VSeparator.new())
 		var conf_l := Label.new()
-		conf_l.text = \"Conf: %.2f\" % character.getPerceivedConfidence(p)
+		conf_l.text = \"Conf: %.2f\" % character.get_perceived_confidence(p)
 		h_box.add_child(conf_l)
 		p_container.add_child(h_box)
 	
 	for i in character.idealWorld.propositions.keys():
-		var truth:PW.TriBool = character.getIdeal(i)
+		var truth:PW.TriBool = character.get_ideal(i)
 		var h_box:= HBoxContainer.new()
 		var p_label := Label.new()
 		var t_label := Label.new()
@@ -116,7 +117,7 @@ func update_gui():
 		h_box.add_child(t_label)
 		h_box.add_child(VSeparator.new())
 		var conf_l := Label.new()
-		conf_l.text = \"Conf: %.2f\" % character.getIdealConfidence(i)
+		conf_l.text = \"Conf: %.2f\" % character.get_ideal_confidence(i)
 		h_box.add_child(conf_l)
 		i_container.add_child(h_box)
 
@@ -167,6 +168,7 @@ distance = -250.0
 process_mode = 3
 script = SubResource("GDScript_pqm7f")
 ws = ExtResource("1_pqm7f")
+max_npc_count = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

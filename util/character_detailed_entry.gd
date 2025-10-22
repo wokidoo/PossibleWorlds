@@ -37,13 +37,13 @@ func _ready() -> void:
 	# Also handle double-activate (Enter/Double click) as a fallback
 	tension_tree.item_activated.connect(_on_tree_item_activated)
 	add_proposition_button.pressed.connect(func():
-		if not character.perceivedWorld.hasProposition(add_proposition_line_edit.text):
-			character.setPerceived(add_proposition_line_edit.text,PW.TriBool.UNKNOWN)
+		if not character.perceivedWorld.has_proposition(add_proposition_line_edit.text):
+			character.set_perceived(add_proposition_line_edit.text,PW.TriBool.UNKNOWN)
 			add_proposition_line_edit.clear()
 	)
 	add_proposition_line_edit.text_submitted.connect(func(text):
-		if not character.perceivedWorld.hasProposition(text):
-			character.setPerceived(text,PW.TriBool.UNKNOWN)
+		if not character.perceivedWorld.has_proposition(text):
+			character.set_perceived(text,PW.TriBool.UNKNOWN)
 			add_proposition_line_edit.clear()
 			
 	)
@@ -52,8 +52,8 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return typeof(data) == TYPE_DICTIONARY and data.has("proposition") and data.has("world")
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	character.setPerceived(data["proposition"],data["world"].getTruth(data["proposition"]))
-	character.setIdeal(data["proposition"],data["world"].getTruth(data["proposition"]))
+	character.set_perceived(data["proposition"],data["world"].get_truth(data["proposition"]))
+	character.set_ideal(data["proposition"],data["world"].get_truth(data["proposition"]))
 
 func set_character(c:Character):
 	if ws != null && ws.characters.has(c):
@@ -112,9 +112,9 @@ func _on_tri_popup_id_pressed(id: PW.TriBool) -> void:
 	var prop_name := _popup_item.get_text(0)
 
 	if _popup_column == 1:
-		character.perceivedWorld.setTruth(prop_name, value)  # value is 0/1/2 per your enum
+		character.perceivedWorld.set_truth(prop_name, value)  # value is 0/1/2 per your enum
 	elif _popup_column == 2:
-		character.idealWorld.setTruth(prop_name, value)
+		character.idealWorld.set_truth(prop_name, value)
 	_update_gui()
 
 func _tension_text(perceived:int, ideal:int) -> String:
@@ -147,7 +147,7 @@ func _update_gui():
 	tension_tree.set_column_title(0,"Proposition")
 	tension_tree.set_column_title(1,"Perceived")
 	tension_tree.set_column_title(2,"Ideal")
-	tension_tree.set_column_title(3,"Tension Perceived vs Ideal (%.2f)" % character.idealPerceivedTension())
+	tension_tree.set_column_title(3,"Tension Perceived vs Ideal (%.2f)" % character.ideal_perceived_tension())
 	for p in character.perceivedWorld.propositions.keys():
 		var child := tension_tree.create_item(root)
 		child.set_text(0, p)
@@ -156,17 +156,17 @@ func _update_gui():
 		child.set_cell_mode(1, TreeItem.CELL_MODE_CUSTOM)
 		child.set_editable(1, true)
 		child.set_custom_as_button(1, true) # draws a dropdown-like arrow
-		child.set_text(1, PW.TriBoolString[character.getPerceived(p)])
+		child.set_text(1, PW.TriBoolString[character.get_perceived(p)])
 
 		# ----- Column 2 as "OptionButton" style -----
 		child.set_cell_mode(2, TreeItem.CELL_MODE_CUSTOM)
 		child.set_editable(2, true)
 		child.set_custom_as_button(2, true)
-		child.set_text(2, PW.TriBoolString[character.getIdeal(p)])
+		child.set_text(2, PW.TriBoolString[character.get_ideal(p)])
 
 		# Column 3: just text (your tension metric)
-		var perceived := character.getPerceived(p)
-		var ideal := character.getIdeal(p)
+		var perceived := character.get_perceived(p)
+		var ideal := character.get_ideal(p)
 		child.set_text(3, _tension_text(perceived, ideal))
 		if child.get_text(3) == "Agree":
 			child.set_custom_color(3,Color.WEB_GREEN)

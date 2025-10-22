@@ -1,0 +1,190 @@
+[gd_resource type="Resource" script_class="WorldState" load_steps=20 format=3 uid="uid://b4oe50swphrcd"]
+
+[ext_resource type="Script" uid="uid://c8kgqvclh5tmr" path="res://scripts/world.gd" id="1_e565o"]
+[ext_resource type="Script" uid="uid://b16vthi1gfont" path="res://scripts/character.gd" id="2_3bqoy"]
+[ext_resource type="Script" uid="uid://c8s16f3fua3me" path="res://scripts/world_state.gd" id="3_rlno7"]
+
+[sub_resource type="Resource" id="Resource_r7ehg"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_royal_banner_flies_high": -1
+})
+confidence = Dictionary[StringName, float]({
+&"the_citadel_gates_are_closed": 1.0,
+&"the_plague_spreads_in_the_south": 1.0,
+&"the_royal_banner_flies_high": 1.0
+})
+
+[sub_resource type="Resource" id="Resource_3vvkr"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_royal_banner_flies_high": -1
+})
+confidence = Dictionary[StringName, float]({
+&"the_citadel_gates_are_closed": 0.34563730088784017,
+&"the_plague_spreads_in_the_south": 0.5698540916634529,
+&"the_royal_banner_flies_high": 0.4851777300222153
+})
+
+[sub_resource type="Resource" id="Resource_4cq8m"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_plague_spreads_in_the_south": 1,
+&"the_royal_banner_flies_high": 1
+})
+confidence = Dictionary[StringName, float]({
+&"the_citadel_gates_are_closed": 0.0,
+&"the_plague_spreads_in_the_south": 0.3466292585117429,
+&"the_royal_banner_flies_high": 0.6880920365360758
+})
+
+[sub_resource type="Resource" id="Resource_wfhpt"]
+resource_name = "Borik Blackthorn"
+script = ExtResource("2_3bqoy")
+name = "Borik Blackthorn"
+perceivedWorld = SubResource("Resource_4cq8m")
+idealWorld = SubResource("Resource_3vvkr")
+
+[sub_resource type="Resource" id="Resource_6fc74"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": -1,
+&"the_plague_spreads_in_the_south": 0,
+&"the_royal_banner_flies_high": 0
+})
+confidence = Dictionary[StringName, float]({
+&"the_citadel_gates_are_closed": 0.6786467725864842,
+&"the_plague_spreads_in_the_south": 0.0,
+&"the_royal_banner_flies_high": 0.0
+})
+
+[sub_resource type="Resource" id="Resource_jkqwa"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_plague_spreads_in_the_south": 1,
+&"the_royal_banner_flies_high": 1
+})
+confidence = Dictionary[StringName, float]({
+&"the_citadel_gates_are_closed": 0.0,
+&"the_plague_spreads_in_the_south": 0.1,
+&"the_royal_banner_flies_high": 0.5356552421046447
+})
+
+[sub_resource type="Resource" id="Resource_kp3hw"]
+resource_name = "Kaela Stormwatch"
+script = ExtResource("2_3bqoy")
+name = "Kaela Stormwatch"
+perceivedWorld = SubResource("Resource_jkqwa")
+idealWorld = SubResource("Resource_6fc74")
+
+[sub_resource type="Resource" id="Resource_qbn3o"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_plague_spreads_in_the_south": 0,
+&"the_royal_banner_flies_high": 0
+})
+confidence = Dictionary[StringName, float]({
+&"the_citadel_gates_are_closed": 0.0,
+&"the_plague_spreads_in_the_south": 0.0,
+&"the_royal_banner_flies_high": 0.0
+})
+
+[sub_resource type="Resource" id="Resource_repfg"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_royal_banner_flies_high": -1
+})
+confidence = Dictionary[StringName, float]({
+&"the_citadel_gates_are_closed": 0.624284167088341,
+&"the_plague_spreads_in_the_south": 0.20899426610645036,
+&"the_royal_banner_flies_high": 0.9321239805563548
+})
+
+[sub_resource type="Resource" id="Resource_m8o0t"]
+resource_name = "Coren Windwalker"
+script = ExtResource("2_3bqoy")
+name = "Coren Windwalker"
+perceivedWorld = SubResource("Resource_repfg")
+idealWorld = SubResource("Resource_qbn3o")
+
+[sub_resource type="Resource" id="Resource_ayhjp"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_plague_spreads_in_the_south": 1,
+&"the_royal_banner_flies_high": -1
+})
+confidence = Dictionary[StringName, float]({
+&"the_citadel_gates_are_closed": 0.0,
+&"the_plague_spreads_in_the_south": 0.3719487024285407,
+&"the_royal_banner_flies_high": 0.5789488898397621
+})
+
+[sub_resource type="Resource" id="Resource_k6bka"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 0,
+&"the_plague_spreads_in_the_south": 1,
+&"the_royal_banner_flies_high": 1
+})
+confidence = Dictionary[StringName, float]({
+&"the_citadel_gates_are_closed": 0.0,
+&"the_plague_spreads_in_the_south": 0.8645087739474424,
+&"the_royal_banner_flies_high": 0.515408829907836
+})
+
+[sub_resource type="Resource" id="Resource_d1mcy"]
+resource_name = "Malric Brightshore"
+script = ExtResource("2_3bqoy")
+name = "Malric Brightshore"
+perceivedWorld = SubResource("Resource_k6bka")
+idealWorld = SubResource("Resource_ayhjp")
+
+[sub_resource type="Resource" id="Resource_0kms0"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": -1,
+&"the_plague_spreads_in_the_south": -1,
+&"the_royal_banner_flies_high": -1
+})
+confidence = Dictionary[StringName, float]({
+&"the_citadel_gates_are_closed": 0.6268828026360689,
+&"the_plague_spreads_in_the_south": 0.3123123916731766,
+&"the_royal_banner_flies_high": 0.5636423268417945
+})
+
+[sub_resource type="Resource" id="Resource_3a6pw"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_citadel_gates_are_closed": 1,
+&"the_plague_spreads_in_the_south": 1,
+&"the_royal_banner_flies_high": -1
+})
+confidence = Dictionary[StringName, float]({
+&"the_citadel_gates_are_closed": 0.9478968701601994,
+&"the_plague_spreads_in_the_south": 0.3751155263122224,
+&"the_royal_banner_flies_high": 0.5131626880497809
+})
+
+[sub_resource type="Resource" id="Resource_i1o14"]
+resource_name = "Thorin Lightveil"
+script = ExtResource("2_3bqoy")
+name = "Thorin Lightveil"
+perceivedWorld = SubResource("Resource_3a6pw")
+idealWorld = SubResource("Resource_0kms0")
+
+[resource]
+resource_name = "small world"
+script = ExtResource("3_rlno7")
+name = "small world"
+canonWorld = SubResource("Resource_r7ehg")
+characters = Array[ExtResource("2_3bqoy")]([SubResource("Resource_wfhpt"), SubResource("Resource_kp3hw"), SubResource("Resource_m8o0t"), SubResource("Resource_d1mcy"), SubResource("Resource_i1o14")])

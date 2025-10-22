@@ -169,7 +169,7 @@ func _on_confirm_button_pressed():
 	for i in range(0,proposition_spin_box.value):
 		var proposition:String = availablePropositions.pick_random()
 		availablePropositions.erase(proposition)
-		world_state.canonWorld.setTruth(proposition,[PW.TriBool.FALSE,PW.TriBool.TRUE].pick_random())
+		world_state.canonWorld.set_truth(proposition,[PW.TriBool.FALSE,PW.TriBool.TRUE].pick_random())
 	
 	for i in range(0,character_spin_box.value as int):
 		var c:= Character.new()
@@ -183,7 +183,7 @@ func _on_confirm_button_pressed():
 		var percProps:Array[StringName]
 		# --- Set all perceived props or only some ---
 		if(all_knowing_checkbox.button_pressed):
-			c.perceivedWorld.matchWorld(world_state.canonWorld)
+			c.perceivedWorld.match_world(world_state.canonWorld)
 			percProps = world_state.canonWorld.propositions.keys()
 		else:
 			var percPropCount:int = randi_range(1,proposition_spin_box.value as int)
@@ -192,14 +192,14 @@ func _on_confirm_button_pressed():
 		# --- Set value for perceived props ---
 		if(perfect_reacll_checkbox.button_pressed):
 			for k in percProps:
-				c.perceivedWorld.setTruth(k,world_state.canonWorld.getTruth(k),randf_range(0,1))
+				c.perceivedWorld.set_truth(k,world_state.canonWorld.get_truth(k),randf_range(0,1))
 		else:
 			for k in percProps:
-				c.perceivedWorld.setTruth(k,PW.TriBool.values().pick_random(),randf_range(0,1))
+				c.perceivedWorld.set_truth(k,PW.TriBool.values().pick_random(),randf_range(0,1))
 		
 		# --- Set ideal world props ---
 		for l in percProps:
-			c.idealWorld.setTruth(l,PW.TriBool.values().pick_random(),randf_range(0,1))
+			c.idealWorld.set_truth(l,PW.TriBool.values().pick_random(),randf_range(0,1))
 		
 	var error = ResourceSaver.save(world_state,path,ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
 	if error != OK:

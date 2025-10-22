@@ -12,7 +12,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var we: WorldEditor = get_tree().root.get_node(\"WorldEditor\")
-	we.ws.canonWorld.setTruth(data[\"proposition\"],data[\"world\"].getTruth(data[\"proposition\"]))
+	we.ws.canonWorld.set_truth(data[\"proposition\"],data[\"world\"].get_truth(data[\"proposition\"]))
 "
 
 [node name="WorldEditor" type="Control"]
