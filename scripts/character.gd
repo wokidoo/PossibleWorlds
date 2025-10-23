@@ -55,16 +55,16 @@ func perceived_tension(other:Character) -> float:
 
 func set_ideal(id:String,truth:PW.TriBool,confidence:float = 1.0) ->bool:
 	if not perceivedWorld.has_proposition(id):
-		perceivedWorld.setTruth(id,PW.TriBool.UNKNOWN)
-	return idealWorld.setTruth(id,truth,confidence)
+		perceivedWorld.set_truth(id,PW.TriBool.UNKNOWN)
+	return idealWorld.set_truth(id,truth,confidence)
 
 func set_ideal_confidence(id:String,confidence:float) -> bool:
 	return idealWorld.set_confidence(id,confidence)
 
 func set_perceived(id:String,truth:PW.TriBool,confidence:float = 1.0) ->bool:
 	if not idealWorld.has_proposition(id):
-		idealWorld.setTruth(id,PW.TriBool.UNKNOWN)
-	return perceivedWorld.setTruth(id,truth,confidence)
+		idealWorld.set_truth(id,PW.TriBool.UNKNOWN)
+	return perceivedWorld.set_truth(id,truth,confidence)
 
 func set_perceived_confidence(id:String,confidence:float) -> bool:
 	return perceivedWorld.set_confidence(id,confidence)

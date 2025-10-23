@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dndl4u3cnfvbp"]
 
-[ext_resource type="Resource" uid="uid://mbyus6vgn52i" path="res://middle_earth.tres" id="1_pqm7f"]
+[ext_resource type="Resource" uid="uid://cxdirjkcc0hx" path="res://middle_earth.tres" id="1_pqm7f"]
 
 [sub_resource type="GDScript" id="GDScript_pqm7f"]
 resource_name = "discussion_floor"

@@ -13,11 +13,6 @@ const SCENE = preload("uid://cwdwqqw1spy0y")
 @onready var add_proposition_button: Button = %AddPropositionButton
 @onready var add_proposition_line_edit: LineEdit = %AddPropositionLineEdit
 
-# Reuse one popup for all rows/columns
-var _tri_popup: PopupMenu
-var _popup_item: TreeItem
-var _popup_column: int
-
 @export var ws:WorldState
 var character: Character
 
@@ -31,147 +26,143 @@ func _ready() -> void:
 	name_line_edit.text_submitted.connect(func(text):
 		character.name = text
 	)
-	_setup_tri_popup()
-	# Show popup when a custom-cell arrow is clicked
-	tension_tree.custom_popup_edited.connect(_on_tree_custom_popup_edited)
-	# Also handle double-activate (Enter/Double click) as a fallback
-	tension_tree.item_activated.connect(_on_tree_item_activated)
 	add_proposition_button.pressed.connect(func():
 		if not character.perceivedWorld.has_proposition(add_proposition_line_edit.text):
 			character.set_perceived(add_proposition_line_edit.text,PW.TriBool.UNKNOWN)
 			add_proposition_line_edit.clear()
+			_build_tension_tree()
 	)
 	add_proposition_line_edit.text_submitted.connect(func(text):
 		if not character.perceivedWorld.has_proposition(text):
 			character.set_perceived(text,PW.TriBool.UNKNOWN)
 			add_proposition_line_edit.clear()
-			
+			_build_tension_tree()
 	)
 
-func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	return typeof(data) == TYPE_DICTIONARY and data.has("proposition") and data.has("world")
 
-func _drop_data(at_position: Vector2, data: Variant) -> void:
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	character.set_perceived(data["proposition"],data["world"].get_truth(data["proposition"]))
 	character.set_ideal(data["proposition"],data["world"].get_truth(data["proposition"]))
 
 func set_character(c:Character):
 	if ws != null && ws.characters.has(c):
-		if character != null and character.changed.is_connected(_update_gui):
-			character.changed.disconnect(_update_gui)
+		if character != null and character.changed.is_connected(_populate_proposition_containers):
+			character.changed.disconnect(_populate_proposition_containers)
+		if character != null and character.changed.is_connected(_build_tension_tree):
+			character.changed.disconnect(_build_tension_tree)
 		character = c
-		character.changed.connect(_update_gui)
-		_update_gui()
-
-func _setup_tri_popup() -> void:
-	_tri_popup = PopupMenu.new()
-	add_child(_tri_popup)
-	_tri_popup.add_item(PW.TriBoolString[PW.TriBool.FALSE],0)
-	_tri_popup.add_item(PW.TriBoolString[PW.TriBool.UNKNOWN],1)
-	_tri_popup.add_item(PW.TriBoolString[PW.TriBool.TRUE],2)
-	_tri_popup.id_pressed.connect(_on_tri_popup_id_pressed)
-
-# Show popup when the user clicks the custom cell’s arrow
-func _on_tree_custom_popup_edited(arrow_clicked: bool) -> void:
-	if not arrow_clicked:
-		return
-	var item := tension_tree.get_edited()
-	var col  := tension_tree.get_edited_column()
-	if item == null or (col != 1 and col != 2):
-		return
-	_show_tri_popup_for(item, col)
-
-# Fallback: double-click / Enter on the cell
-func _on_tree_item_activated() -> void:
-	var item := tension_tree.get_selected()
-	var col := tension_tree.get_selected_column()
-	if item and (col == 1 or col == 2):
-		_show_tri_popup_for(item, col)
-
-func _show_tri_popup_for(item: TreeItem, col: int) -> void:
-	_popup_item = item
-	_popup_column = col
-	# Pre-select current value
-	var current_text := item.get_text(col)
-	var initial_index :PW.TriBool= 0
-	_tri_popup.toggle_item_checked(initial_index)
-
-	# Position the popup to the edited cell
-	var r: Rect2 = tension_tree.get_custom_popup_rect()
-	_tri_popup.position = (tension_tree.get_global_rect().position + r.position).floor()
-	_tri_popup.reset_size()
-	_tri_popup.popup_on_parent(Rect2(get_viewport().get_mouse_position(),Vector2.ZERO))
-	
-func _on_tri_popup_id_pressed(id: PW.TriBool) -> void:
-	if _popup_item == null:
-		return
-	var label :String= PW.TriBoolString[id-1]
-	var value :PW.TriBool = id -1
-	_popup_item.set_text(_popup_column, label)
-
-	var prop_name := _popup_item.get_text(0)
-
-	if _popup_column == 1:
-		character.perceivedWorld.set_truth(prop_name, value)  # value is 0/1/2 per your enum
-	elif _popup_column == 2:
-		character.idealWorld.set_truth(prop_name, value)
-	_update_gui()
+		character.changed.connect(_populate_proposition_containers)
+		character.changed.connect(_build_tension_tree)
+		_populate_proposition_containers()
+		_build_tension_tree()
 
 func _tension_text(perceived:int, ideal:int) -> String:
-	var result :String
 	if perceived == PW.TriBool.UNKNOWN or ideal == PW.TriBool.UNKNOWN:
-		return "Unknown"
+		return "UNKNOWN"
 	elif perceived == ideal:
-		return "Agree"
-	return "Disagree"
+		return "AGREE"
+	return "DISAGREE"
 
-func _update_gui():
-	name_line_edit.text = character.name
-	instance_id_label.text = "[b]Instance ID:[/b] %s" % character.get_instance_id()
+func _set_tension_color(item:TreeItem,column:int):
+	var v :int= item.get_range(column) as int -1
+	match v:
+		PW.TriBool.FALSE:
+			item.set_custom_color(column,Color.FIREBRICK)
+		PW.TriBool.UNKNOWN:
+			item.set_custom_color(column,Color.GOLDENROD)
+		PW.TriBool.TRUE:
+			item.set_custom_color(column,Color.WEB_GREEN)
+		_:
+			item.set_custom_color(column,Color.GOLDENROD)
+			
+func _on_tension_item_edited() -> void:
+	var item := tension_tree.get_edited()
+	if item == null:
+		return
+	var col := tension_tree.get_edited_column()
+	var prop := item.get_text(0)
+
+	# Clamp/round defensively, though step=1 makes it integer.
+	var v := item.get_range(col) as int  -1# -1, 0, or 1
+
+	match col:
+		1:
+			character.set_perceived(prop, v)
+		2:
+			character.set_ideal(prop, v)
+		_:
+			return
+
+func _populate_proposition_containers():
 	for n in perceived_proposition_v_box_container.get_children():
 		n.queue_free()
 	for n in ideal_proposition_v_box_container.get_children():
 		n.queue_free()
-	perceived_foldable_container.title = "Perceived World (%s)" %character.perceivedWorld.propositions.size()
-	for p in character.perceivedWorld.propositions.keys():
-		var e :PropositionEntry = PropositionEntry.create_entry(character.perceivedWorld,p)
-		perceived_proposition_v_box_container.add_child(e)
-	ideal_foldable_container.title = "Ideal World (%s)" % character.idealWorld.propositions.size()
-	for i in character.idealWorld.propositions.keys():
-		var e:PropositionEntry = PropositionEntry.create_entry(character.idealWorld,i)
-		ideal_proposition_v_box_container.add_child(e)
+	for p in character.perceivedWorld.propositions:
+		var entry:PropositionEntry= PropositionEntry.create_entry(character.perceivedWorld,p)
+		perceived_proposition_v_box_container.add_child(entry)
+	for p in character.idealWorld.propositions:
+		var entry:PropositionEntry= PropositionEntry.create_entry(character.idealWorld,p)
+		ideal_proposition_v_box_container.add_child(entry)
+
+func _refresh_proposition_tree_cells():
+	for child in tension_tree.get_root().get_children():
+		if child == tension_tree.get_root():
+			continue
+		var p:String = child.get_text(0)
+		child.set_range(1, character.get_perceived(p)+1)
+		_set_tension_color(child,1)
+		child.set_range(2, character.get_ideal(p)+1)
+		_set_tension_color(child,2)
+		_refresh_tension_cell(child)
+
+func _refresh_tension_cell(item:TreeItem) -> void:
+	var p := item.get_text(0)
+	var perceived := character.get_perceived(p)
+	var ideal := character.get_ideal(p)
+	item.set_text(3, _tension_text(perceived, ideal))
+	match item.get_text(3):
+		"AGREE":
+			item.set_custom_color(3, Color.WEB_GREEN)
+		"DISAGREE":
+			item.set_custom_color(3, Color.FIREBRICK)
+		"UNKNOWN":
+			item.set_custom_color(3, Color.GOLDENROD)
+		_:
+			item.set_custom_color(3, Color.PURPLE)
 	
+	item.set_text_alignment(3, HORIZONTAL_ALIGNMENT_CENTER)
+	tension_tree.set_column_title(3, "Tension Perceived vs Ideal (%.2f)" % character.ideal_perceived_tension())
+
+func _build_tension_tree():
+	name_line_edit.text = character.name
+	instance_id_label.text = "[b]Instance ID:[/b] %s" % character.get_instance_id()
+
 	tension_tree.clear()
-	_setup_tri_popup()
+	tension_tree.item_edited.connect(_on_tension_item_edited)
 	var root = tension_tree.create_item()
-	tension_tree.set_column_title(0,"Proposition")
-	tension_tree.set_column_title(1,"Perceived")
-	tension_tree.set_column_title(2,"Ideal")
-	tension_tree.set_column_title(3,"Tension Perceived vs Ideal (%.2f)" % character.ideal_perceived_tension())
+	tension_tree.set_column_title(0, "Proposition")
+	tension_tree.set_column_title(1, "Perceived")
+	tension_tree.set_column_title(2, "Ideal")
+	tension_tree.set_column_title(3, "Tension Perceived vs Ideal (%.2f)" % character.ideal_perceived_tension())
+
 	for p in character.perceivedWorld.propositions.keys():
 		var child := tension_tree.create_item(root)
 		child.set_text(0, p)
 
-		# ----- Column 1 as "OptionButton" style -----
-		child.set_cell_mode(1, TreeItem.CELL_MODE_CUSTOM)
+		child.set_cell_mode(1, TreeItem.CELL_MODE_RANGE)
+		child.set_range_config(1, -1, 1, 1)
+		child.set_text_alignment(1,HORIZONTAL_ALIGNMENT_CENTER)
 		child.set_editable(1, true)
-		child.set_custom_as_button(1, true) # draws a dropdown-like arrow
-		child.set_text(1, PW.TriBoolString[character.get_perceived(p)])
-
-		# ----- Column 2 as "OptionButton" style -----
-		child.set_cell_mode(2, TreeItem.CELL_MODE_CUSTOM)
+		child.set_text(1,"%s,%s,%s" % [PW.TriBoolString[-1],PW.TriBoolString[0],PW.TriBoolString[1]])
+		
+		child.set_cell_mode(2, TreeItem.CELL_MODE_RANGE)
+		child.set_range_config(2, -1, 1, 1)
+		child.set_text_alignment(2,HORIZONTAL_ALIGNMENT_CENTER)
 		child.set_editable(2, true)
-		child.set_custom_as_button(2, true)
-		child.set_text(2, PW.TriBoolString[character.get_ideal(p)])
+		child.set_text(2,"%s,%s,%s" % [PW.TriBoolString[-1],PW.TriBoolString[0],PW.TriBoolString[1]])
 
-		# Column 3: just text (your tension metric)
-		var perceived := character.get_perceived(p)
-		var ideal := character.get_ideal(p)
-		child.set_text(3, _tension_text(perceived, ideal))
-		if child.get_text(3) == "Agree":
-			child.set_custom_color(3,Color.WEB_GREEN)
-		elif child.get_text(3) == "Disagree":
-			child.set_custom_color(3,Color.FIREBRICK)
-		else:
-			child.set_custom_color(3,Color.YELLOW)
-		child.set_text_alignment(3,HORIZONTAL_ALIGNMENT_CENTER)
+		_refresh_tension_cell(child)
+	_refresh_proposition_tree_cells()

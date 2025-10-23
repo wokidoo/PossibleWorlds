@@ -1,190 +1,443 @@
-[gd_resource type="Resource" script_class="WorldState" load_steps=20 format=3 uid="uid://b4oe50swphrcd"]
+[gd_resource type="Resource" script_class="WorldState" load_steps=35 format=3]
 
-[ext_resource type="Script" uid="uid://c8kgqvclh5tmr" path="res://scripts/world.gd" id="1_e565o"]
-[ext_resource type="Script" uid="uid://b16vthi1gfont" path="res://scripts/character.gd" id="2_3bqoy"]
-[ext_resource type="Script" uid="uid://c8s16f3fua3me" path="res://scripts/world_state.gd" id="3_rlno7"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_e565o"]
+[ext_resource type="Script" path="res://scripts/character.gd" id="2_3bqoy"]
+[ext_resource type="Script" path="res://scripts/world_state.gd" id="3_rlno7"]
 
-[sub_resource type="Resource" id="Resource_r7ehg"]
+[sub_resource type="Resource" id="Resource_e565o"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_citadel_gates_are_closed": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_royal_banner_flies_high": -1
+&"the_king_is_alive": -1,
+&"the_moon_is_blood_red": 1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_citadel_gates_are_closed": 1.0,
-&"the_plague_spreads_in_the_south": 1.0,
-&"the_royal_banner_flies_high": 1.0
+&"the_king_is_alive": 1.0,
+&"the_moon_is_blood_red": 1.0,
+&"the_princess_is_captured": 1.0,
+&"the_queen_has_vanished": 1.0,
+&"the_sword_of_legends_is_forged": 1.0
 })
+
+[sub_resource type="Resource" id="Resource_3bqoy"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_king_is_alive": -1,
+&"the_moon_is_blood_red": -1,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": 0
+})
+confidence = Dictionary[StringName, float]({
+&"the_king_is_alive": 1.0,
+&"the_moon_is_blood_red": 1.0,
+&"the_princess_is_captured": 0.3878648042126105,
+&"the_queen_has_vanished": 0.423745182498563,
+&"the_sword_of_legends_is_forged": 0.0
+})
+
+[sub_resource type="Resource" id="Resource_rlno7"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_king_is_alive": 1,
+&"the_moon_is_blood_red": -1,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": 1,
+&"the_sword_of_legends_is_forged": 1
+})
+confidence = Dictionary[StringName, float]({
+&"the_king_is_alive": 1.0,
+&"the_moon_is_blood_red": 1.0,
+&"the_princess_is_captured": 0.8378497355046542,
+&"the_queen_has_vanished": 1.0,
+&"the_sword_of_legends_is_forged": 1.0
+})
+
+[sub_resource type="Resource" id="Resource_r7ehg"]
+resource_name = "Duric Emberfall"
+script = ExtResource("2_3bqoy")
+name = "Duric Emberfall"
+perceivedWorld = SubResource("Resource_rlno7")
+idealWorld = SubResource("Resource_3bqoy")
 
 [sub_resource type="Resource" id="Resource_3vvkr"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_citadel_gates_are_closed": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_royal_banner_flies_high": -1
+&"the_king_is_alive": 1,
+&"the_moon_is_blood_red": 0,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": 1,
+&"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_citadel_gates_are_closed": 0.34563730088784017,
-&"the_plague_spreads_in_the_south": 0.5698540916634529,
-&"the_royal_banner_flies_high": 0.4851777300222153
+&"the_king_is_alive": 0.5605444229013858,
+&"the_moon_is_blood_red": 0.0,
+&"the_princess_is_captured": 0.27597737606688283,
+&"the_queen_has_vanished": 0.2579003876253443,
+&"the_sword_of_legends_is_forged": 0.4852799525078921
 })
 
 [sub_resource type="Resource" id="Resource_4cq8m"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_citadel_gates_are_closed": 0,
-&"the_plague_spreads_in_the_south": 1,
-&"the_royal_banner_flies_high": 1
+&"the_king_is_alive": 1,
+&"the_moon_is_blood_red": -1,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_citadel_gates_are_closed": 0.0,
-&"the_plague_spreads_in_the_south": 0.3466292585117429,
-&"the_royal_banner_flies_high": 0.6880920365360758
+&"the_king_is_alive": 1.0,
+&"the_moon_is_blood_red": 0.6558656277595661,
+&"the_princess_is_captured": 0.255864413950176,
+&"the_queen_has_vanished": 0.7173123516645515,
+&"the_sword_of_legends_is_forged": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_wfhpt"]
-resource_name = "Borik Blackthorn"
+resource_name = "Alaric Stormwatch"
 script = ExtResource("2_3bqoy")
-name = "Borik Blackthorn"
+name = "Alaric Stormwatch"
 perceivedWorld = SubResource("Resource_4cq8m")
 idealWorld = SubResource("Resource_3vvkr")
 
 [sub_resource type="Resource" id="Resource_6fc74"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_citadel_gates_are_closed": -1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_royal_banner_flies_high": 0
+&"the_king_is_alive": -1,
+&"the_moon_is_blood_red": 1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 0,
+&"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_citadel_gates_are_closed": 0.6786467725864842,
-&"the_plague_spreads_in_the_south": 0.0,
-&"the_royal_banner_flies_high": 0.0
+&"the_king_is_alive": 0.5899204856042763,
+&"the_moon_is_blood_red": 0.6978300771801501,
+&"the_princess_is_captured": 0.8638195169735499,
+&"the_queen_has_vanished": 0.0,
+&"the_sword_of_legends_is_forged": 0.934844871807725
 })
 
 [sub_resource type="Resource" id="Resource_jkqwa"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_citadel_gates_are_closed": 0,
-&"the_plague_spreads_in_the_south": 1,
-&"the_royal_banner_flies_high": 1
+&"the_king_is_alive": 0,
+&"the_moon_is_blood_red": 0,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_citadel_gates_are_closed": 0.0,
-&"the_plague_spreads_in_the_south": 0.1,
-&"the_royal_banner_flies_high": 0.5356552421046447
+&"the_king_is_alive": 0.0,
+&"the_moon_is_blood_red": 0.0,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.918465370412458,
+&"the_sword_of_legends_is_forged": 0.7766888244579849
 })
 
 [sub_resource type="Resource" id="Resource_kp3hw"]
-resource_name = "Kaela Stormwatch"
+resource_name = "Velora Brightshore"
 script = ExtResource("2_3bqoy")
-name = "Kaela Stormwatch"
+name = "Velora Brightshore"
 perceivedWorld = SubResource("Resource_jkqwa")
 idealWorld = SubResource("Resource_6fc74")
 
 [sub_resource type="Resource" id="Resource_qbn3o"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_citadel_gates_are_closed": 0,
-&"the_plague_spreads_in_the_south": 0,
-&"the_royal_banner_flies_high": 0
+&"the_king_is_alive": -1,
+&"the_moon_is_blood_red": 1,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_citadel_gates_are_closed": 0.0,
-&"the_plague_spreads_in_the_south": 0.0,
-&"the_royal_banner_flies_high": 0.0
+&"the_king_is_alive": 0.6120665435230356,
+&"the_moon_is_blood_red": 0.33312704400245813,
+&"the_princess_is_captured": 0.1,
+&"the_queen_has_vanished": 0.6885258971415308,
+&"the_sword_of_legends_is_forged": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_repfg"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_citadel_gates_are_closed": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_royal_banner_flies_high": -1
+&"the_king_is_alive": -1,
+&"the_moon_is_blood_red": -1,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": 1,
+&"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_citadel_gates_are_closed": 0.624284167088341,
-&"the_plague_spreads_in_the_south": 0.20899426610645036,
-&"the_royal_banner_flies_high": 0.9321239805563548
+&"the_king_is_alive": 0.18714721032572407,
+&"the_moon_is_blood_red": 0.1,
+&"the_princess_is_captured": 1.0,
+&"the_queen_has_vanished": 0.9590444906695984,
+&"the_sword_of_legends_is_forged": 0.528110858626335
 })
 
 [sub_resource type="Resource" id="Resource_m8o0t"]
-resource_name = "Coren Windwalker"
+resource_name = "Borik Quicktongue"
 script = ExtResource("2_3bqoy")
-name = "Coren Windwalker"
+name = "Borik Quicktongue"
 perceivedWorld = SubResource("Resource_repfg")
 idealWorld = SubResource("Resource_qbn3o")
 
 [sub_resource type="Resource" id="Resource_ayhjp"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_citadel_gates_are_closed": 0,
-&"the_plague_spreads_in_the_south": 1,
-&"the_royal_banner_flies_high": -1
+&"the_king_is_alive": -1,
+&"the_moon_is_blood_red": -1,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_citadel_gates_are_closed": 0.0,
-&"the_plague_spreads_in_the_south": 0.3719487024285407,
-&"the_royal_banner_flies_high": 0.5789488898397621
+&"the_king_is_alive": 0.1,
+&"the_moon_is_blood_red": 0.1,
+&"the_princess_is_captured": 0.7506978881301252,
+&"the_queen_has_vanished": 0.6209277712974397,
+&"the_sword_of_legends_is_forged": 0.10009832284075208
 })
 
 [sub_resource type="Resource" id="Resource_k6bka"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_citadel_gates_are_closed": 0,
-&"the_plague_spreads_in_the_south": 1,
-&"the_royal_banner_flies_high": 1
+&"the_king_is_alive": -1,
+&"the_moon_is_blood_red": 1,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_citadel_gates_are_closed": 0.0,
-&"the_plague_spreads_in_the_south": 0.8645087739474424,
-&"the_royal_banner_flies_high": 0.515408829907836
+&"the_king_is_alive": 0.6279102905246279,
+&"the_moon_is_blood_red": 0.591244410027394,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.4801075930980401,
+&"the_sword_of_legends_is_forged": 0.5545713243019404
 })
 
 [sub_resource type="Resource" id="Resource_d1mcy"]
-resource_name = "Malric Brightshore"
+resource_name = "Garric Greenmark"
 script = ExtResource("2_3bqoy")
-name = "Malric Brightshore"
+name = "Garric Greenmark"
 perceivedWorld = SubResource("Resource_k6bka")
 idealWorld = SubResource("Resource_ayhjp")
 
 [sub_resource type="Resource" id="Resource_0kms0"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_citadel_gates_are_closed": -1,
-&"the_plague_spreads_in_the_south": -1,
-&"the_royal_banner_flies_high": -1
+&"the_king_is_alive": 1,
+&"the_moon_is_blood_red": 1,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": 0,
+&"the_sword_of_legends_is_forged": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_citadel_gates_are_closed": 0.6268828026360689,
-&"the_plague_spreads_in_the_south": 0.3123123916731766,
-&"the_royal_banner_flies_high": 0.5636423268417945
+&"the_king_is_alive": 0.1845172372069484,
+&"the_moon_is_blood_red": 0.34727579730821373,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.0,
+&"the_sword_of_legends_is_forged": 0.12507879606055772
 })
 
 [sub_resource type="Resource" id="Resource_3a6pw"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_citadel_gates_are_closed": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_royal_banner_flies_high": -1
+&"the_king_is_alive": 1,
+&"the_moon_is_blood_red": 1,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_citadel_gates_are_closed": 0.9478968701601994,
-&"the_plague_spreads_in_the_south": 0.3751155263122224,
-&"the_royal_banner_flies_high": 0.5131626880497809
+&"the_king_is_alive": 0.791667254981586,
+&"the_moon_is_blood_red": 0.3937893973556173,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 1.0,
+&"the_sword_of_legends_is_forged": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_i1o14"]
-resource_name = "Thorin Lightveil"
+resource_name = "Vaelis Goldbrook"
 script = ExtResource("2_3bqoy")
-name = "Thorin Lightveil"
+name = "Vaelis Goldbrook"
 perceivedWorld = SubResource("Resource_3a6pw")
 idealWorld = SubResource("Resource_0kms0")
+
+[sub_resource type="Resource" id="Resource_awcbv"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_king_is_alive": 0,
+&"the_moon_is_blood_red": 0,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": 0,
+&"the_sword_of_legends_is_forged": 0
+})
+confidence = Dictionary[StringName, float]({
+&"the_king_is_alive": 0.0,
+&"the_moon_is_blood_red": 0.0,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.0,
+&"the_sword_of_legends_is_forged": 0.0
+})
+
+[sub_resource type="Resource" id="Resource_783lt"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_king_is_alive": 0,
+&"the_moon_is_blood_red": 0,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": 0,
+&"the_sword_of_legends_is_forged": 0
+})
+confidence = Dictionary[StringName, float]({
+&"the_king_is_alive": 0.0,
+&"the_moon_is_blood_red": 0.0,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.0,
+&"the_sword_of_legends_is_forged": 0.0
+})
+
+[sub_resource type="Resource" id="Resource_qwc27"]
+resource_name = "Varek Fireborn"
+script = ExtResource("2_3bqoy")
+name = "Varek Fireborn"
+perceivedWorld = SubResource("Resource_783lt")
+idealWorld = SubResource("Resource_awcbv")
+
+[sub_resource type="Resource" id="Resource_5ll6k"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"lol": 0,
+&"the_king_is_alive": -1,
+&"the_moon_is_blood_red": 0,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": 1
+})
+confidence = Dictionary[StringName, float]({
+&"lol": 0.0,
+&"the_king_is_alive": 0.31265564647064753,
+&"the_moon_is_blood_red": 0.0,
+&"the_princess_is_captured": 0.26495037139623,
+&"the_queen_has_vanished": 0.7042274567692006,
+&"the_sword_of_legends_is_forged": 0.14481228559375522
+})
+
+[sub_resource type="Resource" id="Resource_6qa5p"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"lol": 0,
+&"the_king_is_alive": 1,
+&"the_moon_is_blood_red": -1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 0,
+&"the_sword_of_legends_is_forged": -1
+})
+confidence = Dictionary[StringName, float]({
+&"lol": 0.0,
+&"the_king_is_alive": 0.4414645980829119,
+&"the_moon_is_blood_red": 0.1339536146860582,
+&"the_princess_is_captured": 0.8363072646831654,
+&"the_queen_has_vanished": 0.0,
+&"the_sword_of_legends_is_forged": 0.6628916332927195
+})
+
+[sub_resource type="Resource" id="Resource_ualvo"]
+resource_name = "Fenric Moonspire"
+script = ExtResource("2_3bqoy")
+name = "Fenric Moonspire"
+perceivedWorld = SubResource("Resource_6qa5p")
+idealWorld = SubResource("Resource_5ll6k")
+
+[sub_resource type="Resource" id="Resource_wbbao"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_king_is_alive": -1,
+&"the_moon_is_blood_red": -1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 1,
+&"the_sword_of_legends_is_forged": 1
+})
+confidence = Dictionary[StringName, float]({
+&"the_king_is_alive": 0.46191677323410585,
+&"the_moon_is_blood_red": 0.1,
+&"the_princess_is_captured": 0.8722301406851772,
+&"the_queen_has_vanished": 0.9294466169333024,
+&"the_sword_of_legends_is_forged": 0.273635350382836
+})
+
+[sub_resource type="Resource" id="Resource_tflew"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_king_is_alive": 0,
+&"the_moon_is_blood_red": 0,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": 1,
+&"the_sword_of_legends_is_forged": -1
+})
+confidence = Dictionary[StringName, float]({
+&"the_king_is_alive": 0.0,
+&"the_moon_is_blood_red": 0.0,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.1,
+&"the_sword_of_legends_is_forged": 0.1
+})
+
+[sub_resource type="Resource" id="Resource_s0bh5"]
+resource_name = "Brynden Goldbrook"
+script = ExtResource("2_3bqoy")
+name = "Brynden Goldbrook"
+perceivedWorld = SubResource("Resource_tflew")
+idealWorld = SubResource("Resource_wbbao")
+
+[sub_resource type="Resource" id="Resource_hvo67"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_king_is_alive": 1,
+&"the_moon_is_blood_red": -1,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": 0
+})
+confidence = Dictionary[StringName, float]({
+&"the_king_is_alive": 0.983862141034933,
+&"the_moon_is_blood_red": 0.9887238513822352,
+&"the_princess_is_captured": 0.8179717478807922,
+&"the_queen_has_vanished": 0.6291165951054205,
+&"the_sword_of_legends_is_forged": 0.0
+})
+
+[sub_resource type="Resource" id="Resource_4u2ds"]
+script = ExtResource("1_e565o")
+propositions = Dictionary[StringName, int]({
+&"the_king_is_alive": -1,
+&"the_moon_is_blood_red": 0,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": -1
+})
+confidence = Dictionary[StringName, float]({
+&"the_king_is_alive": 0.5413496070989308,
+&"the_moon_is_blood_red": 0.0,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.6235957745988793,
+&"the_sword_of_legends_is_forged": 0.8122784824521446
+})
+
+[sub_resource type="Resource" id="Resource_hdcax"]
+resource_name = "Malric Falclaw"
+script = ExtResource("2_3bqoy")
+name = "Malric Falclaw"
+perceivedWorld = SubResource("Resource_4u2ds")
+idealWorld = SubResource("Resource_hvo67")
 
 [resource]
 resource_name = "small world"
 script = ExtResource("3_rlno7")
 name = "small world"
-canonWorld = SubResource("Resource_r7ehg")
-characters = Array[ExtResource("2_3bqoy")]([SubResource("Resource_wfhpt"), SubResource("Resource_kp3hw"), SubResource("Resource_m8o0t"), SubResource("Resource_d1mcy"), SubResource("Resource_i1o14")])
+canonWorld = SubResource("Resource_e565o")
+characters = Array[ExtResource("2_3bqoy")]([SubResource("Resource_r7ehg"), SubResource("Resource_wfhpt"), SubResource("Resource_kp3hw"), SubResource("Resource_m8o0t"), SubResource("Resource_d1mcy"), SubResource("Resource_i1o14"), SubResource("Resource_qwc27"), SubResource("Resource_ualvo"), SubResource("Resource_s0bh5"), SubResource("Resource_hdcax")])
