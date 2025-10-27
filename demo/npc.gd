@@ -75,7 +75,10 @@ class Conversation extends Node2D:
 	@export var npc_a:NPC
 	@export var npc_b:NPC
 	
-	var convo_bubble: RichTextLabel
+	var perceived_label: Label
+	var ideal_label: Label
+	var container: VBoxContainer
+	var panel: PanelContainer
 	var timer:Timer
 	
 	static func create_conversation(n_a:NPC, n_b:NPC) ->Conversation:
@@ -86,16 +89,16 @@ class Conversation extends Node2D:
 	
 	func _ready() -> void:
 		process_mode = Node.PROCESS_MODE_PAUSABLE
-		convo_bubble = RichTextLabel.new()
-		convo_bubble.bbcode_enabled = true
-		convo_bubble.fit_content = true
-		convo_bubble.threaded = true
-		convo_bubble.scroll_active = false
-		convo_bubble.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		convo_bubble.custom_minimum_size = Vector2(200,50)
-		convo_bubble.push_font_size(12)
-
-	
+		perceived_label = Label.new()
+		ideal_label = Label.new()
+		container = VBoxContainer.new()
+		panel = PanelContainer.new()
+		panel.add_theme_color_override("bg_color",Color.BLACK)
+		container.add_child(perceived_label)
+		container.add_child(ideal_label)
+		panel.add_child(container)
+		add_child(panel)
+ 
 	func try_start_conversation():
 		if npc_a.is_conversing() or npc_b.is_conversing():
 			queue_free()
@@ -113,23 +116,17 @@ class Conversation extends Node2D:
 		return true
 	
 	func _have_conversation():
-		convo_bubble.position = npc_a.global_position
-		var panel :=PanelContainer.new()
-		tree_exited.connect(func():
-			panel.queue_free()
+		npc_a.character.changed.connect(func():
+			perceived_label.text = "Perceived Tension: (%.2f)" % npc_a.character.perceived_tension(npc_b.character)
+			ideal_label.text = "Ideal Tension: (%.2f)" % npc_a.character.ideal_tension(npc_b.character)
 		)
-		convo_bubble.mouse_entered.connect(func():
-			convo_bubble.visible = false
+		npc_b.character.changed.connect(func():
+			perceived_label.text = "Perceived Tension: (%.2f)" % npc_a.character.perceived_tension(npc_b.character)
+			ideal_label.text = "Ideal Tension: (%.2f)" % npc_a.character.ideal_tension(npc_b.character)
 		)
-		convo_bubble.mouse_exited.connect(func():
-			convo_bubble.visible = true
-		)
-		convo_bubble.append_text("Perceived ideal_diffnsion: (%.2f)" % npc_a.character.perceived_tension(npc_b.character))
-		convo_bubble.newline()
-		convo_bubble.append_text("Ideal Worlds Tension: (%.2f)" % npc_a.character.ideal_tension(npc_b.character))
-		panel.add_child(convo_bubble)
+		perceived_label.text = "Perceived Tension: (%.2f)" % npc_a.character.perceived_tension(npc_b.character)
+		ideal_label.text = "Ideal Tension: (%.2f)" % npc_a.character.ideal_tension(npc_b.character)
 		panel.global_position = npc_a.global_position
-		add_child(panel)
 		timer = Timer.new()
 		timer.timeout.connect(end_conversation)
 		add_child(timer)
@@ -147,7 +144,7 @@ class Conversation extends Node2D:
 		queue_free()
 		
 	func _exit_tree() -> void:
-		convo_bubble.queue_free()
+		container.queue_free()
 		
 	func _notification(what: int) -> void:
 		if what == NOTIFICATION_PAUSED:

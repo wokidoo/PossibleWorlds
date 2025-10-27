@@ -3,8 +3,8 @@ extends Node
 
 @onready var file_menu_button: FileMenuButton = %FileMenuButton
 @onready var world_name_line_edit: LineEdit = %WorldNameLineEdit
-@onready var canon_proposition_container: VBoxContainer = %CanonPropositionContainer
-@onready var character_proposition_container: VBoxContainer = %CharacterPropositionContainer
+@onready var proposition_tree: PropositionTree = %PropositionTree
+@onready var character_tree: CharacterTree = %CharacterTree
 @onready var details_panel_container: ScrollContainer = $VBoxContainer/MarginContainer/HSplitContainer/RightPanel/DetailsPanelContainer
 
 @onready var left_tab_container: TabContainer = %LeftTabContainer
@@ -43,10 +43,12 @@ func _ready() -> void:
 	new_proposition_line_edit.text_submitted.connect(func(text):
 		ws.canonWorld.set_truth(text,PW.TriBool.UNKNOWN)
 		new_proposition_line_edit.clear()
+		proposition_tree._rebuild_tree()
 	)
 	confirm_proposition_button.pressed.connect(func():
 		ws.canonWorld.setTruth(new_proposition_line_edit.text,PW.TriBool.UNKNOWN)
 		new_proposition_line_edit.clear()
+		proposition_tree._rebuild_tree()
 	)
 	
 	new_character_line_edit.text_submitted.connect(func(text):
@@ -61,14 +63,18 @@ func _ready() -> void:
 		ws.add_character(c)
 		new_character_line_edit.clear()
 	)
+	
+	character_tree.character_selected.connect(_on_character_selected)
+	
 func _on_world_state_set(value):
 	if ws != null && ws.changed.is_connected(_on_world_state_changed):
 		ws.changed.disconnect(_on_world_state_changed)
 	ws = value
-	ws._reconnect_signals()
 	ws.changed.connect(_on_world_state_changed)
 	for n in details_panel_container.get_children():
 		n.queue_free()
+	character_tree.ws = ws
+	proposition_tree.world = ws.canonWorld
 	_update_gui()
 
 func _on_world_state_changed():
@@ -79,19 +85,9 @@ func _on_world_state_changed():
 func _update_gui():
 	if ws != null:
 		world_name_line_edit.text = ws.name
-		for n in canon_proposition_container.get_children():
-			n.queue_free()
-		canon_proposition_container.get_parent().name = "Canon Propositions (%s)"%ws.canonWorld.propositions.size()
-		for id in ws.canonWorld.propositions.keys():
-			var entry = PropositionEntry.create_entry(ws.canonWorld,id)
-			canon_proposition_container.add_child(entry)
-		for c in character_proposition_container.get_children():
-			c.queue_free()
-		character_proposition_container.get_parent().name = "Characters (%s)"%ws.characters.size()
-		for c in ws.characters:
-			var entry :CharacterEntry = CharacterEntry.create_entry(ws,c)
-			entry.character_selected.connect(_on_character_selected)
-			character_proposition_container.add_child(entry)
+		proposition_tree.get_parent().name = "Canon Propositions (%s)"%ws.canonWorld.propositions.size()
+		character_tree.get_parent().name = "Characters (%s)"%ws.characters.size()
+		character_tree._rebuild_tree()
 	else:
 		world_name_line_edit.text = "<No WorldState Loaded>"
 

@@ -22,6 +22,7 @@ func _init() -> void:
 		canonWorld = World.new()
 	if characters == null:
 		characters = []
+	call_deferred("_reconnect_signals")
 
 func _reconnect_signals():
 	if not canonWorld.changed.is_connected(emit_changed):

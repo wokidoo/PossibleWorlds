@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WorldState" load_steps=155 format=3 uid="uid://dqfth5qooulf0"]
+[gd_resource type="Resource" script_class="WorldState" load_steps=155 format=3 uid="uid://cyal0fx2ut1h0"]
 
 [ext_resource type="Script" uid="uid://c8kgqvclh5tmr" path="res://scripts/world.gd" id="1_j1f24"]
 [ext_resource type="Script" uid="uid://b16vthi1gfont" path="res://scripts/character.gd" id="2_6nor5"]
@@ -7,28 +7,36 @@
 [sub_resource type="Resource" id="Resource_j1f24"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": -1,
-&"the_castle_is_under_siege": 1,
 &"the_council_is_divided": -1,
+&"the_dark_lord_has_returned": -1,
 &"the_dragons_are_awake": -1,
+&"the_elves_have_withdrawn_from_the_realm": -1,
 &"the_king_is_alive": 1,
-&"the_mages_are_in_hiding": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_queen_is_a_baddy": 1,
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": -1,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": -1,
+&"the_royal_banner_flies_high": -1,
+&"the_sword_of_legends_is_forged": 1,
 &"the_tavern_is_open": 1,
 &"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 1.0,
-&"the_castle_is_under_siege": 1.0,
 &"the_council_is_divided": 1.0,
+&"the_dark_lord_has_returned": 1.0,
 &"the_dragons_are_awake": 1.0,
+&"the_elves_have_withdrawn_from_the_realm": 1.0,
 &"the_king_is_alive": 1.0,
-&"the_mages_are_in_hiding": 1.0,
-&"the_plague_spreads_in_the_south": 1.0,
-&"the_prophecy_is_fulfilled": 1.0,
-&"the_queen_is_a_baddy": 1.0,
+&"the_knight_has_broken_his_oath": 1.0,
+&"the_mines_are_abandoned": 1.0,
+&"the_orcs_have_crossed_the_border": 1.0,
+&"the_priests_are_praying_for_rain": 1.0,
+&"the_princess_is_captured": 1.0,
+&"the_queen_has_vanished": 1.0,
+&"the_royal_banner_flies_high": 1.0,
+&"the_sword_of_legends_is_forged": 1.0,
 &"the_tavern_is_open": 1.0,
 &"the_throne_is_empty": 1.0
 })
@@ -36,1848 +44,2306 @@ confidence = Dictionary[StringName, float]({
 [sub_resource type="Resource" id="Resource_6nor5"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_king_is_alive": -1,
-&"the_queen_is_a_baddy": 1
+&"the_council_is_divided": 1,
+&"the_knight_has_broken_his_oath": -1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": 0,
+&"the_sword_of_legends_is_forged": 0,
+&"the_tavern_is_open": 1,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_king_is_alive": 0.7725278564082023,
-&"the_queen_is_a_baddy": 1.0
+&"the_council_is_divided": 0.7923545184100363,
+&"the_knight_has_broken_his_oath": 0.26855533747878124,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.0,
+&"the_sword_of_legends_is_forged": 0.0,
+&"the_tavern_is_open": 0.956955649485541,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_d8d3q"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_king_is_alive": 0,
-&"the_queen_is_a_baddy": 1
+&"the_council_is_divided": 0,
+&"the_knight_has_broken_his_oath": 1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 0,
+&"the_sword_of_legends_is_forged": 1,
+&"the_tavern_is_open": -1,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_king_is_alive": 0.0,
-&"the_queen_is_a_baddy": 1.0
+&"the_council_is_divided": 0.0,
+&"the_knight_has_broken_his_oath": 0.3611070463949154,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_princess_is_captured": 0.6984898482583859,
+&"the_queen_has_vanished": 0.0,
+&"the_sword_of_legends_is_forged": 0.8305036505520667,
+&"the_tavern_is_open": 0.19893199805449707,
+&"the_throne_is_empty": 0.5480682630256445
 })
 
 [sub_resource type="Resource" id="Resource_2vid0"]
-resource_name = "Finnian Lightveil"
+resource_name = "Corvus Darkwhisper"
 script = ExtResource("2_6nor5")
-name = "Finnian Lightveil"
+name = "Corvus Darkwhisper"
 perceivedWorld = SubResource("Resource_d8d3q")
 idealWorld = SubResource("Resource_6nor5")
 
 [sub_resource type="Resource" id="Resource_r5ufw"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_castle_is_under_siege": 1,
+&"the_elves_have_withdrawn_from_the_realm": 1,
 &"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": -1,
-&"the_prophecy_is_fulfilled": -1
+&"the_mines_are_abandoned": 0,
+&"the_princess_is_captured": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_castle_is_under_siege": 0.8353160373598699,
+&"the_elves_have_withdrawn_from_the_realm": 0.597039596226559,
 &"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.7485209522264159,
-&"the_prophecy_is_fulfilled": 0.9827887770263818
+&"the_mines_are_abandoned": 0.0,
+&"the_princess_is_captured": 0.5401271932812243
 })
 
 [sub_resource type="Resource" id="Resource_wn0qr"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_castle_is_under_siege": -1,
+&"the_elves_have_withdrawn_from_the_realm": 1,
 &"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": 0,
-&"the_prophecy_is_fulfilled": 1
+&"the_mines_are_abandoned": 0,
+&"the_princess_is_captured": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_castle_is_under_siege": 0.6461305509373798,
-&"the_king_is_alive": 0.768859438274927,
-&"the_mages_are_in_hiding": 0.0,
-&"the_prophecy_is_fulfilled": 0.5295315708277706
+&"the_elves_have_withdrawn_from_the_realm": 0.5712790957480398,
+&"the_king_is_alive": 0.6098358932685759,
+&"the_mines_are_abandoned": 0.0,
+&"the_princess_is_captured": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_vlym7"]
-resource_name = "Fenric Bloodhelm"
+resource_name = "Varek Of_The_Rose"
 script = ExtResource("2_6nor5")
-name = "Fenric Bloodhelm"
+name = "Varek Of_The_Rose"
 perceivedWorld = SubResource("Resource_wn0qr")
 idealWorld = SubResource("Resource_r5ufw")
 
 [sub_resource type="Resource" id="Resource_dm7h6"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 0,
-&"the_council_is_divided": -1,
-&"the_king_is_alive": -1,
-&"the_queen_is_a_baddy": 0
+&"the_council_is_divided": 1,
+&"the_dark_lord_has_returned": 0,
+&"the_dragons_are_awake": 0,
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_king_is_alive": 1,
+&"the_knight_has_broken_his_oath": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_tavern_is_open": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.0,
-&"the_council_is_divided": 0.11126544378046643,
-&"the_king_is_alive": 0.9503910421663524,
-&"the_queen_is_a_baddy": 0.0
+&"the_council_is_divided": 0.8287531992568601,
+&"the_dark_lord_has_returned": 0.0,
+&"the_dragons_are_awake": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.4743167045793577,
+&"the_king_is_alive": 0.5452757740587748,
+&"the_knight_has_broken_his_oath": 0.25668217963865564,
+&"the_priests_are_praying_for_rain": 0.8857190340162009,
+&"the_princess_is_captured": 0.61868784580379,
+&"the_queen_has_vanished": 0.5713018555608012,
+&"the_royal_banner_flies_high": 0.2500839767089382,
+&"the_tavern_is_open": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_r20kt"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 0,
 &"the_council_is_divided": -1,
-&"the_king_is_alive": -1
+&"the_dark_lord_has_returned": 0,
+&"the_dragons_are_awake": -1,
+&"the_elves_have_withdrawn_from_the_realm": -1,
+&"the_king_is_alive": 1,
+&"the_knight_has_broken_his_oath": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": -1,
+&"the_royal_banner_flies_high": -1,
+&"the_tavern_is_open": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.0,
-&"the_council_is_divided": 0.7227439450322874,
-&"the_king_is_alive": 0.1
+&"the_council_is_divided": 0.1279185293204443,
+&"the_dark_lord_has_returned": 0.0,
+&"the_dragons_are_awake": 0.24975096795219243,
+&"the_elves_have_withdrawn_from_the_realm": 0.34204667917976883,
+&"the_king_is_alive": 0.1,
+&"the_knight_has_broken_his_oath": 0.5310278897250718,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.9321851404053954,
+&"the_queen_has_vanished": 0.6764001661041298,
+&"the_royal_banner_flies_high": 0.1,
+&"the_tavern_is_open": 0.1
 })
 
 [sub_resource type="Resource" id="Resource_ta342"]
-resource_name = "Neris Emberfall"
+resource_name = "Arion Stonefist"
 script = ExtResource("2_6nor5")
-name = "Neris Emberfall"
+name = "Arion Stonefist"
 perceivedWorld = SubResource("Resource_r20kt")
 idealWorld = SubResource("Resource_dm7h6")
 
 [sub_resource type="Resource" id="Resource_4x6o1"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": -1,
-&"the_council_is_divided": -1,
-&"the_dragons_are_awake": 1,
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": 0,
+&"the_council_is_divided": 0,
+&"the_dark_lord_has_returned": 0,
+&"the_knight_has_broken_his_oath": 0,
+&"the_mines_are_abandoned": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_sword_of_legends_is_forged": 1,
 &"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.2071011598771088,
-&"the_council_is_divided": 0.1001054551305572,
-&"the_dragons_are_awake": 0.5487724425914635,
-&"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.0,
-&"the_throne_is_empty": 0.7586213644624461
+&"the_council_is_divided": 0.0,
+&"the_dark_lord_has_returned": 0.0,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_mines_are_abandoned": 0.9320996907101338,
+&"the_priests_are_praying_for_rain": 0.50606572268737,
+&"the_princess_is_captured": 0.28066952982973575,
+&"the_royal_banner_flies_high": 0.8790931527976351,
+&"the_sword_of_legends_is_forged": 0.5798684221247861,
+&"the_throne_is_empty": 0.43164782519088446
 })
 
 [sub_resource type="Resource" id="Resource_a7qbn"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 1,
-&"the_council_is_divided": 0,
-&"the_dragons_are_awake": 0,
-&"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": 0,
-&"the_throne_is_empty": 0
+&"the_council_is_divided": 1,
+&"the_dark_lord_has_returned": 1,
+&"the_knight_has_broken_his_oath": -1,
+&"the_mines_are_abandoned": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_sword_of_legends_is_forged": -1,
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.15914149855554902,
-&"the_council_is_divided": 0.0,
-&"the_dragons_are_awake": 0.0,
-&"the_king_is_alive": 0.5951917474593745,
-&"the_mages_are_in_hiding": 0.0,
-&"the_throne_is_empty": 0.0
+&"the_council_is_divided": 0.30062847329466874,
+&"the_dark_lord_has_returned": 0.5656244480582604,
+&"the_knight_has_broken_his_oath": 0.1486688215478755,
+&"the_mines_are_abandoned": 0.14076862156774228,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.4141930205966232,
+&"the_royal_banner_flies_high": 0.8481131986915065,
+&"the_sword_of_legends_is_forged": 0.545858194927036,
+&"the_throne_is_empty": 0.4944364462629698
 })
 
 [sub_resource type="Resource" id="Resource_d4kaf"]
-resource_name = "Brynden Nightwind"
+resource_name = "Thalren Bloodhelm"
 script = ExtResource("2_6nor5")
-name = "Brynden Nightwind"
+name = "Thalren Bloodhelm"
 perceivedWorld = SubResource("Resource_a7qbn")
 idealWorld = SubResource("Resource_4x6o1")
 
 [sub_resource type="Resource" id="Resource_byf75"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 1,
-&"the_council_is_divided": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_throne_is_empty": 0
+&"the_council_is_divided": -1,
+&"the_dark_lord_has_returned": 0,
+&"the_dragons_are_awake": 0,
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_mines_are_abandoned": 1,
+&"the_orcs_have_crossed_the_border": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_sword_of_legends_is_forged": 0,
+&"the_tavern_is_open": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.6772726797577606,
-&"the_council_is_divided": 0.5693387235237106,
-&"the_plague_spreads_in_the_south": 0.9218887383146284,
-&"the_throne_is_empty": 0.0
+&"the_council_is_divided": 0.9124431459881724,
+&"the_dark_lord_has_returned": 0.0,
+&"the_dragons_are_awake": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.6418927571292413,
+&"the_mines_are_abandoned": 0.10804067818365554,
+&"the_orcs_have_crossed_the_border": 0.1,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_sword_of_legends_is_forged": 0.0,
+&"the_tavern_is_open": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_ru4ta"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 0,
-&"the_council_is_divided": 0,
-&"the_plague_spreads_in_the_south": 1,
-&"the_throne_is_empty": 1
+&"the_council_is_divided": 1,
+&"the_dark_lord_has_returned": -1,
+&"the_dragons_are_awake": -1,
+&"the_elves_have_withdrawn_from_the_realm": -1,
+&"the_mines_are_abandoned": -1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_sword_of_legends_is_forged": 1,
+&"the_tavern_is_open": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.0,
-&"the_council_is_divided": 0.0,
-&"the_plague_spreads_in_the_south": 0.3878601142861057,
-&"the_throne_is_empty": 0.39927954755808814
+&"the_council_is_divided": 0.119761978428768,
+&"the_dark_lord_has_returned": 0.27926215700430235,
+&"the_dragons_are_awake": 0.841696943329846,
+&"the_elves_have_withdrawn_from_the_realm": 0.8593393663069157,
+&"the_mines_are_abandoned": 0.6611454699929196,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_sword_of_legends_is_forged": 0.1,
+&"the_tavern_is_open": 0.320992116215378
 })
 
 [sub_resource type="Resource" id="Resource_4j6ex"]
-resource_name = "Toran Stoneguard"
+resource_name = "Toran Swampwalker"
 script = ExtResource("2_6nor5")
-name = "Toran Stoneguard"
+name = "Toran Swampwalker"
 perceivedWorld = SubResource("Resource_ru4ta")
 idealWorld = SubResource("Resource_byf75")
 
 [sub_resource type="Resource" id="Resource_o4evl"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": -1,
-&"the_council_is_divided": -1,
-&"the_dragons_are_awake": -1,
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_throne_is_empty": 1
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.1,
-&"the_council_is_divided": 0.6289696160345839,
-&"the_dragons_are_awake": 0.6586067371973012,
-&"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.19986894446276224,
-&"the_plague_spreads_in_the_south": 0.0,
-&"the_throne_is_empty": 0.7731306846403118
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_bugbp"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_council_is_divided": 1,
-&"the_dragons_are_awake": -1,
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_plague_spreads_in_the_south": -1,
-&"the_throne_is_empty": 1
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_council_is_divided": 0.8979183003690451,
-&"the_dragons_are_awake": 0.6675329736912062,
-&"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.0,
-&"the_plague_spreads_in_the_south": 0.342229456329166,
-&"the_throne_is_empty": 0.6319469781704292
+&"the_throne_is_empty": 0.8729600831221208
 })
 
 [sub_resource type="Resource" id="Resource_4bko2"]
-resource_name = "Varek Windthorn"
+resource_name = "Vaelis Blackthorn"
 script = ExtResource("2_6nor5")
-name = "Varek Windthorn"
+name = "Vaelis Blackthorn"
 perceivedWorld = SubResource("Resource_bugbp")
 idealWorld = SubResource("Resource_o4evl")
 
 [sub_resource type="Resource" id="Resource_l0cy0"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_throne_is_empty": 0
+&"the_council_is_divided": -1,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_king_is_alive": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": 0,
+&"the_sword_of_legends_is_forged": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_throne_is_empty": 0.0
+&"the_council_is_divided": 0.767325165787152,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_king_is_alive": 0.0,
+&"the_priests_are_praying_for_rain": 0.21796852330834385,
+&"the_princess_is_captured": 0.0,
+&"the_sword_of_legends_is_forged": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_tcu82"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_throne_is_empty": -1
+&"the_council_is_divided": -1,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_king_is_alive": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": 0,
+&"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_throne_is_empty": 0.6483773514423962
+&"the_council_is_divided": 0.6417069699863737,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_king_is_alive": 0.8746016822745778,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.0,
+&"the_sword_of_legends_is_forged": 0.19789850556926297
 })
 
 [sub_resource type="Resource" id="Resource_t88e0"]
-resource_name = "Vyric Swampwalker"
+resource_name = "Vyric Emberfall"
 script = ExtResource("2_6nor5")
-name = "Vyric Swampwalker"
+name = "Vyric Emberfall"
 perceivedWorld = SubResource("Resource_tcu82")
 idealWorld = SubResource("Resource_l0cy0")
 
 [sub_resource type="Resource" id="Resource_6ttip"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_throne_is_empty": -1
+&"the_dragons_are_awake": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": -1,
+&"the_tavern_is_open": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.6703519202428988,
-&"the_prophecy_is_fulfilled": 0.7120982023055997,
-&"the_throne_is_empty": 0.2818068348118543
+&"the_dragons_are_awake": 0.6192531579594056,
+&"the_priests_are_praying_for_rain": 0.5112601697499498,
+&"the_royal_banner_flies_high": 0.32553501635211485,
+&"the_tavern_is_open": 0.5784770063481416
 })
 
 [sub_resource type="Resource" id="Resource_3ht67"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
-&"the_prophecy_is_fulfilled": 0,
-&"the_throne_is_empty": 0
+&"the_dragons_are_awake": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_tavern_is_open": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.8067497768742492,
-&"the_prophecy_is_fulfilled": 0.0,
-&"the_throne_is_empty": 0.0
+&"the_dragons_are_awake": 0.0,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_royal_banner_flies_high": 0.6011819579422446,
+&"the_tavern_is_open": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_k5yit"]
-resource_name = "Malric Quicktongue"
+resource_name = "Maelis Stormwatch"
 script = ExtResource("2_6nor5")
-name = "Malric Quicktongue"
+name = "Maelis Stormwatch"
 perceivedWorld = SubResource("Resource_3ht67")
 idealWorld = SubResource("Resource_6ttip")
 
 [sub_resource type="Resource" id="Resource_bfdav"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 0,
-&"the_plague_spreads_in_the_south": 1,
+&"the_dragons_are_awake": -1,
+&"the_elves_have_withdrawn_from_the_realm": -1,
+&"the_knight_has_broken_his_oath": 0,
+&"the_mines_are_abandoned": -1,
+&"the_princess_is_captured": 0,
+&"the_sword_of_legends_is_forged": 0,
 &"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.0,
-&"the_plague_spreads_in_the_south": 0.1632634653316263,
-&"the_throne_is_empty": 0.8044805075419857
+&"the_dragons_are_awake": 0.9702840633590302,
+&"the_elves_have_withdrawn_from_the_realm": 0.7864695129918454,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_mines_are_abandoned": 0.2645831713412092,
+&"the_princess_is_captured": 0.0,
+&"the_sword_of_legends_is_forged": 0.0,
+&"the_throne_is_empty": 0.3858775643973479
 })
 
 [sub_resource type="Resource" id="Resource_8iwio"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 0,
-&"the_plague_spreads_in_the_south": -1,
-&"the_throne_is_empty": 0
+&"the_dragons_are_awake": -1,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": 1,
+&"the_princess_is_captured": 1,
+&"the_sword_of_legends_is_forged": 0,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.0,
-&"the_plague_spreads_in_the_south": 0.8962745283200148,
-&"the_throne_is_empty": 0.0
+&"the_dragons_are_awake": 0.10022378818535414,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_knight_has_broken_his_oath": 0.1,
+&"the_mines_are_abandoned": 0.9107304470102192,
+&"the_princess_is_captured": 0.5755910089957045,
+&"the_sword_of_legends_is_forged": 0.0,
+&"the_throne_is_empty": 0.8158509110952177
 })
 
 [sub_resource type="Resource" id="Resource_rhhji"]
-resource_name = "Taro Blackspire"
+resource_name = "Taro Stonehaven"
 script = ExtResource("2_6nor5")
-name = "Taro Blackspire"
+name = "Taro Stonehaven"
 perceivedWorld = SubResource("Resource_8iwio")
 idealWorld = SubResource("Resource_bfdav")
 
 [sub_resource type="Resource" id="Resource_b78wh"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 1,
 &"the_council_is_divided": 1,
-&"the_dragons_are_awake": 0,
-&"the_plague_spreads_in_the_south": -1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_tavern_is_open": 1
+&"the_knight_has_broken_his_oath": 0,
+&"the_mines_are_abandoned": 1,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_princess_is_captured": 1,
+&"the_sword_of_legends_is_forged": 0,
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.17566621784392877,
-&"the_council_is_divided": 0.1,
-&"the_dragons_are_awake": 0.0,
-&"the_plague_spreads_in_the_south": 0.6502307672098054,
-&"the_prophecy_is_fulfilled": 0.8458025529831207,
-&"the_tavern_is_open": 0.9521751465177632
+&"the_council_is_divided": 0.1785526963448225,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_mines_are_abandoned": 0.6231021034973525,
+&"the_orcs_have_crossed_the_border": 0.1,
+&"the_princess_is_captured": 0.4990884075518587,
+&"the_sword_of_legends_is_forged": 0.0,
+&"the_throne_is_empty": 0.9083348908950988
 })
 
 [sub_resource type="Resource" id="Resource_k6a58"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 0,
-&"the_council_is_divided": 0,
-&"the_dragons_are_awake": 1,
-&"the_plague_spreads_in_the_south": -1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_tavern_is_open": 1
+&"the_council_is_divided": -1,
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": 0,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_princess_is_captured": -1,
+&"the_sword_of_legends_is_forged": 1,
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.0,
-&"the_council_is_divided": 0.0,
-&"the_dragons_are_awake": 0.6864863837885976,
-&"the_plague_spreads_in_the_south": 0.6078274716747445,
-&"the_prophecy_is_fulfilled": 0.3358048024348306,
-&"the_tavern_is_open": 0.1677239717570394
+&"the_council_is_divided": 0.1,
+&"the_knight_has_broken_his_oath": 0.24811570949335723,
+&"the_mines_are_abandoned": 0.0,
+&"the_orcs_have_crossed_the_border": 0.9440908514690124,
+&"the_princess_is_captured": 0.4136716908362831,
+&"the_sword_of_legends_is_forged": 0.8102554066080243,
+&"the_throne_is_empty": 0.9201806573761429
 })
 
 [sub_resource type="Resource" id="Resource_bmpmv"]
-resource_name = "Rhiannon Stonefist"
+resource_name = "Auren Stonefist"
 script = ExtResource("2_6nor5")
-name = "Rhiannon Stonefist"
+name = "Auren Stonefist"
 perceivedWorld = SubResource("Resource_k6a58")
 idealWorld = SubResource("Resource_b78wh")
 
 [sub_resource type="Resource" id="Resource_58u8h"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_castle_is_under_siege": 0,
-&"the_dragons_are_awake": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_tavern_is_open": 1,
+&"the_dark_lord_has_returned": -1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_princess_is_captured": 1,
+&"the_sword_of_legends_is_forged": -1,
+&"the_tavern_is_open": -1,
 &"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_castle_is_under_siege": 0.0,
-&"the_dragons_are_awake": 0.7409569638276552,
-&"the_plague_spreads_in_the_south": 0.8624687375647068,
-&"the_prophecy_is_fulfilled": 0.1,
-&"the_tavern_is_open": 0.1532152093227574,
-&"the_throne_is_empty": 0.4629144709400283
+&"the_dark_lord_has_returned": 0.8348929767720682,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_priests_are_praying_for_rain": 0.27353271399146384,
+&"the_princess_is_captured": 0.7342402088886917,
+&"the_sword_of_legends_is_forged": 0.3274383713080215,
+&"the_tavern_is_open": 0.7300328512209607,
+&"the_throne_is_empty": 0.22668730409077675
 })
 
 [sub_resource type="Resource" id="Resource_xx0mf"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": -1,
-&"the_castle_is_under_siege": 1,
-&"the_dragons_are_awake": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_tavern_is_open": 0,
-&"the_throne_is_empty": 0
+&"the_dark_lord_has_returned": -1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": 0,
+&"the_sword_of_legends_is_forged": -1,
+&"the_tavern_is_open": -1,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.827622665300917,
-&"the_castle_is_under_siege": 0.991596983137382,
-&"the_dragons_are_awake": 0.26718068906028253,
-&"the_plague_spreads_in_the_south": 0.7055358007918482,
-&"the_prophecy_is_fulfilled": 0.14886369406682293,
-&"the_tavern_is_open": 0.0,
-&"the_throne_is_empty": 0.0
+&"the_dark_lord_has_returned": 0.4193026202340413,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.0,
+&"the_sword_of_legends_is_forged": 0.932838669600505,
+&"the_tavern_is_open": 0.1,
+&"the_throne_is_empty": 0.3723795623090879
 })
 
 [sub_resource type="Resource" id="Resource_u2rcl"]
-resource_name = "Malric Windwalker"
+resource_name = "Malric Lightbringer"
 script = ExtResource("2_6nor5")
-name = "Malric Windwalker"
+name = "Malric Lightbringer"
 perceivedWorld = SubResource("Resource_xx0mf")
 idealWorld = SubResource("Resource_58u8h")
 
 [sub_resource type="Resource" id="Resource_id156"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": 0,
-&"the_throne_is_empty": -1
+&"the_orcs_have_crossed_the_border": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_mages_are_in_hiding": 0.16063969827404048,
-&"the_plague_spreads_in_the_south": 0.9578337113330804,
-&"the_prophecy_is_fulfilled": 0.39348225114287944,
-&"the_tavern_is_open": 0.0,
-&"the_throne_is_empty": 0.34877615856047123
+&"the_orcs_have_crossed_the_border": 0.8228745388772452
 })
 
 [sub_resource type="Resource" id="Resource_x2b6s"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": -1,
-&"the_throne_is_empty": -1
+&"the_orcs_have_crossed_the_border": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_mages_are_in_hiding": 0.8853228539251797,
-&"the_plague_spreads_in_the_south": 0.0,
-&"the_prophecy_is_fulfilled": 0.2676657848586972,
-&"the_tavern_is_open": 0.463630348643124,
-&"the_throne_is_empty": 0.3022448551179537
+&"the_orcs_have_crossed_the_border": 0.8559182088618492
 })
 
 [sub_resource type="Resource" id="Resource_gkua3"]
-resource_name = "Aldrin Ravenshollow"
+resource_name = "Borik Quicktongue"
 script = ExtResource("2_6nor5")
-name = "Aldrin Ravenshollow"
+name = "Borik Quicktongue"
 perceivedWorld = SubResource("Resource_x2b6s")
 idealWorld = SubResource("Resource_id156")
 
 [sub_resource type="Resource" id="Resource_owxhb"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 0,
-&"the_council_is_divided": 1,
-&"the_king_is_alive": 1,
-&"the_mages_are_in_hiding": 1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": 0
+&"the_dark_lord_has_returned": 0,
+&"the_dragons_are_awake": 0,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": 0,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.0,
-&"the_council_is_divided": 0.5267266068641827,
-&"the_king_is_alive": 0.6796706415471435,
-&"the_mages_are_in_hiding": 0.5167308168395133,
-&"the_prophecy_is_fulfilled": 0.9059515752280556,
-&"the_tavern_is_open": 0.0
+&"the_dark_lord_has_returned": 0.0,
+&"the_dragons_are_awake": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_knight_has_broken_his_oath": 0.21637374243286672,
+&"the_mines_are_abandoned": 0.0,
+&"the_orcs_have_crossed_the_border": 0.6450607860600911,
+&"the_royal_banner_flies_high": 0.0,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_rm3uy"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 1,
-&"the_council_is_divided": -1,
-&"the_king_is_alive": 1,
-&"the_mages_are_in_hiding": 0,
-&"the_prophecy_is_fulfilled": 1,
-&"the_tavern_is_open": 0
+&"the_dark_lord_has_returned": 0,
+&"the_dragons_are_awake": 1,
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": -1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.5993151213265886,
-&"the_council_is_divided": 0.1,
-&"the_king_is_alive": 0.6768747352185103,
-&"the_mages_are_in_hiding": 0.0,
-&"the_prophecy_is_fulfilled": 0.6656835743711053,
-&"the_tavern_is_open": 0.0
+&"the_dark_lord_has_returned": 0.0,
+&"the_dragons_are_awake": 0.7945392860788039,
+&"the_elves_have_withdrawn_from_the_realm": 0.18936835115784223,
+&"the_knight_has_broken_his_oath": 0.2615516274925159,
+&"the_mines_are_abandoned": 0.999865675219115,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_royal_banner_flies_high": 0.0,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_0svxw"]
-resource_name = "Kaela Fireborn"
+resource_name = "Oren Starcaller"
 script = ExtResource("2_6nor5")
-name = "Kaela Fireborn"
+name = "Oren Starcaller"
 perceivedWorld = SubResource("Resource_rm3uy")
 idealWorld = SubResource("Resource_owxhb")
 
 [sub_resource type="Resource" id="Resource_hvdmt"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_plague_spreads_in_the_south": 1
+&"the_priests_are_praying_for_rain": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_plague_spreads_in_the_south": 0.3169386859957386
+&"the_priests_are_praying_for_rain": 0.1
 })
 
 [sub_resource type="Resource" id="Resource_ddr4m"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_plague_spreads_in_the_south": -1
+&"the_priests_are_praying_for_rain": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_plague_spreads_in_the_south": 0.18654111465412349
+&"the_priests_are_praying_for_rain": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_7c0q4"]
-resource_name = "Lorian Silverleaf"
+resource_name = "Garric Greenmark"
 script = ExtResource("2_6nor5")
-name = "Lorian Silverleaf"
+name = "Garric Greenmark"
 perceivedWorld = SubResource("Resource_ddr4m")
 idealWorld = SubResource("Resource_hvdmt")
 
 [sub_resource type="Resource" id="Resource_xbds4"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dragons_are_awake": 0,
-&"the_king_is_alive": -1,
-&"the_throne_is_empty": 1
+&"the_dragons_are_awake": -1,
+&"the_mines_are_abandoned": 1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": -1,
+&"the_tavern_is_open": -1,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_dragons_are_awake": 0.0,
-&"the_king_is_alive": 0.200902767809314,
-&"the_throne_is_empty": 0.1
+&"the_dragons_are_awake": 0.1,
+&"the_mines_are_abandoned": 0.67577347544518,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_priests_are_praying_for_rain": 0.8974503887011276,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.4080621540693584,
+&"the_tavern_is_open": 0.2303943254437865,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_etwpy"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dragons_are_awake": -1,
-&"the_king_is_alive": -1,
-&"the_throne_is_empty": 1
+&"the_dragons_are_awake": 0,
+&"the_mines_are_abandoned": 1,
+&"the_orcs_have_crossed_the_border": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": 1,
+&"the_tavern_is_open": 0,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_dragons_are_awake": 0.7869401825334218,
-&"the_king_is_alive": 0.1045318936342136,
-&"the_throne_is_empty": 0.3574047545884792
+&"the_dragons_are_awake": 0.0,
+&"the_mines_are_abandoned": 0.47767897920585967,
+&"the_orcs_have_crossed_the_border": 0.17926502463181482,
+&"the_priests_are_praying_for_rain": 0.53605662058487,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.1,
+&"the_tavern_is_open": 0.0,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_x16st"]
-resource_name = "Lyssara Wavecutter"
+resource_name = "Brynden Ravenshollow"
 script = ExtResource("2_6nor5")
-name = "Lyssara Wavecutter"
+name = "Brynden Ravenshollow"
 perceivedWorld = SubResource("Resource_etwpy")
 idealWorld = SubResource("Resource_xbds4")
 
 [sub_resource type="Resource" id="Resource_f7538"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 0,
-&"the_dragons_are_awake": 0,
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_plague_spreads_in_the_south": 1,
-&"the_tavern_is_open": 0
+&"the_dragons_are_awake": -1,
+&"the_king_is_alive": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 0,
+&"the_royal_banner_flies_high": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.0,
-&"the_dragons_are_awake": 0.0,
-&"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.0,
-&"the_plague_spreads_in_the_south": 0.1,
-&"the_tavern_is_open": 0.0
+&"the_dragons_are_awake": 0.5804148694894742,
+&"the_king_is_alive": 0.580421032646484,
+&"the_priests_are_praying_for_rain": 0.6213116531932775,
+&"the_princess_is_captured": 0.4398216764938617,
+&"the_queen_has_vanished": 0.0,
+&"the_royal_banner_flies_high": 0.1580355697977055
 })
 
 [sub_resource type="Resource" id="Resource_10xpa"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": -1,
-&"the_dragons_are_awake": 0,
-&"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": -1,
-&"the_tavern_is_open": -1
+&"the_dragons_are_awake": 1,
+&"the_king_is_alive": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": -1,
+&"the_royal_banner_flies_high": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.39605328987196536,
-&"the_dragons_are_awake": 0.0,
-&"the_king_is_alive": 0.8152719400091688,
-&"the_mages_are_in_hiding": 0.6398409604231812,
-&"the_plague_spreads_in_the_south": 0.6497415778696919,
-&"the_tavern_is_open": 0.15780048049614326
+&"the_dragons_are_awake": 0.9753131679090292,
+&"the_king_is_alive": 0.0,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.9470576062167738,
+&"the_royal_banner_flies_high": 0.1
 })
 
 [sub_resource type="Resource" id="Resource_d2b3j"]
-resource_name = "Oren Lightveil"
+resource_name = "Vaelis Dawnsong"
 script = ExtResource("2_6nor5")
-name = "Oren Lightveil"
+name = "Vaelis Dawnsong"
 perceivedWorld = SubResource("Resource_10xpa")
 idealWorld = SubResource("Resource_f7538")
 
 [sub_resource type="Resource" id="Resource_1xwe3"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 1,
-&"the_king_is_alive": -1,
-&"the_prophecy_is_fulfilled": 0
+&"the_dark_lord_has_returned": -1,
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_mines_are_abandoned": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_sword_of_legends_is_forged": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.28655389673557835,
-&"the_king_is_alive": 0.21928468399379916,
-&"the_prophecy_is_fulfilled": 0.0
+&"the_dark_lord_has_returned": 0.847744811983076,
+&"the_elves_have_withdrawn_from_the_realm": 0.11537839635423544,
+&"the_mines_are_abandoned": 0.8448325070981759,
+&"the_priests_are_praying_for_rain": 0.1,
+&"the_princess_is_captured": 0.605760562032713,
+&"the_royal_banner_flies_high": 0.3341411810858091,
+&"the_sword_of_legends_is_forged": 0.1
 })
 
 [sub_resource type="Resource" id="Resource_3y1mb"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_king_is_alive": 1,
-&"the_prophecy_is_fulfilled": -1
+&"the_dark_lord_has_returned": 1,
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_mines_are_abandoned": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_king_is_alive": 0.25743924096488974,
-&"the_prophecy_is_fulfilled": 0.11827058033446088
+&"the_dark_lord_has_returned": 0.6891368530663498,
+&"the_elves_have_withdrawn_from_the_realm": 0.5270426661110705,
+&"the_mines_are_abandoned": 0.0,
+&"the_priests_are_praying_for_rain": 0.8959836185456086,
+&"the_princess_is_captured": 0.22111512708690664,
+&"the_royal_banner_flies_high": 0.4697101349752359,
+&"the_sword_of_legends_is_forged": 0.2929281421273291
 })
 
 [sub_resource type="Resource" id="Resource_v7d14"]
-resource_name = "Coren Stoneguard"
+resource_name = "Lorian Starcrest"
 script = ExtResource("2_6nor5")
-name = "Coren Stoneguard"
+name = "Lorian Starcrest"
 perceivedWorld = SubResource("Resource_3y1mb")
 idealWorld = SubResource("Resource_1xwe3")
 
 [sub_resource type="Resource" id="Resource_71pyx"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 1,
-&"the_council_is_divided": 0,
-&"the_dragons_are_awake": -1,
-&"the_king_is_alive": -1,
-&"the_throne_is_empty": 0
+&"the_king_is_alive": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_queen_has_vanished": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.33438476730007016,
-&"the_council_is_divided": 0.0,
-&"the_dragons_are_awake": 0.1,
-&"the_king_is_alive": 0.21174412639894655,
-&"the_throne_is_empty": 0.0
+&"the_king_is_alive": 0.0,
+&"the_priests_are_praying_for_rain": 0.8616196937251116,
+&"the_queen_has_vanished": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_kiwod"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": -1,
-&"the_council_is_divided": 0,
-&"the_dragons_are_awake": -1,
 &"the_king_is_alive": -1,
-&"the_throne_is_empty": 0
+&"the_priests_are_praying_for_rain": -1,
+&"the_queen_has_vanished": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.2250396942998487,
-&"the_council_is_divided": 0.0,
-&"the_dragons_are_awake": 0.6289227808188713,
-&"the_king_is_alive": 0.21223581813175557,
-&"the_throne_is_empty": 0.0
+&"the_king_is_alive": 0.608365435569583,
+&"the_priests_are_praying_for_rain": 0.6775888391804697,
+&"the_queen_has_vanished": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_frdqc"]
-resource_name = "Finnian Swampwalker"
+resource_name = "Lorian Stoneguard"
 script = ExtResource("2_6nor5")
-name = "Finnian Swampwalker"
+name = "Lorian Stoneguard"
 perceivedWorld = SubResource("Resource_kiwod")
 idealWorld = SubResource("Resource_71pyx")
 
 [sub_resource type="Resource" id="Resource_uqowv"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dragons_are_awake": -1,
-&"the_plague_spreads_in_the_south": 1
+&"the_council_is_divided": 0,
+&"the_dark_lord_has_returned": 0,
+&"the_elves_have_withdrawn_from_the_realm": -1,
+&"the_knight_has_broken_his_oath": 1,
+&"the_queen_has_vanished": 1,
+&"the_tavern_is_open": -1,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_dragons_are_awake": 0.1,
-&"the_plague_spreads_in_the_south": 0.22541998017118128
+&"the_council_is_divided": 0.0,
+&"the_dark_lord_has_returned": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.979020795279834,
+&"the_knight_has_broken_his_oath": 0.2466706637805462,
+&"the_queen_has_vanished": 0.6029620862688924,
+&"the_tavern_is_open": 0.1422838874906776,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_gomyh"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dragons_are_awake": 0,
-&"the_plague_spreads_in_the_south": 0
+&"the_council_is_divided": 1,
+&"the_dark_lord_has_returned": -1,
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_knight_has_broken_his_oath": -1,
+&"the_queen_has_vanished": -1,
+&"the_tavern_is_open": 1,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_dragons_are_awake": 0.0,
-&"the_plague_spreads_in_the_south": 0.0
+&"the_council_is_divided": 0.421730992845057,
+&"the_dark_lord_has_returned": 0.5066034289626926,
+&"the_elves_have_withdrawn_from_the_realm": 0.1,
+&"the_knight_has_broken_his_oath": 0.948551112220868,
+&"the_queen_has_vanished": 0.9826724895840716,
+&"the_tavern_is_open": 0.3692395412776087,
+&"the_throne_is_empty": 0.1
 })
 
 [sub_resource type="Resource" id="Resource_de5cp"]
-resource_name = "Miriel Wavecutter"
+resource_name = "Brynden Windwalker"
 script = ExtResource("2_6nor5")
-name = "Miriel Wavecutter"
+name = "Brynden Windwalker"
 perceivedWorld = SubResource("Resource_gomyh")
 idealWorld = SubResource("Resource_uqowv")
 
 [sub_resource type="Resource" id="Resource_mtjqa"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
+&"the_council_is_divided": 0,
+&"the_dark_lord_has_returned": -1,
 &"the_dragons_are_awake": 1,
 &"the_king_is_alive": -1,
-&"the_prophecy_is_fulfilled": -1,
+&"the_knight_has_broken_his_oath": 0,
+&"the_mines_are_abandoned": 0,
+&"the_queen_has_vanished": 1,
 &"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_dragons_are_awake": 0.5107659767060218,
-&"the_king_is_alive": 0.5971249745756644,
-&"the_prophecy_is_fulfilled": 0.3565974084512834,
-&"the_throne_is_empty": 0.7730930611949733
+&"the_council_is_divided": 0.0,
+&"the_dark_lord_has_returned": 0.4192960654513527,
+&"the_dragons_are_awake": 0.1,
+&"the_king_is_alive": 0.2083082188878779,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_mines_are_abandoned": 0.0,
+&"the_queen_has_vanished": 0.883377511094712,
+&"the_throne_is_empty": 0.7227679732606558
 })
 
 [sub_resource type="Resource" id="Resource_1aucr"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_dragons_are_awake": -1,
-&"the_king_is_alive": -1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_throne_is_empty": -1
+&"the_council_is_divided": -1,
+&"the_dark_lord_has_returned": 0,
+&"the_dragons_are_awake": 1,
+&"the_king_is_alive": 0,
+&"the_knight_has_broken_his_oath": 0,
+&"the_mines_are_abandoned": 0,
+&"the_queen_has_vanished": 0,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_dragons_are_awake": 0.28930046898183215,
-&"the_king_is_alive": 0.3217895687886951,
-&"the_prophecy_is_fulfilled": 0.9049871617860484,
-&"the_throne_is_empty": 0.24082474756602765
+&"the_council_is_divided": 0.45670441729409533,
+&"the_dark_lord_has_returned": 0.0,
+&"the_dragons_are_awake": 0.1,
+&"the_king_is_alive": 0.0,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_mines_are_abandoned": 0.0,
+&"the_queen_has_vanished": 0.0,
+&"the_throne_is_empty": 0.8720041026144268
 })
 
 [sub_resource type="Resource" id="Resource_vvfnq"]
-resource_name = "Miriel Windthorn"
+resource_name = "Gareth Of_The_Rose"
 script = ExtResource("2_6nor5")
-name = "Miriel Windthorn"
+name = "Gareth Of_The_Rose"
 perceivedWorld = SubResource("Resource_1aucr")
 idealWorld = SubResource("Resource_mtjqa")
 
 [sub_resource type="Resource" id="Resource_5srwc"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 1,
-&"the_castle_is_under_siege": -1,
-&"the_dragons_are_awake": 1,
-&"the_king_is_alive": 1,
-&"the_mages_are_in_hiding": -1,
-&"the_prophecy_is_fulfilled": 0
+&"the_dark_lord_has_returned": -1,
+&"the_dragons_are_awake": -1,
+&"the_king_is_alive": 0,
+&"the_knight_has_broken_his_oath": 0,
+&"the_mines_are_abandoned": 0,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": 1,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.3783073167614,
-&"the_castle_is_under_siege": 0.8804474445071703,
-&"the_dragons_are_awake": 0.6331081460428294,
-&"the_king_is_alive": 0.24749948708600367,
-&"the_mages_are_in_hiding": 0.588383469642896,
-&"the_prophecy_is_fulfilled": 0.0
+&"the_dark_lord_has_returned": 0.3664081735828803,
+&"the_dragons_are_awake": 0.8807015369745639,
+&"the_king_is_alive": 0.0,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_mines_are_abandoned": 0.0,
+&"the_orcs_have_crossed_the_border": 0.5375437690422454,
+&"the_queen_has_vanished": 0.12260730398684548,
+&"the_sword_of_legends_is_forged": 0.1,
+&"the_throne_is_empty": 0.5239824802250762
 })
 
 [sub_resource type="Resource" id="Resource_6k3ls"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_castle_is_under_siege": 0,
-&"the_dragons_are_awake": 0,
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": 1,
-&"the_prophecy_is_fulfilled": -1
+&"the_dark_lord_has_returned": -1,
+&"the_dragons_are_awake": 1,
+&"the_king_is_alive": 1,
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": -1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_queen_has_vanished": -1,
+&"the_sword_of_legends_is_forged": 1,
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_castle_is_under_siege": 0.0,
-&"the_dragons_are_awake": 0.0,
-&"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.9954399088584984,
-&"the_prophecy_is_fulfilled": 0.946709101365996
+&"the_dark_lord_has_returned": 0.98862971722834,
+&"the_dragons_are_awake": 0.16601977337521778,
+&"the_king_is_alive": 0.550670078991679,
+&"the_knight_has_broken_his_oath": 0.3882844861485065,
+&"the_mines_are_abandoned": 0.91707460102392,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_queen_has_vanished": 0.8444629867500222,
+&"the_sword_of_legends_is_forged": 0.4369814821762045,
+&"the_throne_is_empty": 0.24752753632576735
 })
 
 [sub_resource type="Resource" id="Resource_ioe0c"]
-resource_name = "Thessara Shadowfen"
+resource_name = "Duric Starcrest"
 script = ExtResource("2_6nor5")
-name = "Thessara Shadowfen"
+name = "Duric Starcrest"
 perceivedWorld = SubResource("Resource_6k3ls")
 idealWorld = SubResource("Resource_5srwc")
 
 [sub_resource type="Resource" id="Resource_swcea"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_castle_is_under_siege": 1,
-&"the_dragons_are_awake": 1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_tavern_is_open": 1,
-&"the_throne_is_empty": 1
+&"the_dark_lord_has_returned": 1,
+&"the_king_is_alive": -1,
+&"the_knight_has_broken_his_oath": 0,
+&"the_mines_are_abandoned": -1,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_royal_banner_flies_high": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_castle_is_under_siege": 0.3977550130667576,
-&"the_dragons_are_awake": 0.903444008597614,
-&"the_prophecy_is_fulfilled": 0.18274914933277328,
-&"the_tavern_is_open": 0.45926683651448386,
-&"the_throne_is_empty": 0.6057934677446828
+&"the_dark_lord_has_returned": 0.14959292431672896,
+&"the_king_is_alive": 0.9757540385964046,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_mines_are_abandoned": 0.26899363281497146,
+&"the_orcs_have_crossed_the_border": 0.6493193060494203,
+&"the_priests_are_praying_for_rain": 0.156724626008681,
+&"the_royal_banner_flies_high": 0.12824957124205386
 })
 
 [sub_resource type="Resource" id="Resource_ugbdm"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_castle_is_under_siege": 1,
-&"the_dragons_are_awake": 0,
-&"the_prophecy_is_fulfilled": 0,
-&"the_tavern_is_open": 0,
-&"the_throne_is_empty": -1
+&"the_dark_lord_has_returned": -1,
+&"the_king_is_alive": 1,
+&"the_knight_has_broken_his_oath": 0,
+&"the_mines_are_abandoned": 1,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_royal_banner_flies_high": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_castle_is_under_siege": 0.8787121970621553,
-&"the_dragons_are_awake": 0.0,
-&"the_prophecy_is_fulfilled": 0.0,
-&"the_tavern_is_open": 0.0,
-&"the_throne_is_empty": 0.7138035940591291
+&"the_dark_lord_has_returned": 0.1,
+&"the_king_is_alive": 0.18235023970590317,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_mines_are_abandoned": 0.5592276690901834,
+&"the_orcs_have_crossed_the_border": 0.8720968770497433,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_royal_banner_flies_high": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_6awd5"]
-resource_name = "Rhiannon Goldbrook"
+resource_name = "Eodan Bloodhelm"
 script = ExtResource("2_6nor5")
-name = "Rhiannon Goldbrook"
+name = "Eodan Bloodhelm"
 perceivedWorld = SubResource("Resource_ugbdm")
 idealWorld = SubResource("Resource_swcea")
 
 [sub_resource type="Resource" id="Resource_dd1ld"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
+&"the_dragons_are_awake": 1,
+&"the_elves_have_withdrawn_from_the_realm": -1,
 &"the_king_is_alive": 1,
-&"the_mages_are_in_hiding": -1
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_queen_has_vanished": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_sword_of_legends_is_forged": -1,
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.5197258731270094,
-&"the_mages_are_in_hiding": 0.8622632087583315
+&"the_dragons_are_awake": 0.9261855151007724,
+&"the_elves_have_withdrawn_from_the_realm": 0.530888621191063,
+&"the_king_is_alive": 0.30030476202050943,
+&"the_knight_has_broken_his_oath": 0.762145813176286,
+&"the_mines_are_abandoned": 0.4023100590486822,
+&"the_priests_are_praying_for_rain": 0.8511128252016953,
+&"the_queen_has_vanished": 0.3086445439088525,
+&"the_royal_banner_flies_high": 0.0,
+&"the_sword_of_legends_is_forged": 0.3442620239930463,
+&"the_throne_is_empty": 0.9043152606106628
 })
 
 [sub_resource type="Resource" id="Resource_hs70e"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": 1
+&"the_dragons_are_awake": -1,
+&"the_elves_have_withdrawn_from_the_realm": -1,
+&"the_king_is_alive": -1,
+&"the_knight_has_broken_his_oath": 0,
+&"the_mines_are_abandoned": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_queen_has_vanished": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_sword_of_legends_is_forged": 1,
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.7536113397404539
+&"the_dragons_are_awake": 0.7276969600672845,
+&"the_elves_have_withdrawn_from_the_realm": 0.1266729910958118,
+&"the_king_is_alive": 0.1,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_mines_are_abandoned": 0.1031825581298388,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_queen_has_vanished": 0.1,
+&"the_royal_banner_flies_high": 0.8415092726575425,
+&"the_sword_of_legends_is_forged": 0.6652180528729165,
+&"the_throne_is_empty": 0.8842321764583118
 })
 
 [sub_resource type="Resource" id="Resource_ax2w8"]
-resource_name = "Taro Of_The_Rose"
+resource_name = "Rowan Wavecutter"
 script = ExtResource("2_6nor5")
-name = "Taro Of_The_Rose"
+name = "Rowan Wavecutter"
 perceivedWorld = SubResource("Resource_hs70e")
 idealWorld = SubResource("Resource_dd1ld")
 
 [sub_resource type="Resource" id="Resource_k2wsm"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": -1,
-&"the_council_is_divided": 0,
-&"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": 0,
-&"the_tavern_is_open": 0
+&"the_council_is_divided": -1,
+&"the_dark_lord_has_returned": 0,
+&"the_dragons_are_awake": -1,
+&"the_king_is_alive": 0,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 1,
+&"the_royal_banner_flies_high": 0,
+&"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.1571197433650315,
-&"the_council_is_divided": 0.0,
-&"the_king_is_alive": 0.359134968273885,
-&"the_mages_are_in_hiding": 0.0,
-&"the_tavern_is_open": 0.0
+&"the_council_is_divided": 0.9279710291419914,
+&"the_dark_lord_has_returned": 0.0,
+&"the_dragons_are_awake": 0.46035145822914014,
+&"the_king_is_alive": 0.0,
+&"the_orcs_have_crossed_the_border": 0.4196612181228528,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.1,
+&"the_queen_has_vanished": 0.6883434397229148,
+&"the_royal_banner_flies_high": 0.0,
+&"the_sword_of_legends_is_forged": 0.12364576236743556
 })
 
 [sub_resource type="Resource" id="Resource_8j2p1"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 0,
-&"the_council_is_divided": -1,
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": 1,
-&"the_tavern_is_open": 1
+&"the_council_is_divided": 1,
+&"the_dark_lord_has_returned": 0,
+&"the_dragons_are_awake": -1,
+&"the_king_is_alive": 1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_sword_of_legends_is_forged": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.0,
-&"the_council_is_divided": 0.23654775644654488,
-&"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.8630738154239489,
-&"the_tavern_is_open": 0.47347086428978485
+&"the_council_is_divided": 0.9935810280373653,
+&"the_dark_lord_has_returned": 0.0,
+&"the_dragons_are_awake": 0.1,
+&"the_king_is_alive": 0.19216170910848307,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.12343150841315044,
+&"the_queen_has_vanished": 0.0,
+&"the_royal_banner_flies_high": 0.6667840136710689,
+&"the_sword_of_legends_is_forged": 0.2353715542110399
 })
 
 [sub_resource type="Resource" id="Resource_6g8ur"]
-resource_name = "Eldric Ravenshollow"
+resource_name = "Borik Shadowstep"
 script = ExtResource("2_6nor5")
-name = "Eldric Ravenshollow"
+name = "Borik Shadowstep"
 perceivedWorld = SubResource("Resource_8j2p1")
 idealWorld = SubResource("Resource_k2wsm")
 
 [sub_resource type="Resource" id="Resource_di55f"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": -1,
-&"the_council_is_divided": 1,
-&"the_king_is_alive": 1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_throne_is_empty": 0
+&"the_council_is_divided": 0,
+&"the_king_is_alive": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_tavern_is_open": 0,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.17331693898810546,
-&"the_council_is_divided": 0.20350787523172856,
-&"the_king_is_alive": 0.9998497549727708,
-&"the_prophecy_is_fulfilled": 0.6828210088250675,
-&"the_throne_is_empty": 0.0
+&"the_council_is_divided": 0.0,
+&"the_king_is_alive": 0.1,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.47250028239328246,
+&"the_queen_has_vanished": 0.0,
+&"the_royal_banner_flies_high": 0.1074842792595645,
+&"the_tavern_is_open": 0.0,
+&"the_throne_is_empty": 0.19703964568171017
 })
 
 [sub_resource type="Resource" id="Resource_sq4jm"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 1,
 &"the_council_is_divided": 0,
-&"the_king_is_alive": 1,
-&"the_prophecy_is_fulfilled": 0,
-&"the_throne_is_empty": 1
+&"the_king_is_alive": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_tavern_is_open": 1,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.45310308189467213,
 &"the_council_is_divided": 0.0,
-&"the_king_is_alive": 0.2162843867538703,
-&"the_prophecy_is_fulfilled": 0.0,
-&"the_throne_is_empty": 0.28118374691797615
+&"the_king_is_alive": 0.0,
+&"the_priests_are_praying_for_rain": 0.28472097650303735,
+&"the_princess_is_captured": 0.8648299290891897,
+&"the_queen_has_vanished": 0.0,
+&"the_royal_banner_flies_high": 0.490793727406073,
+&"the_tavern_is_open": 0.7291407291817014,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_0jrnj"]
-resource_name = "Velora Ironbane"
+resource_name = "Malric Wavecutter"
 script = ExtResource("2_6nor5")
-name = "Velora Ironbane"
+name = "Malric Wavecutter"
 perceivedWorld = SubResource("Resource_sq4jm")
 idealWorld = SubResource("Resource_di55f")
 
 [sub_resource type="Resource" id="Resource_a7rp4"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_council_is_divided": 1,
-&"the_dragons_are_awake": 0,
-&"the_mages_are_in_hiding": -1,
-&"the_throne_is_empty": -1
+&"the_council_is_divided": 0,
+&"the_dark_lord_has_returned": -1,
+&"the_dragons_are_awake": -1,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_king_is_alive": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_tavern_is_open": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_council_is_divided": 0.550292327288564,
-&"the_dragons_are_awake": 0.0,
-&"the_mages_are_in_hiding": 0.7946293680898289,
-&"the_throne_is_empty": 0.2223520154696971
+&"the_council_is_divided": 0.0,
+&"the_dark_lord_has_returned": 0.865524897289204,
+&"the_dragons_are_awake": 0.1,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_king_is_alive": 0.663375726927704,
+&"the_priests_are_praying_for_rain": 0.86721229031008,
+&"the_princess_is_captured": 0.40367430885518835,
+&"the_queen_has_vanished": 0.0,
+&"the_royal_banner_flies_high": 0.8635297413038058,
+&"the_tavern_is_open": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_puhhr"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_council_is_divided": 0,
-&"the_dragons_are_awake": 1,
-&"the_mages_are_in_hiding": -1,
-&"the_throne_is_empty": 1
+&"the_council_is_divided": -1,
+&"the_dark_lord_has_returned": -1,
+&"the_dragons_are_awake": 0,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_king_is_alive": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_tavern_is_open": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_council_is_divided": 0.0,
-&"the_dragons_are_awake": 0.1,
-&"the_mages_are_in_hiding": 0.504155713893799,
-&"the_throne_is_empty": 0.8166890516297892
+&"the_council_is_divided": 0.3957608805936807,
+&"the_dark_lord_has_returned": 0.7347175057618434,
+&"the_dragons_are_awake": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_king_is_alive": 0.0,
+&"the_priests_are_praying_for_rain": 0.5012647481404781,
+&"the_princess_is_captured": 0.7198936433464016,
+&"the_queen_has_vanished": 0.0,
+&"the_royal_banner_flies_high": 0.9129383912327697,
+&"the_tavern_is_open": 0.1
 })
 
 [sub_resource type="Resource" id="Resource_ngxpl"]
-resource_name = "Borik Moonspire"
+resource_name = "Borik Stoneguard"
 script = ExtResource("2_6nor5")
-name = "Borik Moonspire"
+name = "Borik Stoneguard"
 perceivedWorld = SubResource("Resource_puhhr")
 idealWorld = SubResource("Resource_a7rp4")
 
 [sub_resource type="Resource" id="Resource_wkejj"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_council_is_divided": 1
+&"the_dark_lord_has_returned": -1,
+&"the_king_is_alive": 0,
+&"the_knight_has_broken_his_oath": -1,
+&"the_orcs_have_crossed_the_border": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_tavern_is_open": 1,
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_council_is_divided": 0.1
+&"the_dark_lord_has_returned": 0.725372492554486,
+&"the_king_is_alive": 0.0,
+&"the_knight_has_broken_his_oath": 0.1,
+&"the_orcs_have_crossed_the_border": 0.4489630880431504,
+&"the_priests_are_praying_for_rain": 0.1,
+&"the_princess_is_captured": 0.0,
+&"the_royal_banner_flies_high": 0.842939246619667,
+&"the_tavern_is_open": 0.12658179842394615,
+&"the_throne_is_empty": 0.23643401958908783
 })
 
 [sub_resource type="Resource" id="Resource_jmlun"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_council_is_divided": 1
+&"the_dark_lord_has_returned": 0,
+&"the_king_is_alive": -1,
+&"the_knight_has_broken_his_oath": 1,
+&"the_orcs_have_crossed_the_border": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_tavern_is_open": 0,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_council_is_divided": 0.9949736520854836
+&"the_dark_lord_has_returned": 0.0,
+&"the_king_is_alive": 0.36183428774440474,
+&"the_knight_has_broken_his_oath": 0.1,
+&"the_orcs_have_crossed_the_border": 0.5040991768406411,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.1,
+&"the_royal_banner_flies_high": 0.0,
+&"the_tavern_is_open": 0.0,
+&"the_throne_is_empty": 0.4034169855174693
 })
 
 [sub_resource type="Resource" id="Resource_qyat2"]
-resource_name = "Seraphine Stormreaver"
+resource_name = "Aldrin Nightwind"
 script = ExtResource("2_6nor5")
-name = "Seraphine Stormreaver"
+name = "Aldrin Nightwind"
 perceivedWorld = SubResource("Resource_jmlun")
 idealWorld = SubResource("Resource_wkejj")
 
 [sub_resource type="Resource" id="Resource_6wktd"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_dragons_are_awake": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_plague_spreads_in_the_south": 0,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": 1,
-&"the_throne_is_empty": -1
+&"the_dark_lord_has_returned": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_dragons_are_awake": 0.0,
-&"the_mages_are_in_hiding": 0.0,
-&"the_plague_spreads_in_the_south": 0.0,
-&"the_prophecy_is_fulfilled": 0.1,
-&"the_tavern_is_open": 0.3549627072390647,
-&"the_throne_is_empty": 0.1
+&"the_dark_lord_has_returned": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_a6g7r"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 1,
-&"the_dragons_are_awake": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_prophecy_is_fulfilled": 1,
-&"the_tavern_is_open": -1,
-&"the_throne_is_empty": 1
+&"the_dark_lord_has_returned": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.3568810806930501,
-&"the_dragons_are_awake": 0.8281285402481883,
-&"the_mages_are_in_hiding": 0.10773299269127148,
-&"the_plague_spreads_in_the_south": 0.0,
-&"the_prophecy_is_fulfilled": 0.8113287403663432,
-&"the_tavern_is_open": 0.5837196830953532,
-&"the_throne_is_empty": 0.2778553113926511
+&"the_dark_lord_has_returned": 0.5317397113833686
 })
 
 [sub_resource type="Resource" id="Resource_hxwnj"]
-resource_name = "Eldric Swampwalker"
+resource_name = "Thalren Stoneguard"
 script = ExtResource("2_6nor5")
-name = "Eldric Swampwalker"
+name = "Thalren Stoneguard"
 perceivedWorld = SubResource("Resource_a6g7r")
 idealWorld = SubResource("Resource_6wktd")
 
 [sub_resource type="Resource" id="Resource_4ws03"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_tavern_is_open": 0
+&"the_queen_has_vanished": 0,
+&"the_tavern_is_open": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_tavern_is_open": 0.0
+&"the_queen_has_vanished": 0.0,
+&"the_tavern_is_open": 0.26172307800567374
 })
 
 [sub_resource type="Resource" id="Resource_vu4xu"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_tavern_is_open": 1
+&"the_queen_has_vanished": 1,
+&"the_tavern_is_open": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_tavern_is_open": 0.7860698068354697
+&"the_queen_has_vanished": 0.19279103833187247,
+&"the_tavern_is_open": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_w33id"]
-resource_name = "Oren Brightshore"
+resource_name = "Lira Starcrest"
 script = ExtResource("2_6nor5")
-name = "Oren Brightshore"
+name = "Lira Starcrest"
 perceivedWorld = SubResource("Resource_vu4xu")
 idealWorld = SubResource("Resource_4ws03")
 
 [sub_resource type="Resource" id="Resource_fkr87"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 0,
-&"the_prophecy_is_fulfilled": 0,
-&"the_tavern_is_open": -1
+&"the_council_is_divided": -1,
+&"the_dragons_are_awake": -1,
+&"the_queen_has_vanished": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_sword_of_legends_is_forged": -1,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_mages_are_in_hiding": 0.0,
-&"the_prophecy_is_fulfilled": 0.0,
-&"the_tavern_is_open": 0.7149915575258208
+&"the_council_is_divided": 0.3370774558337446,
+&"the_dragons_are_awake": 0.9059076872612404,
+&"the_queen_has_vanished": 0.5745693110760824,
+&"the_royal_banner_flies_high": 0.6374825389691746,
+&"the_sword_of_legends_is_forged": 0.5409290444759173,
+&"the_throne_is_empty": 0.3064374138532812
 })
 
 [sub_resource type="Resource" id="Resource_bkd28"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 0,
-&"the_prophecy_is_fulfilled": 0,
-&"the_tavern_is_open": -1
+&"the_council_is_divided": 0,
+&"the_dragons_are_awake": -1,
+&"the_queen_has_vanished": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_sword_of_legends_is_forged": 1,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_mages_are_in_hiding": 0.0,
-&"the_prophecy_is_fulfilled": 0.0,
-&"the_tavern_is_open": 0.7817397931395695
+&"the_council_is_divided": 0.0,
+&"the_dragons_are_awake": 0.1,
+&"the_queen_has_vanished": 0.3182201227385125,
+&"the_royal_banner_flies_high": 0.0,
+&"the_sword_of_legends_is_forged": 0.1,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_ssq3r"]
-resource_name = "Brynden Stonehaven"
+resource_name = "Oren Whitespear"
 script = ExtResource("2_6nor5")
-name = "Brynden Stonehaven"
+name = "Oren Whitespear"
 perceivedWorld = SubResource("Resource_bkd28")
 idealWorld = SubResource("Resource_fkr87")
 
 [sub_resource type="Resource" id="Resource_87gmb"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_council_is_divided": 1,
-&"the_mages_are_in_hiding": 1,
-&"the_plague_spreads_in_the_south": -1
+&"the_knight_has_broken_his_oath": 0,
+&"the_princess_is_captured": 0,
+&"the_sword_of_legends_is_forged": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_council_is_divided": 0.8301990319651884,
-&"the_mages_are_in_hiding": 0.5552942958725019,
-&"the_plague_spreads_in_the_south": 0.6754595172164316
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_princess_is_captured": 0.0,
+&"the_sword_of_legends_is_forged": 0.1
 })
 
 [sub_resource type="Resource" id="Resource_medku"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 1,
-&"the_council_is_divided": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": 0
+&"the_knight_has_broken_his_oath": 1,
+&"the_princess_is_captured": 0,
+&"the_sword_of_legends_is_forged": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.1,
-&"the_council_is_divided": 0.9211915401750916,
-&"the_mages_are_in_hiding": 0.257172067842569,
-&"the_plague_spreads_in_the_south": 0.0
+&"the_knight_has_broken_his_oath": 0.8221824700954673,
+&"the_princess_is_captured": 0.0,
+&"the_sword_of_legends_is_forged": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_mr43u"]
-resource_name = "Vyric Emberglow"
+resource_name = "Selene Oakenshield"
 script = ExtResource("2_6nor5")
-name = "Vyric Emberglow"
+name = "Selene Oakenshield"
 perceivedWorld = SubResource("Resource_medku")
 idealWorld = SubResource("Resource_87gmb")
 
 [sub_resource type="Resource" id="Resource_g35xy"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_council_is_divided": 1,
-&"the_king_is_alive": 0,
-&"the_prophecy_is_fulfilled": 0
+&"the_council_is_divided": -1,
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_knight_has_broken_his_oath": 0,
+&"the_princess_is_captured": -1,
+&"the_sword_of_legends_is_forged": 1,
+&"the_tavern_is_open": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_council_is_divided": 0.6563213650890319,
-&"the_king_is_alive": 0.0,
-&"the_prophecy_is_fulfilled": 0.0
+&"the_council_is_divided": 0.5871269668484979,
+&"the_elves_have_withdrawn_from_the_realm": 0.22130117460859028,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_princess_is_captured": 0.6728365986830348,
+&"the_sword_of_legends_is_forged": 0.7340191911582326,
+&"the_tavern_is_open": 0.3652802815373727
 })
 
 [sub_resource type="Resource" id="Resource_4wni8"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
 &"the_council_is_divided": -1,
-&"the_king_is_alive": 0,
-&"the_prophecy_is_fulfilled": -1
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_knight_has_broken_his_oath": 0,
+&"the_princess_is_captured": -1,
+&"the_sword_of_legends_is_forged": -1,
+&"the_tavern_is_open": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_council_is_divided": 0.926387284046442,
-&"the_king_is_alive": 0.0,
-&"the_prophecy_is_fulfilled": 0.3735965435812589
+&"the_council_is_divided": 0.5805453618715405,
+&"the_elves_have_withdrawn_from_the_realm": 0.6869095407493867,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_princess_is_captured": 0.34368149526874425,
+&"the_sword_of_legends_is_forged": 0.6527228068914086,
+&"the_tavern_is_open": 0.15260999864970234
 })
 
 [sub_resource type="Resource" id="Resource_qpoc5"]
-resource_name = "Lyssara Ashveil"
+resource_name = "Sylwen Starcaller"
 script = ExtResource("2_6nor5")
-name = "Lyssara Ashveil"
+name = "Sylwen Starcaller"
 perceivedWorld = SubResource("Resource_4wni8")
 idealWorld = SubResource("Resource_g35xy")
 
 [sub_resource type="Resource" id="Resource_rd25m"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 1,
-&"the_council_is_divided": -1,
-&"the_dragons_are_awake": -1,
-&"the_plague_spreads_in_the_south": -1,
-&"the_prophecy_is_fulfilled": 1,
-&"the_throne_is_empty": -1
+&"the_council_is_divided": 0,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_king_is_alive": -1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": -1,
+&"the_tavern_is_open": 1,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.6629832896384332,
-&"the_council_is_divided": 0.2631787089276378,
-&"the_dragons_are_awake": 0.915393603811421,
-&"the_plague_spreads_in_the_south": 0.11923254092640843,
-&"the_prophecy_is_fulfilled": 0.1,
-&"the_throne_is_empty": 0.6378030340889408
+&"the_council_is_divided": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_king_is_alive": 0.1,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.5463319706652724,
+&"the_queen_has_vanished": 0.3942238795348348,
+&"the_tavern_is_open": 0.1,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_4yh7m"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
 &"the_council_is_divided": -1,
-&"the_dragons_are_awake": -1,
-&"the_plague_spreads_in_the_south": 1,
-&"the_prophecy_is_fulfilled": -1,
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_king_is_alive": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 1,
+&"the_tavern_is_open": 0,
 &"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_council_is_divided": 0.1,
-&"the_dragons_are_awake": 0.1,
-&"the_plague_spreads_in_the_south": 0.27995277959200754,
-&"the_prophecy_is_fulfilled": 0.3011161560877766,
-&"the_throne_is_empty": 0.1
+&"the_council_is_divided": 0.8059074287659118,
+&"the_elves_have_withdrawn_from_the_realm": 0.5170016111686269,
+&"the_king_is_alive": 0.5019270443007922,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.3285794079611948,
+&"the_queen_has_vanished": 0.1,
+&"the_tavern_is_open": 0.0,
+&"the_throne_is_empty": 0.9646481287345134
 })
 
 [sub_resource type="Resource" id="Resource_72jpc"]
-resource_name = "Taro Blackvale"
+resource_name = "Kael Bloodhelm"
 script = ExtResource("2_6nor5")
-name = "Taro Blackvale"
+name = "Kael Bloodhelm"
 perceivedWorld = SubResource("Resource_4yh7m")
 idealWorld = SubResource("Resource_rd25m")
 
 [sub_resource type="Resource" id="Resource_1uskn"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": -1,
-&"the_council_is_divided": 0,
-&"the_mages_are_in_hiding": -1,
-&"the_plague_spreads_in_the_south": -1,
-&"the_prophecy_is_fulfilled": 1
+&"the_mines_are_abandoned": -1,
+&"the_priests_are_praying_for_rain": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.7016028307840837,
-&"the_council_is_divided": 0.0,
-&"the_mages_are_in_hiding": 0.4005191517729442,
-&"the_plague_spreads_in_the_south": 0.9266365801216404,
-&"the_prophecy_is_fulfilled": 0.23769070185157284
+&"the_mines_are_abandoned": 0.507080855222074,
+&"the_priests_are_praying_for_rain": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_6my4i"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 1,
-&"the_council_is_divided": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_plague_spreads_in_the_south": 1,
-&"the_prophecy_is_fulfilled": 1
+&"the_mines_are_abandoned": 1,
+&"the_priests_are_praying_for_rain": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.6257683518146377,
-&"the_council_is_divided": 0.0,
-&"the_mages_are_in_hiding": 0.0,
-&"the_plague_spreads_in_the_south": 0.12376089520709342,
-&"the_prophecy_is_fulfilled": 0.39569869547673864
+&"the_mines_are_abandoned": 0.10753820380873667,
+&"the_priests_are_praying_for_rain": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_20cxo"]
-resource_name = "Gareth Nightbloom"
+resource_name = "Maelis Windwalker"
 script = ExtResource("2_6nor5")
-name = "Gareth Nightbloom"
+name = "Maelis Windwalker"
 perceivedWorld = SubResource("Resource_6my4i")
 idealWorld = SubResource("Resource_1uskn")
 
 [sub_resource type="Resource" id="Resource_r3lg0"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 0,
-&"the_dragons_are_awake": 1,
-&"the_tavern_is_open": 1
+&"the_dark_lord_has_returned": 0,
+&"the_elves_have_withdrawn_from_the_realm": -1,
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": 0,
+&"the_queen_has_vanished": 1,
+&"the_royal_banner_flies_high": -1,
+&"the_tavern_is_open": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.0,
-&"the_dragons_are_awake": 0.9792859448563722,
-&"the_tavern_is_open": 0.6982578664089065
+&"the_dark_lord_has_returned": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.5157031831007817,
+&"the_knight_has_broken_his_oath": 0.7718061114253899,
+&"the_mines_are_abandoned": 0.0,
+&"the_queen_has_vanished": 0.1,
+&"the_royal_banner_flies_high": 0.3150022382504478,
+&"the_tavern_is_open": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_f7q6i"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": -1,
-&"the_dragons_are_awake": -1,
-&"the_tavern_is_open": 0
+&"the_dark_lord_has_returned": 0,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": 1,
+&"the_queen_has_vanished": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_tavern_is_open": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.7207329730151313,
-&"the_dragons_are_awake": 0.6804488049029843,
-&"the_tavern_is_open": 0.0
+&"the_dark_lord_has_returned": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_knight_has_broken_his_oath": 0.7547258904423713,
+&"the_mines_are_abandoned": 0.11017972522302225,
+&"the_queen_has_vanished": 0.0,
+&"the_royal_banner_flies_high": 0.0,
+&"the_tavern_is_open": 0.919093843236518
 })
 
 [sub_resource type="Resource" id="Resource_5ojjb"]
-resource_name = "Seraphine Lightbringer"
+resource_name = "Eodan Quicktongue"
 script = ExtResource("2_6nor5")
-name = "Seraphine Lightbringer"
+name = "Eodan Quicktongue"
 perceivedWorld = SubResource("Resource_f7q6i")
 idealWorld = SubResource("Resource_r3lg0")
 
 [sub_resource type="Resource" id="Resource_1fuxk"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_plague_spreads_in_the_south": 1
+&"the_dark_lord_has_returned": 1,
+&"the_king_is_alive": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": 0,
+&"the_sword_of_legends_is_forged": 1,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_plague_spreads_in_the_south": 0.36734478750436034
+&"the_dark_lord_has_returned": 0.7615807335583432,
+&"the_king_is_alive": 0.0,
+&"the_priests_are_praying_for_rain": 0.1,
+&"the_princess_is_captured": 0.7019497221384777,
+&"the_queen_has_vanished": 0.0,
+&"the_sword_of_legends_is_forged": 0.1949911512765867,
+&"the_throne_is_empty": 0.4228296679564251
 })
 
 [sub_resource type="Resource" id="Resource_nil70"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_plague_spreads_in_the_south": 1
+&"the_dark_lord_has_returned": 0,
+&"the_king_is_alive": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": 0,
+&"the_sword_of_legends_is_forged": 0,
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_plague_spreads_in_the_south": 0.6738636750212393
+&"the_dark_lord_has_returned": 0.0,
+&"the_king_is_alive": 0.0,
+&"the_priests_are_praying_for_rain": 0.3678008910664436,
+&"the_princess_is_captured": 0.1,
+&"the_queen_has_vanished": 0.0,
+&"the_sword_of_legends_is_forged": 0.0,
+&"the_throne_is_empty": 0.39063441192820847
 })
 
 [sub_resource type="Resource" id="Resource_et7lg"]
-resource_name = "Lyssara Sunborn"
+resource_name = "Corvus Whitespear"
 script = ExtResource("2_6nor5")
-name = "Lyssara Sunborn"
+name = "Corvus Whitespear"
 perceivedWorld = SubResource("Resource_nil70")
 idealWorld = SubResource("Resource_1fuxk")
 
 [sub_resource type="Resource" id="Resource_iaour"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": -1,
-&"the_dragons_are_awake": 1,
-&"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_prophecy_is_fulfilled": -1
+&"the_knight_has_broken_his_oath": -1,
+&"the_mines_are_abandoned": -1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": 0,
+&"the_royal_banner_flies_high": -1,
+&"the_sword_of_legends_is_forged": 0,
+&"the_tavern_is_open": -1,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.8551973509437134,
-&"the_dragons_are_awake": 0.1,
-&"the_king_is_alive": 0.4666246320968477,
-&"the_mages_are_in_hiding": 0.1,
-&"the_prophecy_is_fulfilled": 0.19051195652315828
+&"the_knight_has_broken_his_oath": 0.31614788761198004,
+&"the_mines_are_abandoned": 0.6946783969358051,
+&"the_priests_are_praying_for_rain": 0.41674013571025825,
+&"the_princess_is_captured": 0.0,
+&"the_royal_banner_flies_high": 0.1,
+&"the_sword_of_legends_is_forged": 0.0,
+&"the_tavern_is_open": 0.4737544697710756,
+&"the_throne_is_empty": 0.8639829380972354
 })
 
 [sub_resource type="Resource" id="Resource_qydi2"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 1,
-&"the_dragons_are_awake": 0,
-&"the_king_is_alive": 1,
-&"the_mages_are_in_hiding": 0,
-&"the_prophecy_is_fulfilled": 0
+&"the_knight_has_broken_his_oath": -1,
+&"the_mines_are_abandoned": 1,
+&"the_priests_are_praying_for_rain": -1,
+&"the_princess_is_captured": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_sword_of_legends_is_forged": 1,
+&"the_tavern_is_open": 0,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.7661509501040512,
-&"the_dragons_are_awake": 0.0,
-&"the_king_is_alive": 0.2714790210444983,
-&"the_mages_are_in_hiding": 0.0,
-&"the_prophecy_is_fulfilled": 0.0
+&"the_knight_has_broken_his_oath": 0.6842007765783416,
+&"the_mines_are_abandoned": 0.1,
+&"the_priests_are_praying_for_rain": 0.9280666825417346,
+&"the_princess_is_captured": 0.8533683904191257,
+&"the_royal_banner_flies_high": 0.0,
+&"the_sword_of_legends_is_forged": 0.38974836588971407,
+&"the_tavern_is_open": 0.0,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_hphbt"]
-resource_name = "Draven Stormwatch"
+resource_name = "Arannis Blackspire"
 script = ExtResource("2_6nor5")
-name = "Draven Stormwatch"
+name = "Arannis Blackspire"
 perceivedWorld = SubResource("Resource_qydi2")
 idealWorld = SubResource("Resource_iaour")
 
 [sub_resource type="Resource" id="Resource_04nc3"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": -1,
-&"the_council_is_divided": -1,
-&"the_mages_are_in_hiding": 0
+&"the_mines_are_abandoned": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.5899143485640974,
-&"the_council_is_divided": 0.5634946090512764,
-&"the_mages_are_in_hiding": 0.0
+&"the_mines_are_abandoned": 0.8216096160395765
 })
 
 [sub_resource type="Resource" id="Resource_vfyb6"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_council_is_divided": 1,
-&"the_mages_are_in_hiding": 0
+&"the_mines_are_abandoned": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_council_is_divided": 0.1,
-&"the_mages_are_in_hiding": 0.0
+&"the_mines_are_abandoned": 0.3
 })
 
 [sub_resource type="Resource" id="Resource_mojf8"]
-resource_name = "Finnian Of_The_North"
+resource_name = "Arannis Falclaw"
 script = ExtResource("2_6nor5")
-name = "Finnian Of_The_North"
+name = "Arannis Falclaw"
 perceivedWorld = SubResource("Resource_vfyb6")
 idealWorld = SubResource("Resource_04nc3")
 
 [sub_resource type="Resource" id="Resource_b7kq0"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 1,
-&"the_council_is_divided": 0,
-&"the_dragons_are_awake": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_prophecy_is_fulfilled": 0
+&"the_dragons_are_awake": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.7464012386967309,
-&"the_council_is_divided": 0.0,
-&"the_dragons_are_awake": 0.35624361466269305,
-&"the_mages_are_in_hiding": 0.7298297856941656,
-&"the_prophecy_is_fulfilled": 0.0
+&"the_dragons_are_awake": 0.2605808643490362
 })
 
 [sub_resource type="Resource" id="Resource_lceao"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": -1,
-&"the_council_is_divided": 1,
-&"the_dragons_are_awake": 0,
-&"the_mages_are_in_hiding": 1,
-&"the_prophecy_is_fulfilled": 1
+&"the_dragons_are_awake": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.6292388964950929,
-&"the_council_is_divided": 0.4582195628181171,
-&"the_dragons_are_awake": 0.0,
-&"the_mages_are_in_hiding": 0.7656897123969468,
-&"the_prophecy_is_fulfilled": 0.2688202762478658
+&"the_dragons_are_awake": 0.3534102613684885
 })
 
 [sub_resource type="Resource" id="Resource_8oacb"]
-resource_name = "Auren Windwalker"
+resource_name = "Aldrin Hollowvale"
 script = ExtResource("2_6nor5")
-name = "Auren Windwalker"
+name = "Aldrin Hollowvale"
 perceivedWorld = SubResource("Resource_lceao")
 idealWorld = SubResource("Resource_b7kq0")
 
 [sub_resource type="Resource" id="Resource_px5mc"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 1,
-&"the_throne_is_empty": 0
+&"the_council_is_divided": -1,
+&"the_dark_lord_has_returned": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.48464686983344424,
-&"the_throne_is_empty": 0.0
+&"the_council_is_divided": 1.0,
+&"the_dark_lord_has_returned": 0.1783814249727094
 })
 
 [sub_resource type="Resource" id="Resource_merp6"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 1,
-&"the_throne_is_empty": 1
+&"the_council_is_divided": 1,
+&"the_dark_lord_has_returned": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.4026043655794961,
-&"the_throne_is_empty": 0.3482503674526113
+&"the_council_is_divided": 0.2357432013280623,
+&"the_dark_lord_has_returned": 0.2757894323549352
 })
 
 [sub_resource type="Resource" id="Resource_n0o7m"]
-resource_name = "Neris Of_The_Rose"
+resource_name = "Lira Oakenshield"
 script = ExtResource("2_6nor5")
-name = "Neris Of_The_Rose"
+name = "Lira Oakenshield"
 perceivedWorld = SubResource("Resource_merp6")
 idealWorld = SubResource("Resource_px5mc")
 
 [sub_resource type="Resource" id="Resource_6ons0"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": -1,
-&"the_castle_is_under_siege": -1,
 &"the_council_is_divided": -1,
-&"the_plague_spreads_in_the_south": -1
+&"the_dark_lord_has_returned": -1,
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_king_is_alive": 1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 0,
+&"the_royal_banner_flies_high": 0,
+&"the_sword_of_legends_is_forged": -1,
+&"the_tavern_is_open": -1,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.5867233393574731,
-&"the_castle_is_under_siege": 0.10344396253223066,
-&"the_council_is_divided": 0.7182597907008992,
-&"the_plague_spreads_in_the_south": 0.1
+&"the_council_is_divided": 0.17871858391337905,
+&"the_dark_lord_has_returned": 0.7425660049988458,
+&"the_elves_have_withdrawn_from_the_realm": 0.10447561204931208,
+&"the_king_is_alive": 0.1,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_princess_is_captured": 0.1,
+&"the_queen_has_vanished": 0.0,
+&"the_royal_banner_flies_high": 0.0,
+&"the_sword_of_legends_is_forged": 0.36590699883503264,
+&"the_tavern_is_open": 0.9715947457489906,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_lfx16"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": -1,
-&"the_castle_is_under_siege": -1,
-&"the_council_is_divided": 1,
-&"the_plague_spreads_in_the_south": 1
+&"the_council_is_divided": -1,
+&"the_dark_lord_has_returned": 0,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_king_is_alive": 1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": -1,
+&"the_royal_banner_flies_high": -1,
+&"the_sword_of_legends_is_forged": 1,
+&"the_tavern_is_open": 0,
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.7277658682234688,
-&"the_castle_is_under_siege": 0.44695455851822874,
-&"the_council_is_divided": 0.2983633620104201,
-&"the_plague_spreads_in_the_south": 0.31715899363216615
+&"the_council_is_divided": 0.1,
+&"the_dark_lord_has_returned": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_king_is_alive": 0.5512489143198536,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_princess_is_captured": 0.6972284287200381,
+&"the_queen_has_vanished": 0.3928854686713192,
+&"the_royal_banner_flies_high": 0.832190546508682,
+&"the_sword_of_legends_is_forged": 0.1,
+&"the_tavern_is_open": 0.0,
+&"the_throne_is_empty": 0.6960122916592223
 })
 
 [sub_resource type="Resource" id="Resource_avi3q"]
-resource_name = "Eodan Stonefist"
+resource_name = "Isolde Stonehaven"
 script = ExtResource("2_6nor5")
-name = "Eodan Stonefist"
+name = "Isolde Stonehaven"
 perceivedWorld = SubResource("Resource_lfx16")
 idealWorld = SubResource("Resource_6ons0")
 
 [sub_resource type="Resource" id="Resource_ooj26"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 1,
-&"the_prophecy_is_fulfilled": 1
+&"the_council_is_divided": -1,
+&"the_dark_lord_has_returned": 1,
+&"the_dragons_are_awake": 0,
+&"the_elves_have_withdrawn_from_the_realm": -1,
+&"the_king_is_alive": 1,
+&"the_knight_has_broken_his_oath": 1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_princess_is_captured": 1,
+&"the_sword_of_legends_is_forged": 0,
+&"the_tavern_is_open": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_mages_are_in_hiding": 0.9505364360749488,
-&"the_prophecy_is_fulfilled": 0.7993648727448334
+&"the_council_is_divided": 0.592546783060227,
+&"the_dark_lord_has_returned": 0.35323082423949775,
+&"the_dragons_are_awake": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.1,
+&"the_king_is_alive": 0.8700364623218374,
+&"the_knight_has_broken_his_oath": 0.538372703094919,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_princess_is_captured": 0.5840361152409171,
+&"the_sword_of_legends_is_forged": 0.0,
+&"the_tavern_is_open": 0.6523948612083954
 })
 
 [sub_resource type="Resource" id="Resource_3jeyp"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 0,
-&"the_prophecy_is_fulfilled": -1
+&"the_council_is_divided": 0,
+&"the_dark_lord_has_returned": -1,
+&"the_dragons_are_awake": 0,
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_king_is_alive": 0,
+&"the_knight_has_broken_his_oath": 0,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_princess_is_captured": -1,
+&"the_sword_of_legends_is_forged": 1,
+&"the_tavern_is_open": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_mages_are_in_hiding": 0.0,
-&"the_prophecy_is_fulfilled": 0.9597753418644326
+&"the_council_is_divided": 0.0,
+&"the_dark_lord_has_returned": 0.22769446105366964,
+&"the_dragons_are_awake": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.8123118430177969,
+&"the_king_is_alive": 0.0,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_orcs_have_crossed_the_border": 0.23854474057750127,
+&"the_princess_is_captured": 0.5844419098483812,
+&"the_sword_of_legends_is_forged": 0.1906384820004747,
+&"the_tavern_is_open": 0.5715657963664246
 })
 
 [sub_resource type="Resource" id="Resource_tk0vu"]
-resource_name = "Thorin Shadowstep"
+resource_name = "Rhiannon Wavecutter"
 script = ExtResource("2_6nor5")
-name = "Thorin Shadowstep"
+name = "Rhiannon Wavecutter"
 perceivedWorld = SubResource("Resource_3jeyp")
 idealWorld = SubResource("Resource_ooj26")
 
 [sub_resource type="Resource" id="Resource_lauey"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": -1
+&"the_knight_has_broken_his_oath": 0,
+&"the_priests_are_praying_for_rain": 0,
+&"the_queen_has_vanished": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_mages_are_in_hiding": 0.7109474660485637
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_queen_has_vanished": 0.2653315260234577
 })
 
 [sub_resource type="Resource" id="Resource_siaom"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_mages_are_in_hiding": 1
+&"the_knight_has_broken_his_oath": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_queen_has_vanished": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_mages_are_in_hiding": 0.2715360546751468
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_priests_are_praying_for_rain": 0.21354756079185752,
+&"the_queen_has_vanished": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_rykef"]
-resource_name = "Saphira Of_The_Rose"
+resource_name = "Duric Ironroot"
 script = ExtResource("2_6nor5")
-name = "Saphira Of_The_Rose"
+name = "Duric Ironroot"
 perceivedWorld = SubResource("Resource_siaom")
 idealWorld = SubResource("Resource_lauey")
 
 [sub_resource type="Resource" id="Resource_uhent"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0
+&"the_council_is_divided": -1,
+&"the_king_is_alive": -1,
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": 0,
+&"the_orcs_have_crossed_the_border": -1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0
+&"the_council_is_divided": 0.1199444752576947,
+&"the_king_is_alive": 0.3870611823253502,
+&"the_knight_has_broken_his_oath": 0.5300422015442297,
+&"the_mines_are_abandoned": 0.0,
+&"the_orcs_have_crossed_the_border": 0.9304358607258162,
+&"the_priests_are_praying_for_rain": 0.9002619476045393,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.5332413766968236
 })
 
 [sub_resource type="Resource" id="Resource_is7uw"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": -1
+&"the_council_is_divided": 1,
+&"the_king_is_alive": 1,
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": 0,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_priests_are_praying_for_rain": 1,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.6419091045472985
+&"the_council_is_divided": 0.19339597883569024,
+&"the_king_is_alive": 0.5852170668168593,
+&"the_knight_has_broken_his_oath": 0.1,
+&"the_mines_are_abandoned": 0.0,
+&"the_orcs_have_crossed_the_border": 0.4348299801221629,
+&"the_priests_are_praying_for_rain": 0.1,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.23232829880129033
 })
 
 [sub_resource type="Resource" id="Resource_e5ea7"]
-resource_name = "Finnian Shadowglen"
+resource_name = "Garric Nightwind"
 script = ExtResource("2_6nor5")
-name = "Finnian Shadowglen"
+name = "Garric Nightwind"
 perceivedWorld = SubResource("Resource_is7uw")
 idealWorld = SubResource("Resource_uhent")
 
 [sub_resource type="Resource" id="Resource_lpi8f"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": -1,
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_tavern_is_open": 1,
-&"the_throne_is_empty": -1
+&"the_council_is_divided": 1,
+&"the_dark_lord_has_returned": -1,
+&"the_dragons_are_awake": 1,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_king_is_alive": -1,
+&"the_mines_are_abandoned": 0,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": -1,
+&"the_royal_banner_flies_high": 1,
+&"the_tavern_is_open": -1,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.9135143216483624,
-&"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.0,
-&"the_tavern_is_open": 0.39596441099989504,
+&"the_council_is_divided": 0.1,
+&"the_dark_lord_has_returned": 0.7162098268312013,
+&"the_dragons_are_awake": 0.6476580627301842,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_king_is_alive": 0.39431680728423346,
+&"the_mines_are_abandoned": 0.0,
+&"the_princess_is_captured": 0.9237080796705044,
+&"the_queen_has_vanished": 0.6822112482103384,
+&"the_royal_banner_flies_high": 0.3097639348745069,
+&"the_tavern_is_open": 0.28754063424973225,
 &"the_throne_is_empty": 0.1
 })
 
 [sub_resource type="Resource" id="Resource_pms5w"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_castle_is_under_siege": 1,
-&"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_tavern_is_open": -1,
+&"the_council_is_divided": 0,
+&"the_dark_lord_has_returned": -1,
+&"the_dragons_are_awake": -1,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_king_is_alive": 0,
+&"the_mines_are_abandoned": 1,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": -1,
+&"the_royal_banner_flies_high": 0,
+&"the_tavern_is_open": 1,
 &"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_castle_is_under_siege": 0.1,
-&"the_king_is_alive": 0.855696956840663,
-&"the_mages_are_in_hiding": 0.8004751732560588,
-&"the_tavern_is_open": 0.7813745675831558,
-&"the_throne_is_empty": 0.7004357883796009
+&"the_council_is_divided": 0.0,
+&"the_dark_lord_has_returned": 0.3877317673003215,
+&"the_dragons_are_awake": 0.43264828095243263,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_king_is_alive": 0.0,
+&"the_mines_are_abandoned": 0.5935122350894593,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 0.802893511016261,
+&"the_royal_banner_flies_high": 0.0,
+&"the_tavern_is_open": 0.7854915384776681,
+&"the_throne_is_empty": 0.1
 })
 
 [sub_resource type="Resource" id="Resource_sne75"]
-resource_name = "Varek Stonehaven"
+resource_name = "Arannis Starcaller"
 script = ExtResource("2_6nor5")
-name = "Varek Stonehaven"
+name = "Arannis Starcaller"
 perceivedWorld = SubResource("Resource_pms5w")
 idealWorld = SubResource("Resource_lpi8f")
 
 [sub_resource type="Resource" id="Resource_xjoa4"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 1,
-&"the_castle_is_under_siege": -1,
-&"the_council_is_divided": 1,
-&"the_dragons_are_awake": -1,
+&"the_elves_have_withdrawn_from_the_realm": 1,
 &"the_king_is_alive": -1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_prophecy_is_fulfilled": -1
+&"the_knight_has_broken_his_oath": 1,
+&"the_mines_are_abandoned": 1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_queen_has_vanished": 0,
+&"the_royal_banner_flies_high": 1,
+&"the_tavern_is_open": 0,
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.6072058003618758,
-&"the_castle_is_under_siege": 0.9589247030799166,
-&"the_council_is_divided": 0.6437853570603184,
-&"the_dragons_are_awake": 0.21134606844602816,
-&"the_king_is_alive": 0.9726047475101274,
-&"the_plague_spreads_in_the_south": 0.0,
-&"the_prophecy_is_fulfilled": 0.4954713350173726
+&"the_elves_have_withdrawn_from_the_realm": 0.330444217327852,
+&"the_king_is_alive": 0.5331222437743424,
+&"the_knight_has_broken_his_oath": 0.526345557488758,
+&"the_mines_are_abandoned": 0.1,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_queen_has_vanished": 0.0,
+&"the_royal_banner_flies_high": 0.5302533088747056,
+&"the_tavern_is_open": 0.0,
+&"the_throne_is_empty": 0.936106786933909
 })
 
 [sub_resource type="Resource" id="Resource_8k0b8"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_castle_is_under_siege": 1,
-&"the_council_is_divided": -1,
-&"the_dragons_are_awake": 0,
+&"the_elves_have_withdrawn_from_the_realm": -1,
 &"the_king_is_alive": -1,
-&"the_plague_spreads_in_the_south": 0,
-&"the_prophecy_is_fulfilled": 0
+&"the_knight_has_broken_his_oath": -1,
+&"the_mines_are_abandoned": -1,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_queen_has_vanished": 1,
+&"the_royal_banner_flies_high": 1,
+&"the_tavern_is_open": 0,
+&"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_castle_is_under_siege": 0.9195964077634424,
-&"the_council_is_divided": 0.1,
-&"the_dragons_are_awake": 0.0,
-&"the_king_is_alive": 0.6228848935143861,
-&"the_plague_spreads_in_the_south": 0.0,
-&"the_prophecy_is_fulfilled": 0.0
+&"the_elves_have_withdrawn_from_the_realm": 0.1,
+&"the_king_is_alive": 0.17184654381119732,
+&"the_knight_has_broken_his_oath": 0.1,
+&"the_mines_are_abandoned": 0.26438397749947556,
+&"the_orcs_have_crossed_the_border": 0.3707258741057381,
+&"the_queen_has_vanished": 0.4066824407294565,
+&"the_royal_banner_flies_high": 0.2037101139116105,
+&"the_tavern_is_open": 0.0,
+&"the_throne_is_empty": 0.7406006246359689
 })
 
 [sub_resource type="Resource" id="Resource_p3xr8"]
-resource_name = "Gareth Stoneguard"
+resource_name = "Selene Brightshore"
 script = ExtResource("2_6nor5")
-name = "Gareth Stoneguard"
+name = "Selene Brightshore"
 perceivedWorld = SubResource("Resource_8k0b8")
 idealWorld = SubResource("Resource_xjoa4")
 
 [sub_resource type="Resource" id="Resource_mygd6"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 1,
-&"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_tavern_is_open": -1,
-&"the_throne_is_empty": 1
+&"the_elves_have_withdrawn_from_the_realm": 1,
+&"the_king_is_alive": 0,
+&"the_mines_are_abandoned": -1,
+&"the_orcs_have_crossed_the_border": 1,
+&"the_priests_are_praying_for_rain": 0,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": 1,
+&"the_royal_banner_flies_high": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.5046205015272299,
-&"the_king_is_alive": 0.941356973834314,
-&"the_mages_are_in_hiding": 0.3274839400263529,
-&"the_tavern_is_open": 0.5358689550020036,
-&"the_throne_is_empty": 0.6830942042490051
+&"the_elves_have_withdrawn_from_the_realm": 0.3198482797920939,
+&"the_king_is_alive": 0.0,
+&"the_mines_are_abandoned": 0.29119627172783374,
+&"the_orcs_have_crossed_the_border": 0.5485970270315866,
+&"the_priests_are_praying_for_rain": 0.0,
+&"the_princess_is_captured": 0.6664366673261899,
+&"the_queen_has_vanished": 0.3876089303105844,
+&"the_royal_banner_flies_high": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_pv4ou"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
+&"the_elves_have_withdrawn_from_the_realm": -1,
 &"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_tavern_is_open": -1,
-&"the_throne_is_empty": 0
+&"the_mines_are_abandoned": 1,
+&"the_orcs_have_crossed_the_border": 0,
+&"the_priests_are_praying_for_rain": 1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": -1,
+&"the_royal_banner_flies_high": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.8820676478194925,
 &"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.0,
-&"the_tavern_is_open": 0.1781523774892437,
-&"the_throne_is_empty": 0.0
+&"the_mines_are_abandoned": 0.9944797641829,
+&"the_orcs_have_crossed_the_border": 0.0,
+&"the_priests_are_praying_for_rain": 0.8415270374761725,
+&"the_princess_is_captured": 0.1,
+&"the_queen_has_vanished": 0.9733440752520108,
+&"the_royal_banner_flies_high": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_82n1q"]
-resource_name = "Velora Starcrest"
+resource_name = "Corvus Nightbloom"
 script = ExtResource("2_6nor5")
-name = "Velora Starcrest"
+name = "Corvus Nightbloom"
 perceivedWorld = SubResource("Resource_pv4ou")
 idealWorld = SubResource("Resource_mygd6")
 
 [sub_resource type="Resource" id="Resource_ywdu8"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": -1,
-&"the_dragons_are_awake": 1,
-&"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": 1,
-&"the_plague_spreads_in_the_south": -1,
-&"the_throne_is_empty": 1
+&"the_dark_lord_has_returned": 1,
+&"the_knight_has_broken_his_oath": -1,
+&"the_mines_are_abandoned": 0,
+&"the_priests_are_praying_for_rain": -1,
+&"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.22914964644343705,
-&"the_dragons_are_awake": 0.41264329995492066,
-&"the_king_is_alive": 0.22573160891418995,
-&"the_mages_are_in_hiding": 0.4388083578662179,
-&"the_plague_spreads_in_the_south": 0.8599989051215418,
-&"the_throne_is_empty": 0.13725454313621416
+&"the_dark_lord_has_returned": 0.9206044205480298,
+&"the_knight_has_broken_his_oath": 0.8951139183697763,
+&"the_mines_are_abandoned": 0.0,
+&"the_priests_are_praying_for_rain": 0.7558313657602562,
+&"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_7jn0k"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_army_is_marching_north": 0,
-&"the_dragons_are_awake": -1,
-&"the_king_is_alive": 1,
-&"the_mages_are_in_hiding": 0,
-&"the_plague_spreads_in_the_south": 0,
+&"the_dark_lord_has_returned": 1,
+&"the_knight_has_broken_his_oath": 0,
+&"the_mines_are_abandoned": 0,
+&"the_priests_are_praying_for_rain": -1,
 &"the_throne_is_empty": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_army_is_marching_north": 0.0,
-&"the_dragons_are_awake": 0.8951327940976179,
-&"the_king_is_alive": 0.1,
-&"the_mages_are_in_hiding": 0.0,
-&"the_plague_spreads_in_the_south": 0.0,
-&"the_throne_is_empty": 0.46802654407241434
+&"the_dark_lord_has_returned": 0.1,
+&"the_knight_has_broken_his_oath": 0.0,
+&"the_mines_are_abandoned": 0.0,
+&"the_priests_are_praying_for_rain": 0.950274239480882,
+&"the_throne_is_empty": 0.2938974833915268
 })
 
 [sub_resource type="Resource" id="Resource_iij6x"]
-resource_name = "Arion Brightshore"
+resource_name = "Finnian Starcrest"
 script = ExtResource("2_6nor5")
-name = "Arion Brightshore"
+name = "Finnian Starcrest"
 perceivedWorld = SubResource("Resource_7jn0k")
 idealWorld = SubResource("Resource_ywdu8")
 
 [sub_resource type="Resource" id="Resource_6lk3w"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": -1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": 1,
-&"the_throne_is_empty": -1
+&"the_dark_lord_has_returned": 1,
+&"the_sword_of_legends_is_forged": 0,
+&"the_tavern_is_open": -1,
+&"the_throne_is_empty": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.7884797296079465,
-&"the_mages_are_in_hiding": 0.5776967587903117,
-&"the_prophecy_is_fulfilled": 0.472419359147667,
-&"the_tavern_is_open": 0.130585225748727,
-&"the_throne_is_empty": 0.8816689092360461
+&"the_dark_lord_has_returned": 0.7608118425433371,
+&"the_sword_of_legends_is_forged": 0.0,
+&"the_tavern_is_open": 0.9970700258339174,
+&"the_throne_is_empty": 0.8420597458058433
 })
 
 [sub_resource type="Resource" id="Resource_36rhh"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": -1,
-&"the_prophecy_is_fulfilled": -1,
-&"the_tavern_is_open": -1,
+&"the_dark_lord_has_returned": 1,
+&"the_sword_of_legends_is_forged": -1,
+&"the_tavern_is_open": 1,
 &"the_throne_is_empty": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.20276173663703623,
-&"the_prophecy_is_fulfilled": 0.19440586487117656,
-&"the_tavern_is_open": 0.13159082620574153,
+&"the_dark_lord_has_returned": 0.4786477536015036,
+&"the_sword_of_legends_is_forged": 0.6062272427289191,
+&"the_tavern_is_open": 0.18816432425431304,
 &"the_throne_is_empty": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_w2pok"]
-resource_name = "Nyra Oakenshield"
+resource_name = "Coren Swampwalker"
 script = ExtResource("2_6nor5")
-name = "Nyra Oakenshield"
+name = "Coren Swampwalker"
 perceivedWorld = SubResource("Resource_36rhh")
 idealWorld = SubResource("Resource_6lk3w")
 
 [sub_resource type="Resource" id="Resource_8lrwe"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": -1,
-&"the_mages_are_in_hiding": 1,
-&"the_prophecy_is_fulfilled": -1
+&"the_council_is_divided": 0,
+&"the_elves_have_withdrawn_from_the_realm": 0,
+&"the_orcs_have_crossed_the_border": -1,
+&"the_princess_is_captured": 1,
+&"the_queen_has_vanished": 0,
+&"the_tavern_is_open": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.5686398966982436,
-&"the_mages_are_in_hiding": 0.7769517324831047,
-&"the_prophecy_is_fulfilled": 0.1806008115255294
+&"the_council_is_divided": 0.0,
+&"the_elves_have_withdrawn_from_the_realm": 0.0,
+&"the_orcs_have_crossed_the_border": 0.4520757353920951,
+&"the_princess_is_captured": 0.1,
+&"the_queen_has_vanished": 0.0,
+&"the_tavern_is_open": 0.0
 })
 
 [sub_resource type="Resource" id="Resource_kamrp"]
 script = ExtResource("1_j1f24")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 0,
-&"the_mages_are_in_hiding": 0,
-&"the_prophecy_is_fulfilled": 0
+&"the_council_is_divided": -1,
+&"the_elves_have_withdrawn_from_the_realm": -1,
+&"the_orcs_have_crossed_the_border": -1,
+&"the_princess_is_captured": -1,
+&"the_queen_has_vanished": 0,
+&"the_tavern_is_open": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.0,
-&"the_mages_are_in_hiding": 0.0,
-&"the_prophecy_is_fulfilled": 0.0
+&"the_council_is_divided": 0.718603779844127,
+&"the_elves_have_withdrawn_from_the_realm": 0.1,
+&"the_orcs_have_crossed_the_border": 0.9310281919562108,
+&"the_princess_is_captured": 0.1,
+&"the_queen_has_vanished": 0.0,
+&"the_tavern_is_open": 0.8256387700512431
 })
 
 [sub_resource type="Resource" id="Resource_3ww7o"]
-resource_name = "Lorian Quicktongue"
+resource_name = "Malric Emberfall"
 script = ExtResource("2_6nor5")
-name = "Lorian Quicktongue"
+name = "Malric Emberfall"
 perceivedWorld = SubResource("Resource_kamrp")
 idealWorld = SubResource("Resource_8lrwe")
 

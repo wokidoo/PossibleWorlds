@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dndl4u3cnfvbp"]
 
-[ext_resource type="Resource" uid="uid://cxdirjkcc0hx" path="res://middle_earth.tres" id="1_pqm7f"]
+[ext_resource type="Resource" uid="uid://cyal0fx2ut1h0" path="res://middle_earth.tres" id="1_pqm7f"]
 
 [sub_resource type="GDScript" id="GDScript_pqm7f"]
 resource_name = "discussion_floor"
@@ -8,7 +8,7 @@ script/source = "extends Node2D
 
 @export var ws:WorldState
 @export var max_npc_count: int = 20
-@onready var details_panel: VBoxContainer = %DetailsPanel
+@onready var details_panel: PanelContainer = %DetailsPanel
 
 
 func _ready() -> void:
@@ -28,99 +28,62 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(\"ui_menu\"):
 		print(\"Pausing\")
 		get_tree().paused = !get_tree().paused
+
+func _unhandled_input(event: InputEvent) -> void:
+	if details_panel.is_selected and event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and event.is_pressed():
+		details_panel.hide()
 "
 
 [sub_resource type="GDScript" id="GDScript_a7lfq"]
 resource_name = "details_panel"
-script/source = "extends VBoxContainer
-@export var character:Character
+script/source = "extends PanelContainer
+@export var character:Character:
+	set(value):
+		if character != null and character.changed.is_connected(_on_character_changed):
+			character.changed.disconnect(_on_character_changed)
+		character = value
+		if character != null:
+			character.changed.connect(_on_character_changed)
 
 var is_selected:bool = false
 
 var info_box:VBoxContainer
 var name_label:Label
-var panel_container: PanelContainer
-var p_container: VBoxContainer
-var i_container: VBoxContainer
+
+var perceived_tree: PropositionTree
+var ideal_tree:PropositionTree
 
 func _ready() -> void:
-	panel_container = PanelContainer.new()
+	perceived_tree = PropositionTree.new()
+	ideal_tree = PropositionTree.new()
+	
 	info_box = VBoxContainer.new()
 	info_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	info_box.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	info_box.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	name_label = Label.new()
 	var p_w_label:= Label.new()
 	var i_w_label:= Label.new()
 	p_w_label.text = \"Perceived World\"
 	i_w_label.text = \"Ideal World\"
-	
-	p_container = VBoxContainer.new()
-	i_container = VBoxContainer.new()
+
+	perceived_tree.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	ideal_tree.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	info_box.add_child(name_label)
 	info_box.add_child(HSeparator.new())
 	info_box.add_child(p_w_label)
-	info_box.add_child(HSeparator.new())
-	info_box.add_child(p_container)
+	info_box.add_child(perceived_tree)
 	info_box.add_child(HSeparator.new())
 	info_box.add_child(i_w_label)
+	info_box.add_child(ideal_tree)
 	info_box.add_child(HSeparator.new())
-	info_box.add_child(i_container)
-	info_box.add_child(HSeparator.new())
-	panel_container.add_child(info_box)
-	add_child(panel_container)
+	add_child(info_box)
 	
 func update_gui():
 	if character == null:
 			return
-	name_label.text = \"%s | I vs P : (%.2f)\" % [character.name,character.ideal_perceived_tension()]
-	for n in p_container.get_children():
-		n.queue_free()
-	for i in i_container.get_children():
-		i.queue_free()
-	for p in character.perceivedWorld.propositions.keys():
-		var truth:PW.TriBool = character.get_perceived(p)
-		var h_box:= HBoxContainer.new()
-		var p_label := Label.new()
-		var t_label := Label.new()
-		if truth == PW.TriBool.FALSE:
-			t_label.add_theme_color_override(\"font_color\",Color.RED)
-		elif  truth == PW.TriBool.TRUE:
-			t_label.add_theme_color_override(\"font_color\",Color.SEA_GREEN)
-		else:
-			t_label.add_theme_color_override(\"font_color\",Color.GOLDENROD)
-		p_label.text = p
-		t_label.text = PW.TriBoolString[truth]
-		h_box.add_child(p_label)
-		h_box.add_child(VSeparator.new())
-		h_box.add_child(t_label)
-		h_box.add_child(VSeparator.new())
-		var conf_l := Label.new()
-		conf_l.text = \"Conf: %.2f\" % character.get_perceived_confidence(p)
-		h_box.add_child(conf_l)
-		p_container.add_child(h_box)
-	
-	for i in character.idealWorld.propositions.keys():
-		var truth:PW.TriBool = character.get_ideal(i)
-		var h_box:= HBoxContainer.new()
-		var p_label := Label.new()
-		var t_label := Label.new()
-		if truth == PW.TriBool.FALSE:
-			t_label.add_theme_color_override(\"font_color\",Color.RED)
-		elif  truth == PW.TriBool.TRUE:
-			t_label.add_theme_color_override(\"font_color\",Color.SEA_GREEN)
-		else:
-			t_label.add_theme_color_override(\"font_color\",Color.GOLDENROD)
-		p_label.text = i
-		t_label.text = PW.TriBoolString[truth]
-		h_box.add_child(p_label)
-		h_box.add_child(VSeparator.new())
-		h_box.add_child(t_label)
-		h_box.add_child(VSeparator.new())
-		var conf_l := Label.new()
-		conf_l.text = \"Conf: %.2f\" % character.get_ideal_confidence(i)
-		h_box.add_child(conf_l)
-		i_container.add_child(h_box)
-
+	name_label.text = \"%s | Internal Tension : (%.2f)\" % [character.name,character.total_internal_tension()]
+	perceived_tree.world = character.perceivedWorld
+	ideal_tree.world = character.idealWorld
 
 func _show_character_details(c:Character):
 	if is_selected:
@@ -136,17 +99,16 @@ func _hide_character_details(c:Character):
 	update_gui()
 	visible = false
 
+func _on_character_changed():
+	name_label.text = \"%s | Internal Tension : (%.2f)\" % [character.name,character.total_internal_tension()]
+
+
 func _on_character_clicked_on(c:Character):
 	character = c
 	is_selected = true
 	update_gui()
 	self.grab_focus()
 	visible = true
-
-func _input(event: InputEvent) -> void:
-	if is_selected and event is InputEventMouseButton and not event.button_index == MOUSE_BUTTON_WHEEL_UP and not event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-		is_selected = false
-		_hide_character_details(character)
 "
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a7lfq"]
@@ -174,20 +136,14 @@ max_npc_count = 10
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Camera2D/CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="DetailsPanel" type="VBoxContainer" parent="Camera2D/CanvasLayer/ScrollContainer"]
+[node name="DetailsPanel" type="PanelContainer" parent="Camera2D/CanvasLayer"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
-mouse_filter = 2
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = SubResource("GDScript_a7lfq")
 
 [node name="WorldBoundaries" type="StaticBody2D" parent="."]

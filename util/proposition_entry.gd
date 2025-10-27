@@ -78,3 +78,6 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	data.set("world",world)
 	data.set("proposition",prop_label.text)
 	return data
+
+func _on_item_mouse_selected(position: Vector2, mButtonIdx:int):
+	pass

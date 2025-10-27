@@ -5,11 +5,9 @@ const SCENE = preload("uid://cwdwqqw1spy0y")
 
 @onready var name_line_edit: LineEdit = %NameLineEdit
 @onready var instance_id_label: RichTextLabel = %InstanceIDLabel
-@onready var perceived_proposition_v_box_container: VBoxContainer = %PerceivedPropositionVBoxContainer
-@onready var ideal_proposition_v_box_container: VBoxContainer = %IdealPropositionVBoxContainer
-@onready var perceived_foldable_container: FoldableContainer = %PerceivedFoldableContainer
-@onready var ideal_foldable_container: FoldableContainer = %IdealFoldableContainer
-@onready var tension_tree: Tree = %TensionTree
+@onready var perceived_proposition_tree: PropositionTree = %"Perceived World"
+@onready var ideal_proposition_tree: PropositionTree = %"Ideal World"
+@onready var tension_tree: Tree = %Tension
 @onready var add_proposition_button: Button = %AddPropositionButton
 @onready var add_proposition_line_edit: LineEdit = %AddPropositionLineEdit
 
@@ -23,6 +21,8 @@ static func create_entry(world_state:WorldState, c:Character) -> CharacterDetail
 	return e
 
 func _ready() -> void:
+	perceived_proposition_tree.set_column_title_alignment(0,HORIZONTAL_ALIGNMENT_CENTER)
+	ideal_proposition_tree.set_column_title_alignment(0,HORIZONTAL_ALIGNMENT_CENTER)
 	name_line_edit.text_submitted.connect(func(text):
 		character.name = text
 	)
@@ -38,6 +38,8 @@ func _ready() -> void:
 			add_proposition_line_edit.clear()
 			_build_tension_tree()
 	)
+	tension_tree.item_edited.connect(_on_tension_item_edited)
+	
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	return typeof(data) == TYPE_DICTIONARY and data.has("proposition") and data.has("world")
@@ -55,15 +57,11 @@ func set_character(c:Character):
 		character = c
 		character.changed.connect(_populate_proposition_containers)
 		character.changed.connect(_build_tension_tree)
+		perceived_proposition_tree.world = character.perceivedWorld
+		ideal_proposition_tree.world = character.idealWorld
+		
 		_populate_proposition_containers()
 		_build_tension_tree()
-
-func _tension_text(perceived:int, ideal:int) -> String:
-	if perceived == PW.TriBool.UNKNOWN or ideal == PW.TriBool.UNKNOWN:
-		return "UNKNOWN"
-	elif perceived == ideal:
-		return "AGREE"
-	return "DISAGREE"
 
 func _set_tension_color(item:TreeItem,column:int):
 	var v :int= item.get_range(column) as int -1
@@ -96,16 +94,8 @@ func _on_tension_item_edited() -> void:
 			return
 
 func _populate_proposition_containers():
-	for n in perceived_proposition_v_box_container.get_children():
-		n.queue_free()
-	for n in ideal_proposition_v_box_container.get_children():
-		n.queue_free()
-	for p in character.perceivedWorld.propositions:
-		var entry:PropositionEntry= PropositionEntry.create_entry(character.perceivedWorld,p)
-		perceived_proposition_v_box_container.add_child(entry)
-	for p in character.idealWorld.propositions:
-		var entry:PropositionEntry= PropositionEntry.create_entry(character.idealWorld,p)
-		ideal_proposition_v_box_container.add_child(entry)
+	perceived_proposition_tree._rebuild_tree()
+	ideal_proposition_tree._rebuild_tree()
 
 func _refresh_proposition_tree_cells():
 	for child in tension_tree.get_root().get_children():
@@ -120,34 +110,34 @@ func _refresh_proposition_tree_cells():
 
 func _refresh_tension_cell(item:TreeItem) -> void:
 	var p := item.get_text(0)
-	var perceived := character.get_perceived(p)
-	var ideal := character.get_ideal(p)
-	item.set_text(3, _tension_text(perceived, ideal))
-	match item.get_text(3):
-		"AGREE":
-			item.set_custom_color(3, Color.WEB_GREEN)
-		"DISAGREE":
-			item.set_custom_color(3, Color.FIREBRICK)
-		"UNKNOWN":
-			item.set_custom_color(3, Color.GOLDENROD)
-		_:
-			item.set_custom_color(3, Color.PURPLE)
-	
+	var tension:float = character.internal_tension(p)
+	var color_a:Color = Color.GREEN
+	var color_b:Color = Color.RED
+	item.set_text(3, "%.2f" % tension)
+	var color_weight:float = tension/2.0
+	item.set_custom_color(3,color_a.lerp(color_b,color_weight))
 	item.set_text_alignment(3, HORIZONTAL_ALIGNMENT_CENTER)
-	tension_tree.set_column_title(3, "Tension Perceived vs Ideal (%.2f)" % character.ideal_perceived_tension())
+	tension_tree.set_column_title(3, "Total Internal Tension (%.2f)" % character.total_internal_tension())
 
 func _build_tension_tree():
 	name_line_edit.text = character.name
 	instance_id_label.text = "[b]Instance ID:[/b] %s" % character.get_instance_id()
 
 	tension_tree.clear()
-	tension_tree.item_edited.connect(_on_tension_item_edited)
 	var root = tension_tree.create_item()
 	tension_tree.set_column_title(0, "Proposition")
 	tension_tree.set_column_title(1, "Perceived")
 	tension_tree.set_column_title(2, "Ideal")
-	tension_tree.set_column_title(3, "Tension Perceived vs Ideal (%.2f)" % character.ideal_perceived_tension())
-
+	tension_tree.set_column_title(3, "Tension Perceived vs Ideal (%.2f)" % character.total_internal_tension())
+	tension_tree.set_column_expand(0,true)
+	tension_tree.set_column_expand(1,true)
+	tension_tree.set_column_expand(2,true)
+	tension_tree.set_column_expand(3,true)
+	tension_tree.set_column_expand_ratio(0,6)
+	tension_tree.set_column_expand_ratio(1,4)
+	tension_tree.set_column_expand_ratio(2,4)
+	tension_tree.set_column_expand_ratio(3,1)
+	
 	for p in character.perceivedWorld.propositions.keys():
 		var child := tension_tree.create_item(root)
 		child.set_text(0, p)

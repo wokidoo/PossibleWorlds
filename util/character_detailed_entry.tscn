@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwdwqqw1spy0y"]
+[gd_scene load_steps=3 format=3 uid="uid://cwdwqqw1spy0y"]
 
 [ext_resource type="Script" uid="uid://bprxnu6nhthi0" path="res://util/character_detailed_entry.gd" id="1_sbyml"]
+[ext_resource type="Script" uid="uid://pccn57hbatie" path="res://util/proposition_tree.gd" id="2_srhnh"]
 
 [node name="CharacterDetailedEntry" type="Control"]
 layout_mode = 3
@@ -87,40 +88,33 @@ size_flags_horizontal = 3
 layout_mode = 2
 mouse_filter = 1
 
-[node name="PerceivedFoldableContainer" type="FoldableContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Perceived World" type="Tree" parent="MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 1
-folded = true
-title = "Perceived World"
+size_flags_vertical = 3
+column_titles_visible = true
+script = ExtResource("2_srhnh")
+metadata/_custom_type_script = "uid://pccn57hbatie"
+metadata/_tab_index = 0
 
-[node name="PerceivedPropositionVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/PerceivedFoldableContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="IdealFoldableContainer" type="FoldableContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-folded = true
-title = "Ideal World"
-
-[node name="IdealPropositionVBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/IdealFoldableContainer"]
+[node name="Ideal World" type="Tree" parent="MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+size_flags_vertical = 3
+column_titles_visible = true
+script = ExtResource("2_srhnh")
+metadata/_custom_type_script = "uid://pccn57hbatie"
+metadata/_tab_index = 1
 
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="TensionTree" type="Tree" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Tension" type="Tree" parent="MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
@@ -129,3 +123,4 @@ column_titles_visible = true
 hide_folding = true
 hide_root = true
 select_mode = 1
+metadata/_tab_index = 2

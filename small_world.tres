@@ -8,7 +8,7 @@
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
 &"the_king_is_alive": -1,
-&"the_moon_is_blood_red": 1,
+&"the_moon_is_blood_red": -1,
 &"the_princess_is_captured": -1,
 &"the_queen_has_vanished": -1,
 &"the_sword_of_legends_is_forged": -1
@@ -66,40 +66,40 @@ idealWorld = SubResource("Resource_3bqoy")
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
 &"the_king_is_alive": 1,
-&"the_moon_is_blood_red": 0,
-&"the_princess_is_captured": 1,
-&"the_queen_has_vanished": 1,
+&"the_moon_is_blood_red": 1,
+&"the_princess_is_captured": 0,
+&"the_queen_has_vanished": -1,
 &"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.5605444229013858,
-&"the_moon_is_blood_red": 0.0,
-&"the_princess_is_captured": 0.27597737606688283,
-&"the_queen_has_vanished": 0.2579003876253443,
+&"the_king_is_alive": 1.0,
+&"the_moon_is_blood_red": 1.0,
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 1.0,
 &"the_sword_of_legends_is_forged": 0.4852799525078921
 })
 
 [sub_resource type="Resource" id="Resource_4cq8m"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 1,
+&"the_king_is_alive": -1,
 &"the_moon_is_blood_red": -1,
-&"the_princess_is_captured": 1,
+&"the_princess_is_captured": 0,
 &"the_queen_has_vanished": -1,
-&"the_sword_of_legends_is_forged": 0
+&"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
 &"the_king_is_alive": 1.0,
 &"the_moon_is_blood_red": 0.6558656277595661,
-&"the_princess_is_captured": 0.255864413950176,
-&"the_queen_has_vanished": 0.7173123516645515,
-&"the_sword_of_legends_is_forged": 0.0
+&"the_princess_is_captured": 0.0,
+&"the_queen_has_vanished": 1.0,
+&"the_sword_of_legends_is_forged": 1.0
 })
 
 [sub_resource type="Resource" id="Resource_wfhpt"]
-resource_name = "Alaric Stormwatch"
+resource_name = "Alaric Stormwatcher"
 script = ExtResource("2_3bqoy")
-name = "Alaric Stormwatch"
+name = "Alaric Stormwatcher"
 perceivedWorld = SubResource("Resource_4cq8m")
 idealWorld = SubResource("Resource_3vvkr")
 
@@ -109,32 +109,32 @@ propositions = Dictionary[StringName, int]({
 &"the_king_is_alive": -1,
 &"the_moon_is_blood_red": 1,
 &"the_princess_is_captured": -1,
-&"the_queen_has_vanished": 0,
+&"the_queen_has_vanished": 1,
 &"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.5899204856042763,
-&"the_moon_is_blood_red": 0.6978300771801501,
-&"the_princess_is_captured": 0.8638195169735499,
-&"the_queen_has_vanished": 0.0,
-&"the_sword_of_legends_is_forged": 0.934844871807725
+&"the_king_is_alive": 1.0,
+&"the_moon_is_blood_red": 1.0,
+&"the_princess_is_captured": 1.0,
+&"the_queen_has_vanished": 1.0,
+&"the_sword_of_legends_is_forged": 1.0
 })
 
 [sub_resource type="Resource" id="Resource_jkqwa"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 0,
-&"the_moon_is_blood_red": 0,
-&"the_princess_is_captured": 0,
+&"the_king_is_alive": 1,
+&"the_moon_is_blood_red": -1,
+&"the_princess_is_captured": 1,
 &"the_queen_has_vanished": -1,
 &"the_sword_of_legends_is_forged": 1
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.0,
-&"the_moon_is_blood_red": 0.0,
-&"the_princess_is_captured": 0.0,
-&"the_queen_has_vanished": 0.918465370412458,
-&"the_sword_of_legends_is_forged": 0.7766888244579849
+&"the_king_is_alive": 1.0,
+&"the_moon_is_blood_red": 1.0,
+&"the_princess_is_captured": 1.0,
+&"the_queen_has_vanished": 1.0,
+&"the_sword_of_legends_is_forged": 1.0
 })
 
 [sub_resource type="Resource" id="Resource_kp3hw"]
@@ -270,14 +270,14 @@ idealWorld = SubResource("Resource_0kms0")
 [sub_resource type="Resource" id="Resource_awcbv"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 0,
+&"the_king_is_alive": 1,
 &"the_moon_is_blood_red": 0,
 &"the_princess_is_captured": 0,
 &"the_queen_has_vanished": 0,
 &"the_sword_of_legends_is_forged": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.0,
+&"the_king_is_alive": 1.0,
 &"the_moon_is_blood_red": 0.0,
 &"the_princess_is_captured": 0.0,
 &"the_queen_has_vanished": 0.0,
@@ -287,14 +287,14 @@ confidence = Dictionary[StringName, float]({
 [sub_resource type="Resource" id="Resource_783lt"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"the_king_is_alive": 0,
+&"the_king_is_alive": -1,
 &"the_moon_is_blood_red": 0,
 &"the_princess_is_captured": 0,
 &"the_queen_has_vanished": 0,
 &"the_sword_of_legends_is_forged": 0
 })
 confidence = Dictionary[StringName, float]({
-&"the_king_is_alive": 0.0,
+&"the_king_is_alive": 1.0,
 &"the_moon_is_blood_red": 0.0,
 &"the_princess_is_captured": 0.0,
 &"the_queen_has_vanished": 0.0,
@@ -311,7 +311,6 @@ idealWorld = SubResource("Resource_awcbv")
 [sub_resource type="Resource" id="Resource_5ll6k"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"lol": 0,
 &"the_king_is_alive": -1,
 &"the_moon_is_blood_red": 0,
 &"the_princess_is_captured": -1,
@@ -319,7 +318,6 @@ propositions = Dictionary[StringName, int]({
 &"the_sword_of_legends_is_forged": 1
 })
 confidence = Dictionary[StringName, float]({
-&"lol": 0.0,
 &"the_king_is_alive": 0.31265564647064753,
 &"the_moon_is_blood_red": 0.0,
 &"the_princess_is_captured": 0.26495037139623,
@@ -330,7 +328,6 @@ confidence = Dictionary[StringName, float]({
 [sub_resource type="Resource" id="Resource_6qa5p"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
-&"lol": 0,
 &"the_king_is_alive": 1,
 &"the_moon_is_blood_red": -1,
 &"the_princess_is_captured": -1,
@@ -338,7 +335,6 @@ propositions = Dictionary[StringName, int]({
 &"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
-&"lol": 0.0,
 &"the_king_is_alive": 0.4414645980829119,
 &"the_moon_is_blood_red": 0.1339536146860582,
 &"the_princess_is_captured": 0.8363072646831654,
@@ -401,29 +397,29 @@ propositions = Dictionary[StringName, int]({
 &"the_moon_is_blood_red": -1,
 &"the_princess_is_captured": 1,
 &"the_queen_has_vanished": -1,
-&"the_sword_of_legends_is_forged": 0
+&"the_sword_of_legends_is_forged": 1
 })
 confidence = Dictionary[StringName, float]({
 &"the_king_is_alive": 0.983862141034933,
 &"the_moon_is_blood_red": 0.9887238513822352,
 &"the_princess_is_captured": 0.8179717478807922,
 &"the_queen_has_vanished": 0.6291165951054205,
-&"the_sword_of_legends_is_forged": 0.0
+&"the_sword_of_legends_is_forged": 1.0
 })
 
 [sub_resource type="Resource" id="Resource_4u2ds"]
 script = ExtResource("1_e565o")
 propositions = Dictionary[StringName, int]({
 &"the_king_is_alive": -1,
-&"the_moon_is_blood_red": 0,
-&"the_princess_is_captured": 0,
+&"the_moon_is_blood_red": -1,
+&"the_princess_is_captured": 1,
 &"the_queen_has_vanished": -1,
 &"the_sword_of_legends_is_forged": -1
 })
 confidence = Dictionary[StringName, float]({
 &"the_king_is_alive": 0.5413496070989308,
-&"the_moon_is_blood_red": 0.0,
-&"the_princess_is_captured": 0.0,
+&"the_moon_is_blood_red": 1.0,
+&"the_princess_is_captured": 1.0,
 &"the_queen_has_vanished": 0.6235957745988793,
 &"the_sword_of_legends_is_forged": 0.8122784824521446
 })
