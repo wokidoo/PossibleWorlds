@@ -34,6 +34,8 @@ func _on_new_world():
 	add_child(fileDia)
 	fileDia.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	fileDia.file_filter_toggle_enabled = false
+	fileDia.access = FileDialog.ACCESS_USERDATA
+	
 	fileDia.add_filter("*.tres")
 	fileDia.add_filter("*.res")
 	fileDia.folder_creation_enabled = false
@@ -49,6 +51,7 @@ func _on_new_world():
 func _on_save_as():
 	var we :WorldEditor = get_tree().root.get_node("WorldEditor")
 	var fileDia := FileDialog.new()
+	fileDia.access = FileDialog.ACCESS_USERDATA
 	add_child(fileDia)
 	fileDia.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	fileDia.file_filter_toggle_enabled = false
@@ -66,6 +69,7 @@ func _on_load():
 	add_child(fileDia)
 	fileDia.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	fileDia.file_filter_toggle_enabled = false
+	fileDia.access = FileDialog.ACCESS_USERDATA
 	fileDia.add_filter("*.tres")
 	fileDia.add_filter("*.res")
 	fileDia.folder_creation_enabled = false

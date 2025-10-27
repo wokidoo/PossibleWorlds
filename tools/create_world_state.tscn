@@ -155,7 +155,7 @@ func _ready() -> void:
 	confirm_button.pressed.connect(_on_confirm_button_pressed)
 	
 func _on_confirm_button_pressed():
-	var path = \"res://%s.tres\" % file_name_line_edit.text.to_snake_case()
+	var path = \"user://%s.tres\" % file_name_line_edit.text.to_snake_case()
 	if FileAccess.file_exists(path):
 		DirAccess.remove_absolute(path)
 	var world_state :WorldState = WorldState.new()

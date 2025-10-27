@@ -91,10 +91,11 @@ mouse_filter = 1
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 2
 
 [node name="Perceived World" type="Tree" parent="MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 column_titles_visible = true
@@ -114,7 +115,6 @@ metadata/_tab_index = 1
 
 [node name="Tension" type="Tree" parent="MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
