@@ -41,23 +41,31 @@ func _ready() -> void:
 				pass
 	)
 	new_proposition_line_edit.text_submitted.connect(func(text):
+		if ws == null:
+			return
 		ws.canonWorld.set_truth(text,PW.TriBool.UNKNOWN)
 		new_proposition_line_edit.clear()
 		proposition_tree._rebuild_tree()
 	)
 	confirm_proposition_button.pressed.connect(func():
+		if ws == null:
+			return
 		ws.canonWorld.setTruth(new_proposition_line_edit.text,PW.TriBool.UNKNOWN)
 		new_proposition_line_edit.clear()
 		proposition_tree._rebuild_tree()
 	)
 	
 	new_character_line_edit.text_submitted.connect(func(text):
+		if ws == null:
+			return
 		var c := Character.new()
 		c.name = text
 		ws.add_character(c)
 		new_character_line_edit.clear()
 	)
 	confirm_character_button.pressed.connect(func():
+		if ws == null:
+			return
 		var c := Character.new()
 		c.name = new_character_line_edit.text
 		ws.add_character(c)
@@ -70,6 +78,10 @@ func _on_world_state_set(value):
 	if ws != null && ws.changed.is_connected(_on_world_state_changed):
 		ws.changed.disconnect(_on_world_state_changed)
 	ws = value
+	if ws == null:
+		world_name_line_edit.editable = false
+	else:
+		world_name_line_edit.editable = true
 	ws.changed.connect(_on_world_state_changed)
 	for n in details_panel_container.get_children():
 		n.queue_free()

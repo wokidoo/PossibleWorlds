@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://2btlytq8itcv"]
+[gd_scene load_steps=6 format=3 uid="uid://2btlytq8itcv"]
 
 [ext_resource type="Script" uid="uid://bj00qg4yjy8gv" path="res://util/world_editor.gd" id="1_k5jdq"]
 [ext_resource type="Script" uid="uid://bjes4a4vdflln" path="res://util/file_menu_button.gd" id="2_e3m7w"]
 [ext_resource type="Script" uid="uid://dpu62j8jk71hk" path="res://util/character_tree.gd" id="3_e3m7w"]
+[ext_resource type="Script" uid="uid://c45dynqydbq8o" path="res://util/edit_menu_button.gd" id="3_mbgw5"]
 [ext_resource type="Script" uid="uid://pccn57hbatie" path="res://util/proposition_tree.gd" id="3_yfia2"]
 
 [node name="WorldEditor" type="Control"]
@@ -28,10 +29,21 @@ layout_mode = 2
 
 [node name="FileMenuButton" type="MenuButton" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 text = "File"
+flat = false
 script = ExtResource("2_e3m7w")
 metadata/_custom_type_script = "uid://bjes4a4vdflln"
+
+[node name="EditMenu" type="MenuButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "Edit"
+flat = false
+script = ExtResource("3_mbgw5")
+metadata/_custom_type_script = "uid://c45dynqydbq8o"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -64,6 +76,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "<No WorldState Loaded>
 "
+editable = false
 
 [node name="LeftTabContainer" type="TabContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer"]
 unique_name_in_owner = true

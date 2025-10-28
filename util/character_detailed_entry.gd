@@ -94,8 +94,9 @@ func _on_tension_item_edited() -> void:
 			return
 
 func _populate_proposition_containers():
-	perceived_proposition_tree._rebuild_tree()
-	ideal_proposition_tree._rebuild_tree()
+	pass
+	#perceived_proposition_tree._rebuild_tree()
+	#ideal_proposition_tree._rebuild_tree()
 
 func _refresh_proposition_tree_cells():
 	for child in tension_tree.get_root().get_children():
@@ -132,7 +133,7 @@ func _build_tension_tree():
 	tension_tree.set_column_expand(0,true)
 	tension_tree.set_column_expand(1,true)
 	tension_tree.set_column_expand(2,true)
-	tension_tree.set_column_expand(3,true)
+	tension_tree.set_column_expand(3,false)
 	tension_tree.set_column_expand_ratio(0,6)
 	tension_tree.set_column_expand_ratio(1,4)
 	tension_tree.set_column_expand_ratio(2,4)

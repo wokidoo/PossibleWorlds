@@ -42,8 +42,62 @@ const fantasy_propositions := [
 	\"the_portal_to_the_void_is_open\",
 	\"the_priests_are_praying_for_rain\",
 	\"the_crown_jewel_is_missing\",
-    \"the_elves_have_withdrawn_from_the_realm\"
+	\"the_elves_have_withdrawn_from_the_realm\",
+	\"the_mountains_are_trembling\",
+	\"the_stars_have_fallen_from_the_sky\",
+	\"the_dead_are_walking_again\",
+	\"the_ocean_is_rising\",
+	\"the_fire_temple_is_in_ruins\",
+	\"the_high_priest_is_corrupted\",
+	\"the_goblins_have_formed_an_alliance\",
+	\"the_dwarves_refuse_to_trade\",
+	\"the_winter_last_ten_years\",
+	\"the_curse_on_the_land_is_lifted\",
+	\"the_ancient_library_is_found\",
+	\"the_emperor_demands_tribute\",
+	\"the_crows_gather_over_the_city\",
+	\"the_river_is_poisoned\",
+	\"the_walls_of_the_capital_are_crumbling\",
+	\"the_time_of_heroes_has_ended\",
+	\"the_people_sing_of_rebellion\",
+	\"the_bells_of_doom_are_tolling\",
+	\"the_spies_have_been_exposed\",
+	\"the_relic_of_light_is_lost\",
+	\"the_mercenaries_refuse_to_fight\",
+	\"the_children_of_the_forest_are_seen_again\",
+	\"the_blacksmiths_forge_is_cold\",
+	\"the_royal_heir_is_in_disguise\",
+	\"the_griffins_have_migrated_west\",
+	\"the_highlands_are_in_flames\",
+	\"the_temple_bells_have_fallen_silent\",
+	\"the_merchant_guild_controls_the_city\",
+	\"the_storm_has_not_ceased_for_days\",
+	\"the_pact_with_the_demons_is_broken\",
+	\"the_farmers_are_fleeing_the_fields\",
+	\"the_bloodline_of_kings_is_extinct\",
+	\"the_new_star_has_appeared_in_the_sky\",
+	\"the_underground_city_is_awake\",
+	\"the_messenger_never_arrived\",
+	\"the_guard_captain_is_missing\",
+	\"the_court_jester_knows_too_much\",
+	\"the_iron_gate_is_rusted_shut\",
+	\"the_saints_have_fallen_from_grace\",
+	\"the_ancestors_whisper_in_the_wind\",
+	\"the_golden_age_is_over\",
+	\"the_dragon_riders_have_returned\",
+	\"the_lighthouse_has_gone_dark\",
+	\"the_giant_has_awoken_in_the_north\",
+	\"the_treasury_is_empty\",
+	\"the_prisoners_have_escaped\",
+	\"the_borders_are_unmarked\",
+	\"the_skyships_are_grounded\",
+	\"the_royal_council_meets_in_secret\",
+	\"the_last_seer_has_died\",
+	\"the_new_religion_spreads_in_the_east\",
+	\"the_hidden_valley_is_revealed\",
+	\"the_eternal_flame_is_extinguished\"
 ]
+
 
 var fantasy_first_names := [
 	\"Kael\",
@@ -152,6 +206,7 @@ var fantasy_last_names := [
 ]
 
 func _ready() -> void:
+	proposition_spin_box.max_value = fantasy_propositions.size()
 	confirm_button.pressed.connect(_on_confirm_button_pressed)
 	
 func _on_confirm_button_pressed():
@@ -232,6 +287,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -248,6 +304,10 @@ layout_mode = 2
 text = "middle_earth"
 placeholder_text = "middle_earth"
 expand_to_text_length = true
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = ".tres"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

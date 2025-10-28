@@ -7,8 +7,6 @@ func _init() -> void:
 	text = "File"
 
 func _ready() -> void:
-	custom_minimum_size = Vector2(25,25)
-	flat = false
 	self.get_popup().add_item("New World")
 	self.get_popup().add_item("Save As")
 	self.get_popup().add_item("Load")
@@ -17,7 +15,6 @@ func _ready() -> void:
 	
 func _on_item_pressed(id):
 	var item_name := get_popup().get_item_text(id)
-	print(item_name)
 	match item_name:
 		"New World":
 			_on_new_world()

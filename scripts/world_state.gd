@@ -21,7 +21,7 @@ func _init() -> void:
 	if canonWorld == null:
 		canonWorld = World.new()
 	if characters == null:
-		characters = []
+		characters.resize(1)
 	call_deferred("_reconnect_signals")
 
 func _reconnect_signals():

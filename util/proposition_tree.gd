@@ -3,18 +3,19 @@ extends Tree
 
 @export var world: World:
 	set(value):
-		if world != null and world.changed.is_connected(_on_world_changed):
-			world.changed.disconnect(_on_world_changed)
+		if world and world.changed.is_connected(_rebuild_tree):
+			world.changed.disconnect(_rebuild_tree)
 		world = value
 		if world != null:
-			world.changed.connect(_on_world_changed)
+			world.changed.connect(_rebuild_tree)
 			_rebuild_tree()
 
-var root:TreeItem
+var sorted_by_name:bool = false
+var sorted_by_value:bool = false
+var sorted_by_confidence:bool = false
 
 func _ready():
 	columns = 3
-	root = create_item()
 	hide_root = true
 	column_titles_visible = true
 	set_column_title(0,"Proposition")
@@ -24,7 +25,7 @@ func _ready():
 	set_column_title(2,"Confidence")
 	set_column_expand(0,true)
 	set_column_expand(1,true)
-	set_column_expand(2,true)
+	set_column_expand(2,false)
 	set_column_expand_ratio(0,6)
 	set_column_expand_ratio(1,2)
 	set_column_expand_ratio(2,1)
@@ -37,14 +38,75 @@ func _ready():
 			"Value":
 				var truth:int = item.get_range(1) as int
 				world.set_truth(id,truth-1)
-				call_deferred("_rebuild_tree")
 			"Confidence":
 				var conf:float = item.get_range(2)
 				world.set_confidence(id,conf)
-				call_deferred("_rebuild_tree")
 			_:
 				pass
 	)
+	
+	self.column_title_clicked.connect(func(col:int,_button:int):
+		match col:
+			0:
+				sort_by_name()
+			1:
+				sort_by_value()
+			2:
+				sort_by_confidence()
+			_:
+				pass
+	)
+
+func sort_by_name():
+	var items:Array[TreeItem] = get_root().get_children()
+	if sorted_by_name:
+		items.sort_custom(func(a,b):
+			return a.get_text(0) > b.get_text(0)
+		)
+		sorted_by_name = false
+	else:
+		items.sort_custom(func(a,b):
+			return a.get_text(0) < b.get_text(0)
+		)
+		sorted_by_name = true
+	for item in get_root().get_children():
+		get_root().remove_child(item)
+	for item in items:
+		get_root().add_child(item)
+
+func sort_by_value():
+	var items:Array[TreeItem] = get_root().get_children()
+	if sorted_by_value:
+		items.sort_custom(func(a,b):
+			return int(a.get_range(1)) < int(b.get_range(1))
+		)
+		sorted_by_value = false
+	else:
+		items.sort_custom(func(a,b):
+			return int(a.get_range(1)) > int(b.get_range(1))
+		)
+		sorted_by_value = true
+	for item in get_root().get_children():
+		get_root().remove_child(item)
+	for item in items:
+		get_root().add_child(item)
+
+func sort_by_confidence():
+	var items:Array[TreeItem] = get_root().get_children()
+	if sorted_by_confidence:
+		items.sort_custom(func(a,b):
+			return float(a.get_range(2)) < float(b.get_range(2))
+		)
+		sorted_by_confidence = false
+	else:
+		items.sort_custom(func(a,b):
+			return float(a.get_range(2)) > float(b.get_range(2))
+		)
+		sorted_by_confidence = true
+	for item in get_root().get_children():
+		get_root().remove_child(item)
+	for item in items:
+		get_root().add_child(item)
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	return typeof(data) == TYPE_DICTIONARY and data.has("proposition") and data.has("world")
@@ -84,7 +146,7 @@ func _rebuild_tree():
 	self.clear()
 	if world == null:
 		return
-	root = create_item()
+	self.create_item()
 	for id in world.propositions:
 		var col:= create_item(get_root())
 		col.set_cell_mode(0,TreeItem.CELL_MODE_STRING)
@@ -107,6 +169,3 @@ func _rebuild_tree():
 				col.set_custom_color(1,Color.WEB_GREEN)
 			_:
 				pass
-
-func _on_world_changed():
-	call_deferred("_rebuild_tree")
