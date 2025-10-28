@@ -24,10 +24,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="FileMenuButton" type="MenuButton" parent="VBoxContainer/HBoxContainer"]
+[node name="FileMenuButton" type="MenuButton" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
@@ -36,7 +42,7 @@ flat = false
 script = ExtResource("2_e3m7w")
 metadata/_custom_type_script = "uid://bjes4a4vdflln"
 
-[node name="EditMenu" type="MenuButton" parent="VBoxContainer/HBoxContainer"]
+[node name="EditMenu" type="MenuButton" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
@@ -112,39 +118,49 @@ size_flags_vertical = 3
 script = ExtResource("3_e3m7w")
 metadata/_custom_type_script = "uid://dpu62j8jk71hk"
 
-[node name="CreatePropositionHBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_right = 7
+
+[node name="CreatePropositionHBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/MarginContainer3"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreatePropositionHBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/MarginContainer3/CreatePropositionHBoxContainer"]
 layout_mode = 2
 text = "New Proposition:"
 
-[node name="NewPropositionLineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreatePropositionHBoxContainer"]
+[node name="NewPropositionLineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/MarginContainer3/CreatePropositionHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ConfirmPropositionButton" type="Button" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreatePropositionHBoxContainer"]
+[node name="ConfirmPropositionButton" type="Button" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/MarginContainer3/CreatePropositionHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Add"
 
-[node name="CreateCharacterHBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_right = 7
+
+[node name="CreateCharacterHBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreateCharacterHBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/MarginContainer2/CreateCharacterHBoxContainer"]
 layout_mode = 2
 text = "New Character:"
 
-[node name="NewCharacterLineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreateCharacterHBoxContainer"]
+[node name="NewCharacterLineEdit" type="LineEdit" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/MarginContainer2/CreateCharacterHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ConfirmCharacterButton" type="Button" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/CreateCharacterHBoxContainer"]
+[node name="ConfirmCharacterButton" type="Button" parent="VBoxContainer/MarginContainer/HSplitContainer/LeftPanel/VBoxContainer/MarginContainer2/CreateCharacterHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Add"

@@ -27,10 +27,6 @@ window/per_pixel_transparency/allowed=true
 
 project/assembly_name="PossibleWorlds"
 
-[gui]
-
-theme/custom="uid://dqjyjvbede7j2"
-
 [input]
 
 ui_menu={

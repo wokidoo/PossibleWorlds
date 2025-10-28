@@ -6,6 +6,8 @@ extends Resource
 		name = value
 		resource_name = name
 		emit_changed()
+	get():
+		return resource_name
 		
 @export var perceivedWorld: World: 
 	set(value):
@@ -63,7 +65,7 @@ func _on_proposition_removed(id:StringName):
 func ideal_perceived_diff() -> Array[StringName]:
 	return perceivedWorld.diff(idealWorld)
 
-func internal_tension(id:StringName):
+func internal_tension(id:StringName) -> float:
 	return perceivedWorld.tension(id,idealWorld)
 
 func total_internal_tension() -> float:
@@ -97,7 +99,7 @@ func set_perceived(id:String,truth:PW.TriBool,confidence:float = 1.0) ->bool:
 func set_perceived_confidence(id:String,confidence:float) -> bool:
 	return perceivedWorld.set_confidence(id,confidence)
 
-func get_ideal(id:String) ->PW.TriBool:
+func get_ideal(id:String) -> PW.TriBool:
 	return idealWorld.get_truth(id)
 
 func get_ideal_confidence(id:String) -> float:
