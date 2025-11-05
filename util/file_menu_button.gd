@@ -5,12 +5,11 @@ signal loaded_world_state(ws:WorldState)
 
 func _init() -> void:
 	text = "File"
-
-func _ready() -> void:
 	self.get_popup().add_item("New World")
 	self.get_popup().add_item("Save As")
 	self.get_popup().add_item("Load")
-	
+
+func _ready() -> void:	
 	self.get_popup().id_pressed.connect(_on_item_pressed)
 	
 func _on_item_pressed(id):

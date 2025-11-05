@@ -3,11 +3,14 @@ extends Tree
 
 @export var world: World:
 	set(value):
-		if world and world.changed.is_connected(_rebuild_tree):
-			world.changed.disconnect(_rebuild_tree)
+		if world and world.proposition_added.is_connected(_rebuild_tree):
+			world.proposition_added.disconnect(_rebuild_tree)
+		if world and world.proposition_removed.is_connected(_rebuild_tree):
+			world.proposition_removed.disconnect(_rebuild_tree)
 		world = value
 		if world != null:
-			world.changed.connect(_rebuild_tree)
+			world.proposition_added.connect(_rebuild_tree)
+			world.proposition_removed.connect(_rebuild_tree)
 			_rebuild_tree()
 
 var sorted_by_name:bool = false
@@ -38,6 +41,16 @@ func _ready():
 			"Value":
 				var truth:int = item.get_range(1) as int
 				world.set_truth(id,truth-1)
+				match world.get_truth(id):
+					PW.TriBool.UNKNOWN:
+						item.set_custom_color(1,Color.GOLDENROD)
+					PW.TriBool.FALSE:
+						item.set_custom_color(1,Color.FIREBRICK)
+					PW.TriBool.TRUE:
+						item.set_custom_color(1,Color.WEB_GREEN)
+					_:
+						pass
+				item.set_range(2,world.get_confidence(id))
 			"Confidence":
 				var conf:float = item.get_range(2)
 				world.set_confidence(id,conf)

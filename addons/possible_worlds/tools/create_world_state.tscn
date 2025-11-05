@@ -322,6 +322,7 @@ text = "Propositions: "
 unique_name_in_owner = true
 layout_mode = 2
 min_value = 1.0
+max_value = 83.0
 value = 1.0
 rounded = true
 

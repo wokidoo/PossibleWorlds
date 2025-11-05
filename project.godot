@@ -27,6 +27,10 @@ window/per_pixel_transparency/allowed=true
 
 project/assembly_name="PossibleWorlds"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/possible_worlds/plugin.cfg")
+
 [input]
 
 ui_menu={

@@ -56,10 +56,10 @@ func has_proposition(id:String) -> bool:
 	return propositions.has(id)
 
 func match_world(other:World) -> void:
-	propositions.clear()
-	confidence.clear()
-	propositions.assign(other.propositions)
-	confidence.assign(other.confidence)
+	for id in propositions:
+		erase_truth(id)
+	for id in other.propositions:
+		set_truth(id,other.get_truth(id),other.get_confidence(id))
 	emit_changed()
 
 func tension(id:StringName, other:World) -> float:
@@ -82,11 +82,16 @@ func diff(other:World) -> Array[StringName]:
 		return other.propositions.has(k)
 	)
 	for key in intersectingKeys:
-		var thisTruth:PW.TriBool = get_truth(key)
-		var otherTruth:PW.TriBool = other.get_truth(key)
-		if thisTruth != otherTruth:
-			if thisTruth == PW.TriBool.UNKNOWN or otherTruth == PW.TriBool.UNKNOWN:
-				continue
-			else:
-				_diff.append(key)
+		if get_truth(key) != other.get_truth(key):
+			_diff.append(key)
 	return _diff
+
+func agree(other:World) -> Array[StringName]:
+	var _agree: Array[StringName]
+	var intersecting_keys: = propositions.keys().filter(func(k):
+		return other.propositions.has(k)
+	)
+	for key in intersecting_keys:
+		if get_truth(key) == other.get_truth(key):
+			_agree.append(key)
+	return _agree

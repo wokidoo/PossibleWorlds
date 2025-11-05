@@ -14,6 +14,10 @@ const SCENE = preload("uid://cwdwqqw1spy0y")
 @export var ws:WorldState
 var character: Character
 
+var sorted_by_name:bool = false
+var sorted_by_value:bool = false
+var sorted_by_tension:bool = false
+
 static func create_entry(world_state:WorldState, c:Character) -> CharacterDetailedEntry:
 	var e :CharacterDetailedEntry = SCENE.instantiate()
 	e.ws = world_state
@@ -39,7 +43,50 @@ func _ready() -> void:
 			_build_tension_tree()
 	)
 	tension_tree.item_edited.connect(_on_tension_item_edited)
-	
+	tension_tree.column_title_clicked.connect(func(col:int,_button:int):
+		match col:
+			0:
+				sort_by_name()
+			3:
+				sort_by_tension()
+			_:
+				pass
+	)
+
+func sort_by_name():
+	var items:Array[TreeItem] = tension_tree.get_root().get_children()
+	if sorted_by_name:
+		items.sort_custom(func(a,b):
+			return a.get_text(0) > b.get_text(0)
+		)
+		sorted_by_name = false
+	else:
+		items.sort_custom(func(a,b):
+			return a.get_text(0) < b.get_text(0)
+		)
+		sorted_by_name = true
+	for item in tension_tree.get_root().get_children():
+		tension_tree.get_root().remove_child(item)
+	for item in items:
+		tension_tree.get_root().add_child(item)
+
+func sort_by_tension():
+	var items:Array[TreeItem] = tension_tree.get_root().get_children()
+	if sorted_by_tension:
+		items.sort_custom(func(a,b):
+			return float(a.get_range(3)) < float(b.get_range(3))
+		)
+		sorted_by_tension = false
+	else:
+		items.sort_custom(func(a,b):
+			return float(a.get_range(3)) > float(b.get_range(3))
+		)
+		sorted_by_tension = true
+	for item in tension_tree.get_root().get_children():
+		tension_tree.get_root().remove_child(item)
+	for item in items:
+		tension_tree.get_root().add_child(item)
+
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	return typeof(data) == TYPE_DICTIONARY and data.has("proposition") and data.has("world")
@@ -50,17 +97,13 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 
 func set_character(c:Character):
 	if ws != null && ws.characters.has(c):
-		if character != null and character.changed.is_connected(_populate_proposition_containers):
-			character.changed.disconnect(_populate_proposition_containers)
 		if character != null and character.changed.is_connected(_build_tension_tree):
 			character.changed.disconnect(_build_tension_tree)
 		character = c
-		character.changed.connect(_populate_proposition_containers)
 		character.changed.connect(_build_tension_tree)
 		perceived_proposition_tree.world = character.perceivedWorld
 		ideal_proposition_tree.world = character.idealWorld
 		
-		_populate_proposition_containers()
 		_build_tension_tree()
 
 func _set_tension_color(item:TreeItem,column:int):
@@ -93,11 +136,6 @@ func _on_tension_item_edited() -> void:
 		_:
 			return
 
-func _populate_proposition_containers():
-	pass
-	#perceived_proposition_tree._rebuild_tree()
-	#ideal_proposition_tree._rebuild_tree()
-
 func _refresh_proposition_tree_cells():
 	for child in tension_tree.get_root().get_children():
 		if child == tension_tree.get_root():
@@ -114,11 +152,10 @@ func _refresh_tension_cell(item:TreeItem) -> void:
 	var tension:float = character.internal_tension(p)
 	var color_a:Color = Color.GREEN
 	var color_b:Color = Color.RED
-	item.set_text(3, "%.2f" % tension)
+	item.set_range(3,tension)
 	var color_weight:float = tension/2.0
 	item.set_custom_color(3,color_a.lerp(color_b,color_weight))
-	item.set_text_alignment(3, HORIZONTAL_ALIGNMENT_CENTER)
-	tension_tree.set_column_title(3, "Total Internal Tension (%.2f)" % character.total_internal_tension())
+	tension_tree.set_column_title(3, "Tension (%.2f / %.2f)" % [character.total_internal_tension(),character.total_possible_internal_tension()])
 
 func _build_tension_tree():
 	name_line_edit.text = character.name
@@ -129,15 +166,13 @@ func _build_tension_tree():
 	tension_tree.set_column_title(0, "Proposition")
 	tension_tree.set_column_title(1, "Perceived")
 	tension_tree.set_column_title(2, "Ideal")
-	tension_tree.set_column_title(3, "Tension Perceived vs Ideal (%.2f)" % character.total_internal_tension())
+	tension_tree.set_column_title(3, "Tension (%.2f)/(%.2f)" % [character.total_internal_tension(),character.total_possible_internal_tension()])
 	tension_tree.set_column_expand(0,true)
 	tension_tree.set_column_expand(1,true)
 	tension_tree.set_column_expand(2,true)
 	tension_tree.set_column_expand(3,false)
-	tension_tree.set_column_expand_ratio(0,6)
-	tension_tree.set_column_expand_ratio(1,4)
-	tension_tree.set_column_expand_ratio(2,4)
-	tension_tree.set_column_expand_ratio(3,1)
+	tension_tree.set_column_expand_ratio(0,4)
+	
 	
 	for p in character.perceivedWorld.propositions.keys():
 		var child := tension_tree.create_item(root)
@@ -154,6 +189,9 @@ func _build_tension_tree():
 		child.set_text_alignment(2,HORIZONTAL_ALIGNMENT_CENTER)
 		child.set_editable(2, true)
 		child.set_text(2,"%s,%s,%s" % [PW.TriBoolString[-1],PW.TriBoolString[0],PW.TriBoolString[1]])
-
+			
+		child.set_cell_mode(3,TreeItem.CELL_MODE_RANGE)
+		child.set_range_config(3,0.0,2.0,0.01)
+		child.set_text_alignment(3,HORIZONTAL_ALIGNMENT_CENTER)
 		_refresh_tension_cell(child)
 	_refresh_proposition_tree_cells()

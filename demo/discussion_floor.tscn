@@ -1,5 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dndl4u3cnfvbp"]
 
+[ext_resource type="Resource" uid="uid://d3ilgk1rrtrux" path="res://demo_world.tres" id="1_pqm7f"]
+
 [sub_resource type="GDScript" id="GDScript_pqm7f"]
 resource_name = "discussion_floor"
 script/source = "extends Node2D
@@ -31,9 +33,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if details_panel.is_selected and event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT and event.is_pressed():
 		details_panel.hide()
 "
-
-[sub_resource type="Resource" id="Resource_phnct"]
-metadata/__load_path__ = "res://middle_earth.tres"
 
 [sub_resource type="GDScript" id="GDScript_a7lfq"]
 resource_name = "details_panel"
@@ -130,7 +129,7 @@ distance = -250.0
 [node name="DiscussionFloor" type="Node2D"]
 process_mode = 3
 script = SubResource("GDScript_pqm7f")
-ws = SubResource("Resource_phnct")
+ws = ExtResource("1_pqm7f")
 max_npc_count = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]

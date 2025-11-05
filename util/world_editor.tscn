@@ -35,19 +35,13 @@ layout_mode = 2
 
 [node name="FileMenuButton" type="MenuButton" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
-text = "File"
-flat = false
 script = ExtResource("2_e3m7w")
 metadata/_custom_type_script = "uid://bjes4a4vdflln"
 
-[node name="EditMenu" type="MenuButton" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+[node name="EditMenuButton" type="MenuButton" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
-text = "Edit"
-flat = false
 script = ExtResource("3_mbgw5")
 metadata/_custom_type_script = "uid://c45dynqydbq8o"
 

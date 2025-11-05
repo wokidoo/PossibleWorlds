@@ -3,8 +3,7 @@ extends Resource
 
 @export var name: String:
 	set(value):
-		name = value
-		resource_name = name
+		resource_name = value
 		emit_changed()
 	get():
 		return resource_name
@@ -61,25 +60,36 @@ func _on_proposition_removed(id:StringName):
 		idealWorld.erase_truth(id)
 	else:
 		return
-	
-func ideal_perceived_diff() -> Array[StringName]:
+
+## Returns an array of proposition ids with mismatching values between perceived and ideal worlds.
+func internal_diff() -> Array[StringName]:
 	return perceivedWorld.diff(idealWorld)
 
+## Tension between the perceived and ideal world for a particular proposition
 func internal_tension(id:StringName) -> float:
 	return perceivedWorld.tension(id,idealWorld)
-
+	
+## Sum total of tension for all propositions between the perceived and ideal worlds
 func total_internal_tension() -> float:
 	return perceivedWorld.total_tension(idealWorld)
 
+## Maximum possible internal tension 
+func total_possible_internal_tension() -> float:
+	return perceivedWorld.propositions.size()*2.0 
+
+## Returns an array of proposition ids with mismatchig values between the ideal worlds.
 func ideal_diff(other:Character) -> Array[StringName]:
 	return idealWorld.diff(other.idealWorld)
 
+## Sum total of tension between the ideal worlds between this character and another.
 func ideal_tension(other:Character) -> float:
 	return idealWorld.total_tension(other.idealWorld)
 
+## Returns an array of proposition ids with mismatchig values between the perceived worlds.
 func perceived_diff(other:Character) -> Array[StringName]:
 	return perceivedWorld.diff(other.perceivedWorld)
 
+## Sum total of tension between the perceived worlds between this character and another.
 func perceived_tension(other:Character) -> float:
 	return perceivedWorld.total_tension(other.perceivedWorld)
 
