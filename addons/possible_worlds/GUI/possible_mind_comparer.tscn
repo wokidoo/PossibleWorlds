@@ -1,0 +1,212 @@
+[gd_scene format=3 uid="uid://cvum85xfplfhr"]
+
+[sub_resource type="GDScript" id="GDScript_e4thp"]
+resource_name = "possible_mind_comparer"
+script/source = "extends PanelContainer
+
+@export var possible_world_state:PossibleWorldState:
+	set(val):
+		if not is_node_ready():
+			await ready
+		if possible_world_state and possible_world_state.changed.is_connected(_on_state_changed):
+			possible_world_state.changed.disconnect(_on_state_changed)
+		possible_world_state = val
+		possible_world_state.changed.connect(_on_state_changed)
+		_update_ui.call_deferred()
+
+@onready var mind_a_option_button: OptionButton = %MindAOptionButton
+@onready var mind_b_option_button: OptionButton = %MindBOptionButton
+@onready var compare_tree: Tree = %CompareTree
+@onready var world_option_button: OptionButton = %WorldOptionButton
+
+var _last_row:TreeItem
+
+func _ready() -> void:
+	visibility_changed.connect(_update_ui.call_deferred)
+	world_option_button.item_selected.connect(_on_world_selected)
+	mind_a_option_button.item_selected.connect(_on_mind_selected)
+	mind_b_option_button.item_selected.connect(_on_mind_selected)
+	compare_tree.item_edited.connect(_on_item_selected)
+	compare_tree.columns = 4
+	compare_tree.column_titles_visible = true
+	compare_tree.hide_root = true
+	compare_tree.set_column_title(0,\"Proposition\")
+	compare_tree.set_column_title(1,\"Mind A\")
+	compare_tree.set_column_title(2,\"Mind B\")
+	compare_tree.set_column_title(3,\"Tension\")
+	_update_ui.call_deferred()
+
+func _update_ui():
+	mind_a_option_button.clear()
+	mind_b_option_button.clear()
+	mind_a_option_button.add_item(\"Canonical World\")
+	mind_a_option_button.set_item_metadata(mind_a_option_button.get_item_id(0),possible_world_state.canonical_world)
+	mind_a_option_button.add_separator()
+	mind_b_option_button.add_item(\"Canonical World\")
+	mind_b_option_button.set_item_metadata(mind_b_option_button.get_item_id(0),possible_world_state.canonical_world)
+	mind_b_option_button.add_separator()
+	var idx :int = 2
+	match  world_option_button.get_selected_id():
+		0:
+			for mind in possible_world_state.possible_minds.keys():
+				mind_a_option_button.add_item(mind,idx)
+				mind_a_option_button.set_item_metadata(idx,possible_world_state.get_mind(mind).ideal_world)
+				mind_b_option_button.add_item(mind,idx)
+				mind_b_option_button.set_item_metadata(idx,possible_world_state.get_mind(mind).ideal_world)
+				idx += 1
+		1:
+			for mind in possible_world_state.possible_minds.keys():
+				mind_a_option_button.add_item(mind,idx)
+				mind_a_option_button.set_item_metadata(idx,possible_world_state.get_mind(mind).perceived_world)
+				mind_b_option_button.add_item(mind,idx)
+				mind_b_option_button.set_item_metadata(idx,possible_world_state.get_mind(mind).perceived_world)
+				idx += 1
+	_update_tree.call_deferred()
+
+func _update_tree():
+	compare_tree.clear()
+	compare_tree.create_item()
+	var props:Dictionary
+	var mind_a:PossibleWorld = mind_a_option_button.get_item_metadata(mind_a_option_button.get_selected_id())
+	var mind_b:PossibleWorld = mind_b_option_button.get_item_metadata(mind_b_option_button.get_selected_id())
+	for prop in PossibleWorld.get_combined_propositions(mind_a,mind_b):
+		_create_row(prop,mind_a,mind_b)
+	_last_row = compare_tree.create_item()
+	_last_row.set_text(2,\"Total Tension: \")
+	_last_row.set_text(3,str(PossibleWorld.get_total_tension(mind_a,mind_b)))
+
+func _create_row(prop:StringName,mind_a:PossibleWorld,mind_b:PossibleWorld):
+	var item := compare_tree.create_item()
+	item.set_metadata(0,prop)
+	item.set_metadata(1,mind_a)
+	item.set_metadata(2,mind_b)
+	item.set_text(0,prop)
+	item.set_editable(1,true)
+	item.set_cell_mode(1,TreeItem.CELL_MODE_RANGE)
+	item.set_range_config(1,-1,1,0.001)
+	item.set_range(1,mind_a.get_proposition(prop))
+	item.set_editable(2,true)
+	item.set_cell_mode(2,TreeItem.CELL_MODE_RANGE)
+	item.set_range_config(2,-1,1,0.001)
+	item.set_range(2,mind_b.get_proposition(prop))
+	var tension:= PossibleWorld.get_tension(prop,mind_a,mind_b)
+	item.set_text(3,str(tension))
+	if tension <= 1.0:
+		item.set_custom_color(3,Color.GREEN)
+	elif tension <= 1.5:
+		item.set_custom_color(3,Color.GOLD)
+	else:
+		item.set_custom_color(3,Color.ORANGE_RED)
+
+func _on_world_selected(i:int):
+	match i:
+		0:
+			for idx in range(mind_a_option_button.item_count):
+				if idx <= 1:
+					continue
+				var id_a := mind_a_option_button.get_item_id(idx)
+				var id_b := mind_b_option_button.get_item_id(idx)
+				mind_a_option_button.set_item_metadata(id_a,possible_world_state.get_mind(mind_a_option_button.get_item_text(id_a)).ideal_world)
+				mind_b_option_button.set_item_metadata(id_b,possible_world_state.get_mind(mind_b_option_button.get_item_text(id_b)).ideal_world)
+		1:
+			for idx in range(mind_a_option_button.item_count):
+				if idx <= 1:
+					continue
+				var id_a := mind_a_option_button.get_item_id(idx)
+				var id_b := mind_b_option_button.get_item_id(idx)
+				mind_a_option_button.set_item_metadata(id_a,possible_world_state.get_mind(mind_a_option_button.get_item_text(id_a)).perceived_world)
+				mind_b_option_button.set_item_metadata(id_b,possible_world_state.get_mind(mind_b_option_button.get_item_text(id_b)).perceived_world)
+	_update_tree()
+
+func _on_mind_selected(idx:int):
+	_update_tree.call_deferred()
+
+func _on_item_selected():
+	var item := compare_tree.get_edited()
+	var column:= compare_tree.get_edited_column()
+	match column:
+		1:
+			var world:PossibleWorld = item.get_metadata(1)
+			world.set_proposition(item.get_metadata(0),item.get_range(1))
+			item.set_range(2,item.get_metadata(2).get_proposition(item.get_metadata(0)))
+		2:
+			var world:PossibleWorld = item.get_metadata(2)
+			world.set_proposition(item.get_metadata(0),item.get_range(2))
+			item.set_range(1,item.get_metadata(1).get_proposition(item.get_metadata(0)))
+	var tension:= PossibleWorld.get_tension(item.get_metadata(0),item.get_metadata(1),item.get_metadata(2))
+	item.set_text(3,str(tension))
+	if tension <= 1.0:
+		item.set_custom_color(3,Color.GREEN)
+	elif tension <= 1.5:
+		item.set_custom_color(3,Color.GOLD)
+	else:
+		item.set_custom_color(3,Color.ORANGE_RED)
+
+func _on_state_changed():
+	if possible_world_state.is_built_in():
+		return
+	ResourceSaver.save(possible_world_state,possible_world_state.resource_path,ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
+"
+
+[node name="PossibleMindComparer" type="PanelContainer" unique_id=1358434796]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_e4thp")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=983740685]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1137318499]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=661747862]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=490711967]
+layout_mode = 2
+text = "Mind A: "
+
+[node name="MindAOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=950946452]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=77064878]
+layout_mode = 2
+text = "Mind B: "
+
+[node name="MindBOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=229442708]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2060819029]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1628091606]
+layout_mode = 2
+text = "World: "
+
+[node name="WorldOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1716878856]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Ideal"
+popup/item_0/id = 0
+popup/item_1/text = "Perceived"
+popup/item_1/id = 1
+
+[node name="CompareTree" type="Tree" parent="MarginContainer/VBoxContainer" unique_id=320864767]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+column_titles_visible = true
+hide_root = true

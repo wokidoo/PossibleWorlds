@@ -1,0 +1,207 @@
+[gd_scene format=3 uid="uid://c2mb81cxvdv6c"]
+
+[sub_resource type="GDScript" id="GDScript_5iu7y"]
+resource_name = "generate_possible_world_mind"
+script/source = "@tool
+extends Control
+@export var resource_name_line_edit: LineEdit
+@export var number_props_spin_box: SpinBox
+
+var fantasy_propositions :Array = [
+	\"the_king_is_alive\",
+	\"the_castle_is_under_siege\",
+	\"the_dragons_are_awake\",
+	\"the_wizard_council_has_convened\",
+	\"the_forest_is_cursed\",
+	\"the_queen_has_vanished\",
+	\"the_moon_is_blood_red\",
+	\"the_tavern_is_open\",
+	\"the_knights_are_loyal\",
+	\"the_princess_is_captured\",
+	\"the_bridge_is_destroyed\",
+	\"the_army_is_marching_north\",
+	\"the_sword_of_legends_is_forged\",
+	\"the_mines_are_abandoned\",
+	\"the_throne_is_empty\",
+	\"the_orcs_have_crossed_the_border\",
+	\"the_mages_are_in_hiding\",
+	\"the_prophecy_is_fulfilled\",
+	\"the_dark_lord_has_returned\",
+	\"the_citadel_gates_are_closed\",
+	\"the_council_is_divided\",
+	\"the_peasants_are_revolting\",
+	\"the_royal_banner_flies_high\",
+	\"the_old_gods_are_silent\",
+	\"the_plague_spreads_in_the_south\",
+	\"the_knight_has_broken_his_oath\",
+	\"the_portal_to_the_void_is_open\",
+	\"the_priests_are_praying_for_rain\",
+	\"the_crown_jewel_is_missing\",
+	\"the_elves_have_withdrawn_from_the_realm\",
+	\"the_mountains_are_trembling\",
+	\"the_stars_have_fallen_from_the_sky\",
+	\"the_dead_are_walking_again\",
+	\"the_ocean_is_rising\",
+	\"the_fire_temple_is_in_ruins\",
+	\"the_high_priest_is_corrupted\",
+	\"the_goblins_have_formed_an_alliance\",
+	\"the_dwarves_refuse_to_trade\",
+	\"the_winter_last_ten_years\",
+	\"the_curse_on_the_land_is_lifted\",
+	\"the_ancient_library_is_found\",
+	\"the_emperor_demands_tribute\",
+	\"the_crows_gather_over_the_city\",
+	\"the_river_is_poisoned\",
+	\"the_walls_of_the_capital_are_crumbling\",
+	\"the_time_of_heroes_has_ended\",
+	\"the_people_sing_of_rebellion\",
+	\"the_bells_of_doom_are_tolling\",
+	\"the_spies_have_been_exposed\",
+	\"the_relic_of_light_is_lost\",
+	\"the_mercenaries_refuse_to_fight\",
+	\"the_children_of_the_forest_are_seen_again\",
+	\"the_blacksmiths_forge_is_cold\",
+	\"the_royal_heir_is_in_disguise\",
+	\"the_griffins_have_migrated_west\",
+	\"the_highlands_are_in_flames\",
+	\"the_temple_bells_have_fallen_silent\",
+	\"the_merchant_guild_controls_the_city\",
+	\"the_storm_has_not_ceased_for_days\",
+	\"the_pact_with_the_demons_is_broken\",
+	\"the_farmers_are_fleeing_the_fields\",
+	\"the_bloodline_of_kings_is_extinct\",
+	\"the_new_star_has_appeared_in_the_sky\",
+	\"the_underground_city_is_awake\",
+	\"the_messenger_never_arrived\",
+	\"the_guard_captain_is_missing\",
+	\"the_court_jester_knows_too_much\",
+	\"the_iron_gate_is_rusted_shut\",
+	\"the_saints_have_fallen_from_grace\",
+	\"the_ancestors_whisper_in_the_wind\",
+	\"the_golden_age_is_over\",
+	\"the_dragon_riders_have_returned\",
+	\"the_lighthouse_has_gone_dark\",
+	\"the_giant_has_awoken_in_the_north\",
+	\"the_treasury_is_empty\",
+	\"the_prisoners_have_escaped\",
+	\"the_borders_are_unmarked\",
+	\"the_skyships_are_grounded\",
+	\"the_royal_council_meets_in_secret\",
+	\"the_last_seer_has_died\",
+	\"the_new_religion_spreads_in_the_east\",
+	\"the_hidden_valley_is_revealed\",
+	\"the_eternal_flame_is_extinguished\"
+]
+
+func _ready() -> void:
+	number_props_spin_box.max_value = fantasy_propositions.size()
+
+func _on_create_resource_button_pressed() -> void:
+	if resource_name_line_edit.text.is_empty():
+		return
+	if number_props_spin_box.value < 1:
+		return
+	var res :PossibleWorldMind = PossibleWorldMind.new()
+	for i in range(number_props_spin_box.value):
+		var prop:StringName = fantasy_propositions.pick_random()
+		fantasy_propositions.erase(prop)
+		res.set_ideal_proposition(prop,randf_range(-1,1))
+		res.set_perceived_proposition(prop,randf_range(-1,1))
+	ResourceSaver.save(res, \"res://%s.tres\" % resource_name_line_edit.text,ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
+"
+
+[node name="CreateMindMenu" type="Control" unique_id=395678768 node_paths=PackedStringArray("resource_name_line_edit", "number_props_spin_box")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+script = SubResource("GDScript_5iu7y")
+resource_name_line_edit = NodePath("Panel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/ResourceNameLineEdit")
+number_props_spin_box = NodePath("Panel/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/NumberPropsSpinBox")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1322140504]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_right = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1347574096]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=727767860]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=2000297299]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Generate PossibleWorldMind"
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1017318545]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/PanelContainer" unique_id=960467975]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1917452602]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1714676588]
+layout_mode = 2
+text = "Resource Name: "
+
+[node name="ResourceNameLineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=471189456]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "possible_world_mind"
+expand_to_text_length = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1682434100]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/PanelContainer2" unique_id=1892926961]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer" unique_id=1431873920]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1174587424]
+layout_mode = 2
+
+[node name="NumberPropsSpinBox" type="SpinBox" parent="Panel/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=4691808]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 83.0
+update_on_text_changed = true
+prefix = "Number of Propositions "
+
+[node name="CreateResourceButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1348387265]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "Generate"
+alignment = 0
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/CreateResourceButton" to="." method="_on_create_resource_button_pressed"]

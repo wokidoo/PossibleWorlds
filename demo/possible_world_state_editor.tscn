@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://ce137skhyyvu2"]
+
+[ext_resource type="Script" uid="uid://caghmmy5gjxbt" path="res://addons/possible_worlds/GUI/possible_world_editor.gd" id="1_6qsy8"]
+[ext_resource type="Resource" uid="uid://dl7j84kvx60jg" path="res://test_world_state.tres" id="1_ra3fa"]
+[ext_resource type="Script" uid="uid://blyswjytr6j6h" path="res://addons/possible_worlds/GUI/possible_mind_editor.gd" id="2_sew2p"]
+[ext_resource type="PackedScene" uid="uid://cvum85xfplfhr" path="res://addons/possible_worlds/GUI/possible_mind_comparer.tscn" id="4_ahhxx"]
+
+[sub_resource type="GDScript" id="GDScript_sew2p"]
+resource_name = "possible_world_state_editor"
+script/source = "extends PanelContainer
+
+@export var possible_world_state:PossibleWorldState:
+	set(val):
+		if not is_node_ready():
+			await ready
+		possible_world_state = val
+		canonical_world.possible_world = possible_world_state.canonical_world
+		possible_mind_comparer.set(\"possible_world_state\",possible_world_state)
+		possible_world_state.changed.connect(_on_state_changed)
+		_update_ui.call_deferred()
+
+@onready var canonical_world: PossibleWorldEditor = %\"Canonical World\"
+@onready var mind_tree_list: Tree = %MindTreeList
+@onready var possible_mind_editor: PossibleMindEditor = %PossibleMindEditor
+@onready var possible_mind_comparer: PanelContainer = %PossibleMindComparer
+@onready var file_popup_menu: PopupMenu = %FilePopupMenu
+@onready var create_mind_line_edit: LineEdit = %CreateMindLineEdit
+@onready var create_mind_button: Button = %CreateMindButton
+
+func _ready() -> void:
+	mind_tree_list.set_column_expand_ratio(0,4)
+	mind_tree_list.set_column_title(0,\"Minds\")
+	mind_tree_list.columns = 2
+	mind_tree_list.cell_selected.connect(_on_mind_tree_list_cell_selected)
+	file_popup_menu.id_pressed.connect(_on_file_menu_item_selected)
+	create_mind_button.pressed.connect(_on_create_mind_button_pressed)
+	_update_mind_tree_list.call_deferred()
+
+func _update_ui():
+	_update_mind_tree_list()
+
+func _update_mind_tree_list():
+	mind_tree_list.clear()
+	mind_tree_list.create_item()
+	for mind in possible_world_state.possible_minds.keys():
+		var item:TreeItem = mind_tree_list.create_item()
+		item.set_meta('mind',possible_world_state.get_mind(mind))
+		item.set_text(0,mind)
+		item.set_text(1,\"Delete\")
+		
+
+func _on_mind_tree_list_cell_selected():
+	var column := mind_tree_list.get_selected_column()
+	if column == 0:
+		possible_mind_editor.possible_world_mind = mind_tree_list.get_selected().get_meta('mind')
+	elif column == 1:
+		possible_mind_editor.possible_world_mind = null
+		possible_world_state.remove_mind(mind_tree_list.get_selected().get_text(0))
+		_update_mind_tree_list.call_deferred()
+		
+
+func _on_file_menu_item_selected(id:int):
+	match id:
+		0:
+			ResourceSaver.save(possible_world_state,possible_world_state.resource_path,ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
+		1:
+			pass
+		2:
+			pass
+
+func _on_create_mind_button_pressed():
+	if create_mind_line_edit.text.is_empty():
+		return
+	if possible_world_state.has_mind(create_mind_line_edit.text):
+		return
+	possible_world_state.set_mind(create_mind_line_edit.text,PossibleWorldMind.new())
+	create_mind_line_edit.clear()
+	_update_ui.call_deferred()
+
+func _on_state_changed():
+	ResourceSaver.save(possible_world_state,possible_world_state.resource_path,ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS|ResourceSaver.FLAG_CHANGE_PATH)
+"
+
+[node name="PossibleWorldStateEditor" type="PanelContainer" unique_id=1476331162]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = SubResource("GDScript_sew2p")
+possible_world_state = ExtResource("1_ra3fa")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1015794432]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=927989420]
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="MarginContainer/VBoxContainer" unique_id=536448944]
+layout_mode = 2
+
+[node name="FilePopupMenu" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" unique_id=1008818963]
+unique_name_in_owner = true
+title = "File"
+item_count = 3
+item_0/text = "Save"
+item_0/id = 0
+item_1/text = "Save As..."
+item_1/id = 1
+item_2/text = "Load"
+item_2/id = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1679885843]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=345800431]
+visible = false
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer" unique_id=738791413]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 1
+tab_0/title = "World"
+tab_2/title = "Compare Worlds"
+
+[node name="Canonical World" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=748679498]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("1_6qsy8")
+metadata/_custom_type_script = "uid://caghmmy5gjxbt"
+metadata/_tab_index = 0
+metadata/_tab_name = "World"
+
+[node name="Minds" type="HSplitContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=1807685801]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Minds" unique_id=1695672960]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MindTreeList" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Minds/VBoxContainer" unique_id=96065289]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+column_titles_visible = true
+hide_root = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Minds/VBoxContainer" unique_id=1881536810]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Minds/VBoxContainer/HBoxContainer" unique_id=1784234807]
+layout_mode = 2
+text = "New Mind: "
+
+[node name="CreateMindLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/TabContainer/Minds/VBoxContainer/HBoxContainer" unique_id=1440273243]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CreateMindButton" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Minds/VBoxContainer/HBoxContainer" unique_id=889612120]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add +"
+
+[node name="PossibleMindEditor" type="Tree" parent="MarginContainer/VBoxContainer/TabContainer/Minds" unique_id=820873654]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_sew2p")
+metadata/_custom_type_script = "uid://blyswjytr6j6h"
+
+[node name="PossibleMindComparer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=1358434796 instance=ExtResource("4_ahhxx")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+metadata/_tab_name = "Compare Worlds"

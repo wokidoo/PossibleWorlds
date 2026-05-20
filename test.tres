@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="PossibleWorldMind" format=3 uid="uid://c4l82vaduu7pw"]
+
+[ext_resource type="Script" uid="uid://c8kgqvclh5tmr" path="res://addons/possible_worlds/scripts/possible_world.gd" id="1_hr0ed"]
+[ext_resource type="Script" uid="uid://dbkmrlidgtafp" path="res://addons/possible_worlds/scripts/possible_world_mind.gd" id="2_ofhgo"]
+
+[sub_resource type="Resource" id="Resource_hr0ed"]
+script = ExtResource("1_hr0ed")
+_propositions = Dictionary[StringName, float]({
+&"the_fire_temple_is_in_ruins": 0.392,
+&"the_giant_has_awoken_in_the_north": -1.0,
+&"the_guard_captain_is_missing": -0.138,
+&"the_knight_has_broken_his_oath": -1.0,
+&"the_mercenaries_refuse_to_fight": 0.5418824933531079,
+&"the_mines_are_abandoned": -0.712,
+&"the_orcs_have_crossed_the_border": -0.40855166070531,
+&"the_prisoners_have_escaped": -0.309,
+&"the_treasury_is_empty": 1.0
+})
+
+[sub_resource type="Resource" id="Resource_ofhgo"]
+script = ExtResource("1_hr0ed")
+_propositions = Dictionary[StringName, float]({
+&"the_fire_temple_is_in_ruins": 1.0,
+&"the_giant_has_awoken_in_the_north": -1.0,
+&"the_guard_captain_is_missing": 1.0,
+&"the_knight_has_broken_his_oath": -1.0,
+&"the_mercenaries_refuse_to_fight": -0.4195509616678036,
+&"the_mines_are_abandoned": -1.0,
+&"the_orcs_have_crossed_the_border": -0.44859943744962694,
+&"the_prisoners_have_escaped": 1.0,
+&"the_treasury_is_empty": 1.0
+})
+
+[resource]
+script = ExtResource("2_ofhgo")
+perceived_world = SubResource("Resource_ofhgo")
+ideal_world = SubResource("Resource_hr0ed")
