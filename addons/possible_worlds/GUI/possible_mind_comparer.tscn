@@ -39,6 +39,8 @@ func _ready() -> void:
 func _update_ui():
 	mind_a_option_button.clear()
 	mind_b_option_button.clear()
+	if not possible_world_state:
+		return
 	mind_a_option_button.add_item(\"Canonical World\")
 	mind_a_option_button.set_item_metadata(mind_a_option_button.get_item_id(0),possible_world_state.canonical_world)
 	mind_a_option_button.add_separator()
@@ -73,7 +75,8 @@ func _update_tree():
 		_create_row(prop,mind_a,mind_b)
 	_last_row = compare_tree.create_item()
 	_last_row.set_text(2,\"Total Tension: \")
-	_last_row.set_text(3,str(PossibleWorld.get_total_tension(mind_a,mind_b)))
+	var tension:float= PossibleWorld.get_total_tension(mind_a,mind_b)
+	_last_row.set_text(3,str(tension))
 
 func _create_row(prop:StringName,mind_a:PossibleWorld,mind_b:PossibleWorld):
 	var item := compare_tree.create_item()
@@ -141,6 +144,7 @@ func _on_item_selected():
 		item.set_custom_color(3,Color.GOLD)
 	else:
 		item.set_custom_color(3,Color.ORANGE_RED)
+	_last_row.set_text(3,str(PossibleWorld.get_total_tension(item.get_metadata(1),item.get_metadata(2))))
 
 func _on_state_changed():
 	if possible_world_state.is_built_in():

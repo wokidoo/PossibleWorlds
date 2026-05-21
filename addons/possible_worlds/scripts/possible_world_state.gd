@@ -9,8 +9,11 @@ signal canon_world_changed(canon_world:PossibleWorld)
 
 @export var canonical_world:PossibleWorld:
 	set(val):
-		canonical_world = val.duplicate()
-		canonical_world.changed.connect(_on_canon_world_changed)
+		if not val:
+			canonical_world = null
+		else:
+			canonical_world = val.duplicate()
+			canonical_world.changed.connect(_on_canon_world_changed)
 		emit_changed()
 
 @export var possible_minds:Dictionary[StringName,PossibleWorldMind]

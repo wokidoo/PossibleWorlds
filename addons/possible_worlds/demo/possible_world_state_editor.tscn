@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://ce137skhyyvu2"]
 
-[ext_resource type="Script" uid="uid://caghmmy5gjxbt" path="res://addons/possible_worlds/GUI/possible_world_editor.gd" id="1_6qsy8"]
-[ext_resource type="Resource" uid="uid://dl7j84kvx60jg" path="res://test_world_state.tres" id="1_ra3fa"]
-[ext_resource type="Script" uid="uid://blyswjytr6j6h" path="res://addons/possible_worlds/GUI/possible_mind_editor.gd" id="2_sew2p"]
-[ext_resource type="PackedScene" uid="uid://cvum85xfplfhr" path="res://addons/possible_worlds/GUI/possible_mind_comparer.tscn" id="4_ahhxx"]
+[ext_resource type="Script" uid="uid://caghmmy5gjxbt" path="res://addons/possible_worlds/GUI/possible_world_editor.gd" id="1_5mxdu"]
+[ext_resource type="Script" uid="uid://blyswjytr6j6h" path="res://addons/possible_worlds/GUI/possible_mind_editor.gd" id="2_xvo03"]
+[ext_resource type="PackedScene" uid="uid://cvum85xfplfhr" path="res://addons/possible_worlds/GUI/possible_mind_comparer.tscn" id="3_itsh2"]
 
 [sub_resource type="GDScript" id="GDScript_sew2p"]
 resource_name = "possible_world_state_editor"
@@ -13,6 +12,8 @@ script/source = "extends PanelContainer
 	set(val):
 		if not is_node_ready():
 			await ready
+		if possible_world_state and possible_world_state.changed.is_connected(_on_state_changed):
+			possible_world_state.changed.disconnect(_on_state_changed)
 		possible_world_state = val
 		canonical_world.possible_world = possible_world_state.canonical_world
 		possible_mind_comparer.set(\"possible_world_state\",possible_world_state)
@@ -26,8 +27,10 @@ script/source = "extends PanelContainer
 @onready var file_popup_menu: PopupMenu = %FilePopupMenu
 @onready var create_mind_line_edit: LineEdit = %CreateMindLineEdit
 @onready var create_mind_button: Button = %CreateMindButton
+@onready var world_state_line_edit: LineEdit = %WorldStateLineEdit
 
 func _ready() -> void:
+	world_state_line_edit.text_submitted.connect(_on_world_state_name_line_edit_submitted)
 	mind_tree_list.set_column_expand_ratio(0,4)
 	mind_tree_list.set_column_title(0,\"Minds\")
 	mind_tree_list.columns = 2
@@ -37,11 +40,14 @@ func _ready() -> void:
 	_update_mind_tree_list.call_deferred()
 
 func _update_ui():
+	world_state_line_edit.text = possible_world_state.resource_name
 	_update_mind_tree_list()
 
 func _update_mind_tree_list():
 	mind_tree_list.clear()
 	mind_tree_list.create_item()
+	if not possible_world_state:
+		return
 	for mind in possible_world_state.possible_minds.keys():
 		var item:TreeItem = mind_tree_list.create_item()
 		item.set_meta('mind',possible_world_state.get_mind(mind))
@@ -64,9 +70,21 @@ func _on_file_menu_item_selected(id:int):
 		0:
 			ResourceSaver.save(possible_world_state,possible_world_state.resource_path,ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
 		1:
-			pass
+			var file_diag:= WorldStateFileDialog.new()
+			file_diag.menu_mode = WorldStateFileDialog.MenuMode.SAVE_AS
+			file_diag.possible_world_state = possible_world_state
+			add_child(file_diag)
+			file_diag.popup_centered()
+			await file_diag.saved_world_state
+			possible_world_state = file_diag.possible_world_state
+			
 		2:
-			pass
+			var file_diag:= WorldStateFileDialog.new()
+			file_diag.menu_mode = WorldStateFileDialog.MenuMode.LOAD
+			add_child(file_diag)
+			file_diag.popup_centered()
+			await file_diag.loaded_world_state
+			possible_world_state = file_diag.possible_world_state
 
 func _on_create_mind_button_pressed():
 	if create_mind_line_edit.text.is_empty():
@@ -76,6 +94,13 @@ func _on_create_mind_button_pressed():
 	possible_world_state.set_mind(create_mind_line_edit.text,PossibleWorldMind.new())
 	create_mind_line_edit.clear()
 	_update_ui.call_deferred()
+
+func _on_world_state_name_line_edit_submitted(new_string:String):
+	possible_world_state.resource_name = new_string
+	if world_state_line_edit.has_focus():
+		world_state_line_edit.release_focus()
+	ResourceSaver.save(possible_world_state,possible_world_state.resource_path,ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS|ResourceSaver.FLAG_CHANGE_PATH)
+	
 
 func _on_state_changed():
 	ResourceSaver.save(possible_world_state,possible_world_state.resource_path,ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS|ResourceSaver.FLAG_CHANGE_PATH)
@@ -92,7 +117,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = SubResource("GDScript_sew2p")
-possible_world_state = ExtResource("1_ra3fa")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1015794432]
 layout_mode = 2
@@ -104,10 +128,14 @@ theme_override_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=927989420]
 layout_mode = 2
 
-[node name="MenuBar" type="MenuBar" parent="MarginContainer/VBoxContainer" unique_id=536448944]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=155879090]
 layout_mode = 2
 
-[node name="FilePopupMenu" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" unique_id=1008818963]
+[node name="MenuBar" type="MenuBar" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=536448944]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FilePopupMenu" type="PopupMenu" parent="MarginContainer/VBoxContainer/HBoxContainer/MenuBar" unique_id=1008818963]
 unique_name_in_owner = true
 title = "File"
 item_count = 3
@@ -117,6 +145,18 @@ item_1/text = "Save As..."
 item_1/id = 1
 item_2/text = "Load"
 item_2/id = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1442722334]
+layout_mode = 2
+text = "World Name: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=752751726]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "untitled..."
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1679885843]
 layout_mode = 2
@@ -136,7 +176,7 @@ tab_2/title = "Compare Worlds"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-script = ExtResource("1_6qsy8")
+script = ExtResource("1_5mxdu")
 metadata/_custom_type_script = "uid://caghmmy5gjxbt"
 metadata/_tab_index = 0
 metadata/_tab_name = "World"
@@ -178,10 +218,10 @@ text = "Add +"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("2_sew2p")
+script = ExtResource("2_xvo03")
 metadata/_custom_type_script = "uid://blyswjytr6j6h"
 
-[node name="PossibleMindComparer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=1358434796 instance=ExtResource("4_ahhxx")]
+[node name="PossibleMindComparer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=1358434796 instance=ExtResource("3_itsh2")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

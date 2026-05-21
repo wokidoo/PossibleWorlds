@@ -54,7 +54,7 @@ static func get_tension(prop:StringName,world_a:PossibleWorld,world_b:PossibleWo
 	var tension :float = absf(world_a.get_proposition(prop) - world_b.get_proposition(prop))*absf(world_a.get_proposition(prop))*absf(world_b.get_proposition(prop))
 	return tension
 
-static func get_total_tension(world_a:PossibleWorld,world_b:PossibleWorld):
+static func get_total_tension(world_a:PossibleWorld,world_b:PossibleWorld)->float:
 	var tension :float = 0.0
 	# Create a copy and merge dict2 into it
 	var merged = world_a.get_all_propositions().duplicate()
