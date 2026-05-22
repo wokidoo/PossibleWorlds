@@ -58,6 +58,7 @@ func get_all_mind_keys()->Array[StringName]:
 	return possible_minds.keys()
 
 func has_mind(key:StringName)->bool:
+	var test = possible_minds.get(key)
 	return possible_minds.has(key)
 
 func remove_mind(key:StringName)->bool:

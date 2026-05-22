@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dqdicv715s72c"]
+
+[sub_resource type="GDScript" id="GDScript_x1bfl"]
+resource_name = "PossibleMindTreeList"
+script/source = "extends Tree
+
+@export var minds:Dictionary[StringName,PossibleWorldMind]
+
+signal mind_selected(key:StringName,mind:PossibleWorldMind)
+signal mind_removed_from_tree(key:StringName,mind:PossibleWorldMind)
+
+func _update_ui():
+	clear()
+	create_item()
+	if not minds:
+		return
+	for mind in minds:
+		var item:TreeItem = create_item()
+		item.set_meta('mind',minds.get(mind))
+		item.set_text(0,mind)
+		item.set_text(1,\"Delete\")
+
+func _on_mind_tree_list_cell_selected():
+	var column := get_selected_column()
+	var item := get_selected()
+	if column == 0:
+		mind_selected.emit(item.get_text(0),item.get_meta('mind'))
+	elif column == 1:
+		minds.erase(item.get_text(0))
+		mind_removed_from_tree.emit(item.get_text(0),item.get_meta('mind'))
+		_update_ui.call_deferred()
+		
+"
+
+[node name="MindTreeList" type="Tree" unique_id=568185048]
+script = SubResource("GDScript_x1bfl")

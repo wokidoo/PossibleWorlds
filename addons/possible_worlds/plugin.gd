@@ -6,7 +6,7 @@ const CREATE_MIND_MENU = preload("res://addons/possible_worlds/GUI/create_mind_m
 
 func _enter_tree() -> void:
 	EditorInterface.get_command_palette().add_command(
-		"Create World State",
+		"Create Possible Mind",
 		CREATE_MIND_COMMAND,
 		_on_create_mind_editor_command
 	)
