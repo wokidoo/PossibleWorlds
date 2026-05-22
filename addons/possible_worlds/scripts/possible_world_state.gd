@@ -23,7 +23,6 @@ func _init() -> void:
 		canonical_world = PossibleWorld.new()
 	_connect_all_signals.call_deferred()
 
-
 func _connect_all_signals():
 	if not canonical_world.changed.is_connected(_on_canon_world_changed):
 		canonical_world.changed.connect(_on_canon_world_changed)
@@ -41,9 +40,9 @@ func set_mind(key:StringName,mind:PossibleWorldMind,overwrite:bool=true):
 	if possible_minds.has(key):
 		if overwrite:
 			possible_minds.set(key,mind)
-			emit_changed()
 			mind.mind_changed.connect(_on_mind_changed)
 			mind.changed.connect(_on_changed)
+			emit_changed()
 		else:
 			return
 	else:
@@ -75,6 +74,26 @@ func remove_mind(key:StringName)->bool:
 		mind_removed.emit(mind)
 		return true
 	return false
+
+func query_minds(filter:Callable)->Dictionary[StringName,PossibleWorldMind]:
+	var minds:Array[PossibleWorldMind] = []
+	minds = possible_minds.values().filter(filter)
+	var dict:Dictionary[StringName,PossibleWorldMind] ={}
+	for mind in minds:
+		dict.set(possible_minds.find_key(mind),mind)
+	return dict
+
+func set_canonical_proposition(prop:StringName,value:float,overwrite:bool =true):
+	canonical_world.set_proposition(prop,value,overwrite)
+
+func get_canonical_propositon(prop:StringName)->float:
+	return canonical_world.get_proposition(prop)
+
+func has_canonical_proposition(prop:StringName)->bool:
+	return canonical_world.has_proposition(prop)
+
+func get_all_canonical_propositon_keys()->Array[StringName]:
+	return canonical_world.get_all_propositions().keys()
 
 func _on_changed():
 	emit_changed()

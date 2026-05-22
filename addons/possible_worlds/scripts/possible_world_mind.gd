@@ -81,34 +81,27 @@ func _connect_perceived_world_signals():
 		perceived_world.changed.connect(_on_possible_world_changed)
 
 #region static methods
-static func get_ideal_tension(mind_a:PossibleWorldMind,mind_b:PossibleWorldMind,prop:StringName):
+static func get_ideal_tension(prop:StringName, mind_a:PossibleWorldMind,mind_b:PossibleWorldMind):
 	var tension :float = PossibleWorld.get_tension(prop,mind_a.ideal_world,mind_b.ideal_world)
 	return tension
 
 static func get_total_ideal_tension(mind_a:PossibleWorldMind,mind_b:PossibleWorldMind):
 	var tension :float = 0.0
-	var merged = mind_a.ideal_world.get_all_propositions().duplicate()
-	merged.merge(mind_b.ideal_world.get_all_propositions())
-	# Get the combined keys
-	var combined_keys = merged.keys()
+	var combined_keys = PossibleWorld.get_combined_propositions(mind_a.ideal_world,mind_b.ideal_world)
 	for prop in combined_keys:
-		tension += get_ideal_tension(mind_a,mind_b,prop)
+		tension += get_ideal_tension(prop,mind_a,mind_b)
 	return tension
 
-static func get_perceived_tension(mind_a:PossibleWorldMind,mind_b:PossibleWorldMind,prop:StringName):
+static func get_perceived_tension(prop:StringName, mind_a:PossibleWorldMind,mind_b:PossibleWorldMind):
 	var tension :float = PossibleWorld.get_tension(prop,mind_a.perceived_world,mind_b.perceived_world)
 	return tension
 
 static func get_total_perceived_tension(mind_a:PossibleWorldMind,mind_b:PossibleWorldMind):
 	var tension :float = 0.0
-	var merged = mind_a.perceived_world.get_all_propositions().duplicate()
-	merged.merge(mind_b.perceived_world.get_all_propositions())
-	# Get the combined keys
-	var combined_keys = merged.keys()
+	var combined_keys = PossibleWorld.get_combined_propositions(mind_a.perceived_world,mind_b.perceived_world)
 	for prop in combined_keys:
-		tension += get_ideal_tension(mind_a,mind_b,prop)
+		tension += get_perceived_tension(prop, mind_a,mind_b)
 	return tension
-
 
 #endregion
 

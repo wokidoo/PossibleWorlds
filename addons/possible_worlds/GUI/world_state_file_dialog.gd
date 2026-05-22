@@ -37,6 +37,7 @@ func _on_file_selected(path:String):
 			var err := ResourceSaver.save(res,path,ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS||ResourceSaver.FLAG_CHANGE_PATH)
 			if err == OK:
 				possible_world_state = res
+				possible_world_state.resource_path = current_path
 				saved_world_state.emit(res)
 		MenuMode.LOAD:
 			var res :Resource = ResourceLoader.load(path)
