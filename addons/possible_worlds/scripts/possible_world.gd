@@ -50,17 +50,21 @@ static func get_proposition_diff(prop:StringName,world_a:PossibleWorld,world_b:P
 	var tension :float = absf(world_a.get_proposition(prop) - world_b.get_proposition(prop))
 	return tension
 
+static func get_total_proposition_diff(world_a:PossibleWorld,world_b:PossibleWorld)->float:
+	var tension :float = 0.0
+	var combined_keys = get_combined_propositions(world_a,world_b)
+	for prop in combined_keys:
+		tension += PossibleWorld.get_proposition_diff(prop,world_a,world_b)
+	return tension
+
 static func get_tension(prop:StringName,world_a:PossibleWorld,world_b:PossibleWorld)->float:
 	var tension :float = absf(world_a.get_proposition(prop) - world_b.get_proposition(prop))*absf(world_a.get_proposition(prop))*absf(world_b.get_proposition(prop))
 	return tension
 
 static func get_total_tension(world_a:PossibleWorld,world_b:PossibleWorld)->float:
 	var tension :float = 0.0
-	# Create a copy and merge dict2 into it
-	var merged = world_a.get_all_propositions().duplicate()
-	merged.merge(world_b.get_all_propositions())
 	# Get the combined keys
-	var combined_keys = merged.keys()
+	var combined_keys = get_combined_propositions(world_a,world_b)
 	for prop in combined_keys:
 		tension += PossibleWorld.get_tension(prop,world_a,world_b)
 	return tension

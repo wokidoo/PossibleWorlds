@@ -60,6 +60,16 @@ func get_total_internal_tension()->float:
 		total_tension += get_internal_tension(prop)
 	return total_tension
 
+func get_internal_diff(prop:StringName)->float:
+	return PossibleWorld.get_proposition_diff(prop,perceived_world,ideal_world)
+
+func get_total_internal_diff()->float:
+	var diff:float = 0.0
+	var combined_keys:= PossibleWorld.get_combined_propositions(ideal_world,perceived_world)
+	for prop in combined_keys:
+		diff += get_internal_diff(prop)
+	return diff
+
 func _connect_ideal_world_signals():
 	if not ideal_world:
 		return

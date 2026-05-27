@@ -19,7 +19,8 @@ script/source = "extends PanelContainer
 @onready var compare_tree: Tree = %CompareTree
 @onready var world_option_button: OptionButton = %WorldOptionButton
 
-var _last_row:TreeItem
+var _tension_row:TreeItem
+var _diff_row:TreeItem
 
 func _ready() -> void:
 	visibility_changed.connect(_update_ui.call_deferred)
@@ -73,10 +74,15 @@ func _update_tree():
 	var mind_b:PossibleWorld = mind_b_option_button.get_item_metadata(mind_b_option_button.get_selected_id())
 	for prop in PossibleWorld.get_combined_propositions(mind_a,mind_b):
 		_create_row(prop,mind_a,mind_b)
-	_last_row = compare_tree.create_item()
-	_last_row.set_text(2,\"Total Tension: \")
+	_tension_row = compare_tree.create_item()
+	_tension_row.set_text_alignment(2,HORIZONTAL_ALIGNMENT_RIGHT)
+	_tension_row.set_text(2,\"Tension: \")
 	var tension:float= PossibleWorld.get_total_tension(mind_a,mind_b)
-	_last_row.set_text(3,str(tension))
+	_tension_row.set_text(3,str(tension))
+	_diff_row = compare_tree.create_item()
+	_diff_row.set_text_alignment(2,HORIZONTAL_ALIGNMENT_RIGHT)
+	_diff_row.set_text(2,\"Diff: \")
+	_diff_row.set_text(3,str(PossibleWorld.get_total_proposition_diff(mind_a,mind_b)))
 
 func _create_row(prop:StringName,mind_a:PossibleWorld,mind_b:PossibleWorld):
 	var item := compare_tree.create_item()
@@ -144,7 +150,8 @@ func _on_item_selected():
 		item.set_custom_color(3,Color.GOLD)
 	else:
 		item.set_custom_color(3,Color.ORANGE_RED)
-	_last_row.set_text(3,str(PossibleWorld.get_total_tension(item.get_metadata(1),item.get_metadata(2))))
+	_tension_row.set_text(3,str(PossibleWorld.get_total_tension(item.get_metadata(1),item.get_metadata(2))))
+	_diff_row.set_text(3,str(PossibleWorld.get_total_proposition_diff(item.get_metadata(1),item.get_metadata(2))))
 
 func _on_state_changed():
 	if possible_world_state.is_built_in():

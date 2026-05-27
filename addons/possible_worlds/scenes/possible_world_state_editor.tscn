@@ -188,7 +188,7 @@ layout_mode = 2
 size_flags_vertical = 3
 current_tab = 1
 tab_0/title = "World"
-tab_2/title = "Compare Minds"
+tab_2/title = "Compare"
 
 [node name="Canonical World" type="Tree" parent="MarginContainer/VBoxContainer/MainTabContainer" unique_id=748679498]
 unique_name_in_owner = true
@@ -222,4 +222,4 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
-metadata/_tab_name = "Compare Minds"
+metadata/_tab_name = "Compare"
